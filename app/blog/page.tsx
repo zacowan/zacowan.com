@@ -1,14 +1,19 @@
+import { BadgeLink } from "app/components/badge-link";
 import { BlogPosts } from "app/components/posts";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export const metadata = {
   title: "Blog",
-  description: "Read my blog.",
+  description: "A collection of my thoughts on various topics.",
 };
 
 export default function Page() {
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
+      <BadgeLink startSlot={<FaArrowLeft />} href="/">
+        Home
+      </BadgeLink>
+      <h1 className="text-2xl mb-12 mt-8">Blog</h1>
       <BlogPosts />
     </section>
   );

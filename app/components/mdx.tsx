@@ -1,10 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import Image, { ImageProps } from "next/image";
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React from "react";
+import React, {
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
 
-function Table({ data }) {
+function Table({
+  data,
+}: {
+  data: {
+    headers: ReactNode[];
+    rows: ReactNode[][];
+  };
+}) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ));
@@ -26,34 +37,52 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(props) {
-  let href = props.href;
-
-  if (href.startsWith("/")) {
+function CustomLink({
+  href,
+  children,
+  ...otherProps
+}: ComponentPropsWithoutRef<"a"> & PropsWithChildren) {
+  if (href?.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
-        {props.children}
+      <Link href={href} {...otherProps}>
+        {children}
       </Link>
     );
   }
 
-  if (href.startsWith("#")) {
-    return <a {...props} />;
+  if (href?.startsWith("#")) {
+    return (
+      <a href={href} {...otherProps}>
+        {children}
+      </a>
+    );
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a target="_blank" rel="noopener noreferrer" href={href} {...otherProps}>
+      {children}
+    </a>
+  );
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+function RoundedImage({ alt, ...otherProps }: ImageProps) {
+  return <Image alt={alt} className="rounded-lg" {...otherProps} />;
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
+function Code({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"code"> & PropsWithChildren) {
+  if (typeof children !== "string") {
+    throw new Error(
+      `Cannot render code because it is not a string: ${children}`
+    );
+  }
+  const codeHTML = highlight(children);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
-function slugify(str) {
+function slugify(str: string) {
   return str
     .toString()
     .toLowerCase()
@@ -64,9 +93,14 @@ function slugify(str) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children);
+function createHeading(level: number) {
+  const Heading = ({ children }: PropsWithChildren) => {
+    if (typeof children !== "string") {
+      throw new Error(
+        `Cannot render heading because it is not a string: ${children}`
+      );
+    }
+    const slug = slugify(children);
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -77,7 +111,7 @@ function createHeading(level) {
           className: "anchor",
         }),
       ],
-      children,
+      children
     );
   };
 
@@ -86,7 +120,7 @@ function createHeading(level) {
   return Heading;
 }
 
-let components = {
+const components: MDXRemoteProps["components"] = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -99,11 +133,14 @@ let components = {
   Table,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX({
+  components: componentsProp,
+  ...otherProps
+}: MDXRemoteProps) {
   return (
     <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      {...otherProps}
+      components={{ ...components, ...componentsProp }}
     />
   );
 }
