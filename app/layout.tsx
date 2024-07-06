@@ -6,21 +6,22 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { BASE_URL } from "./sitemap";
 import { cn } from "./utils/cn";
+import { DESCRIPTION, TITLE } from "./manifest";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Zach's Portfolio",
-    template: "%s | Zach's Portfolio",
+    default: TITLE,
+    template: `%s | ${TITLE}`,
   },
-  description: "A minimal blog and landing page to get connected with me.",
+  description: DESCRIPTION,
   openGraph: {
-    title: "Zach's Portfolio",
-    description: "A minimal blog and landing page to get connected with me.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: BASE_URL,
-    siteName: "Zach's Portfolio",
+    siteName: TITLE,
     locale: "en_US",
     type: "website",
   },
