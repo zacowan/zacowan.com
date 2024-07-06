@@ -1,3 +1,4 @@
+name: CI
 on:
   pull_request:
   push:
@@ -5,7 +6,8 @@ on:
       - main
 
 jobs:
-  ci:
+  checks:
+    name: Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
