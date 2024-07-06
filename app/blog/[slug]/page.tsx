@@ -2,30 +2,31 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { BASE_URL } from "app/sitemap";
+import { BadgeLink } from "app/components/badge-link";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts();
+  const posts = getBlogPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+type StaticParams = Awaited<ReturnType<typeof generateStaticParams>>[number];
+
+export function generateMetadata({ params }: { params: StaticParams }) {
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
 
-  let {
+  const {
     title,
-    publishedAt: publishedTime,
+    publishDate: publishedTime,
     summary: description,
-    image,
   } = post.metadata;
-  let ogImage = image
-    ? image
-    : `${BASE_URL}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `${BASE_URL}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -51,8 +52,8 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export default function Blog({ params }: { params: StaticParams }) {
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
@@ -68,26 +69,25 @@ export default function Blog({ params }) {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
+            datePublished: post.metadata.publishDate,
+            dateModified: post.metadata.publishDate,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${BASE_URL}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            image: `/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${BASE_URL}/blog/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Zachary Cowan",
             },
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
+      <BadgeLink href="/blog" startSlot={<FaArrowLeft />}>
+        All Posts
+      </BadgeLink>
+      <h1 className="title text-2xl mt-8">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
+        <p className="text-sm font-light dark:text-slate-300 text-slate-600">
+          {formatDate(post.metadata.publishDate)}
         </p>
       </div>
       <article className="prose">
