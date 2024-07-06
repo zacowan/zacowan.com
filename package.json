@@ -6,7 +6,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier . --write --ignore-unknown",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.0.0-alpha.13",
