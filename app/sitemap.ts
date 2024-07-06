@@ -1,15 +1,38 @@
 import { getBlogPosts } from "app/blog/utils";
+import { z } from "zod";
 
-// TODO: update
-export const BASE_URL = "localhost:3000";
+const vercelEnvironmentSchema = z.object({
+  VERCEL_ENV: z
+    .literal("development")
+    .or(z.literal("preview"))
+    .or(z.literal("production")),
+  VERCEL_PROJECT_PRODUCTION_URL: z.string().url(),
+});
+
+const LOCAL_URL = "localhost:3000";
+
+const getBaseUrl = () => {
+  try {
+    const safeEnv = vercelEnvironmentSchema.parse(process.env);
+    console.log(`Using ${safeEnv.VERCEL_PROJECT_PRODUCTION_URL} as base url`);
+    return safeEnv.VERCEL_PROJECT_PRODUCTION_URL;
+  } catch (error) {
+    console.log(
+      `No vercel environment variables found, using ${LOCAL_URL} as base url`
+    );
+    return LOCAL_URL;
+  }
+};
+
+export const BASE_URL = getBaseUrl();
 
 export default async function sitemap() {
-  let blogs = getBlogPosts().map((post) => ({
+  const blogs = getBlogPosts().map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: post.metadata.publishDate,
   }));
 
-  let routes = ["", "/blog"].map((route) => ({
+  const routes = ["", "/blog"].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
