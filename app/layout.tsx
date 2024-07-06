@@ -50,9 +50,9 @@ export default function RootLayout({
         rubik.className
       )}
     >
-      <body className="max-w-xl mx-4 mt-8 lg:mx-auto">
+      <body className="max-w-xl mx-4 mt-8 md:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          {children}
+          <div className="mt-20 min-h-[60vh]">{children}</div>
           <Footer />
           <Analytics />
           <SpeedInsights />

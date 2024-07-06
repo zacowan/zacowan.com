@@ -19,7 +19,7 @@ const GITHUB_HREF = "https://github.com/zacowan";
 
 export default function Page() {
   return (
-    <section className="mt-20 min-h-[60vh]">
+    <section>
       <div className="flex flex-col w-full pb-16 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-2xl mb-4">Zach Cowan</h1>
