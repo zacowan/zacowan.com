@@ -12,15 +12,15 @@ const rubik = Rubik({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Next.js Portfolio Starter",
-    template: "%s | Next.js Portfolio Starter",
+    default: "Zach's Portfolio",
+    template: "%s | Zach's Portfolio",
   },
-  description: "This is my portfolio.",
+  description: "A minimal blog and landing page to get connected with me.",
   openGraph: {
-    title: "My Portfolio",
-    description: "This is my portfolio.",
+    title: "Zach's Portfolio",
+    description: "A minimal blog and landing page to get connected with me.",
     url: BASE_URL,
-    siteName: "My Portfolio",
+    siteName: "Zach's Portfolio",
     locale: "en_US",
     type: "website",
   },
