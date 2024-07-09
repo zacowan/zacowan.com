@@ -20,10 +20,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: `${BASE_URL}/og`,
+    url: BASE_URL,
     siteName: TITLE,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${BASE_URL}/og`,
+      },
+    ],
   },
   robots: {
     index: true,
