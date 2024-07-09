@@ -2,10 +2,6 @@ import { getBlogPosts } from "app/blog/utils";
 import { z } from "zod";
 
 const vercelEnvironmentSchema = z.object({
-  VERCEL_ENV: z
-    .literal("development")
-    .or(z.literal("preview"))
-    .or(z.literal("production")),
   VERCEL_PROJECT_PRODUCTION_URL: z.string().url(),
 });
 
@@ -18,7 +14,8 @@ const getBaseUrl = () => {
     return safeEnv.VERCEL_PROJECT_PRODUCTION_URL;
   } catch (error) {
     console.log(
-      `No vercel environment variables found, using ${LOCAL_URL} as base url`
+      `No vercel environment variables found, using ${LOCAL_URL} as base url:`,
+      error
     );
     return LOCAL_URL;
   }
