@@ -19,8 +19,8 @@ const getBaseUrl = () => {
     const safeEnv = vercelEnvironmentSchema.parse(process.env);
     const url =
       safeEnv.VERCEL_ENV === "production"
-        ? `https://${safeEnv.VERCEL_URL}`
-        : `https://${safeEnv.VERCEL_PROJECT_PRODUCTION_URL}`;
+        ? `https://${safeEnv.VERCEL_PROJECT_PRODUCTION_URL}`
+        : `https://${safeEnv.VERCEL_URL}`;
     console.log(`Vercel environment variables found, using ${url} as base url`);
     return url;
   } catch (error) {
