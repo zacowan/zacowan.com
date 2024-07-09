@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     siteName: TITLE,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${BASE_URL}/og`,
+      },
+    ],
   },
   robots: {
     index: true,
