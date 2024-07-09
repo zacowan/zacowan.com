@@ -3,6 +3,8 @@ import { z } from "zod";
 
 const vercelEnvironmentSchema = z.object({
   VERCEL_PROJECT_PRODUCTION_URL: z.string(),
+  VERCEL_BRANCH_URL: z.string(),
+  VERCEL_URL: z.string(),
 });
 
 const LOCAL_URL = "localhost:3000";
@@ -10,6 +12,8 @@ const LOCAL_URL = "localhost:3000";
 const getBaseUrl = () => {
   try {
     const safeEnv = vercelEnvironmentSchema.parse(process.env);
+    console.log("Branch url", safeEnv.VERCEL_BRANCH_URL);
+    console.log("Vercel URL", safeEnv.VERCEL_URL);
     console.log(`Using ${safeEnv.VERCEL_PROJECT_PRODUCTION_URL} as base url`);
     return safeEnv.VERCEL_PROJECT_PRODUCTION_URL;
   } catch (error) {
