@@ -12,22 +12,20 @@ const vercelEnvironmentSchema = z.object({
   VERCEL_URL: z.string(),
 });
 
-const LOCAL_URL = "localhost:3000";
+const LOCAL_URL = "https://localhost:3000";
 
 const getBaseUrl = () => {
   try {
     const safeEnv = vercelEnvironmentSchema.parse(process.env);
-    switch (safeEnv.VERCEL_ENV) {
-      case "development":
-      case "preview":
-        return `https://${safeEnv.VERCEL_URL}`;
-      default:
-        return `https://${safeEnv.VERCEL_PROJECT_PRODUCTION_URL}`;
-    }
+    const url =
+      safeEnv.VERCEL_ENV === "production"
+        ? `https://${safeEnv.VERCEL_URL}`
+        : `https://${safeEnv.VERCEL_PROJECT_PRODUCTION_URL}`;
+    console.log(`Vercel environment variables found, using ${url} as base url`);
+    return url;
   } catch (error) {
     console.log(
-      `No vercel environment variables found, using ${LOCAL_URL} as base url:`,
-      error
+      `No vercel environment variables found, using ${LOCAL_URL} as base url`
     );
     return LOCAL_URL;
   }
