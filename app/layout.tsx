@@ -6,7 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { BASE_URL } from "./sitemap";
 import { cn } from "./utils/cn";
-import { DESCRIPTION, TITLE } from "./manifest";
+import { DESCRIPTION, TITLE } from "./constants";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
