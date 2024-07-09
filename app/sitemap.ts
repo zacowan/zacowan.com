@@ -2,7 +2,7 @@ import { getBlogPosts } from "app/blog/utils";
 import { z } from "zod";
 
 const vercelEnvironmentSchema = z.object({
-  VERCEL_PROJECT_PRODUCTION_URL: z.string().url(),
+  VERCEL_PROJECT_PRODUCTION_URL: z.string(),
 });
 
 const LOCAL_URL = "localhost:3000";
