@@ -24,9 +24,6 @@ const getBaseUrl = () => {
     console.log(`Vercel environment variables found, using ${url} as base url`);
     return url;
   } catch (error) {
-    console.log(
-      `No vercel environment variables found, using ${LOCAL_URL} as base url`
-    );
     return LOCAL_URL;
   }
 };
