@@ -13,7 +13,7 @@ export default function Page() {
       <BadgeLink startSlot={<FaArrowLeft />} href="/">
         Home
       </BadgeLink>
-      <h1 className="text-2xl mb-12 mt-8">Blog</h1>
+      <h1 className="text-2xl mb-12 mt-8 font-normal">Blog</h1>
       <BlogPosts />
     </section>
   );

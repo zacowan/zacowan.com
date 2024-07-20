@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import { BASE_URL } from "./sitemap";
 import { cn } from "./utils/cn";
 import { DESCRIPTION, TITLE } from "./constants";
+import Header from "./components/header";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -52,17 +53,18 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "text-black bg-white dark:text-white dark:bg-black",
+        "text-black bg-white dark:text-white dark:bg-black font-light",
         rubik.className
       )}
     >
-      <body className="max-w-xl mx-4 mt-8 md:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <div className="mt-20 min-h-[60vh]">{children}</div>
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
+      <body className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0">
+        <Header />
+        <main className="flex-auto min-w-0 flex flex-col py-16 min-h-[60vh]">
+          {children}
         </main>
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -84,9 +84,9 @@ export default function Blog({ params }: { params: StaticParams }) {
       <BadgeLink href="/blog" startSlot={<FaArrowLeft />}>
         All Posts
       </BadgeLink>
-      <h1 className="title text-2xl mt-8">{post.metadata.title}</h1>
+      <h1 className="title text-2xl mt-8 font-normal">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm font-light dark:text-neutral-300 text-neutral-600">
+        <p className="text-sm dark:text-neutral-300 text-neutral-600">
           {formatDate(post.metadata.publishDate)}
         </p>
       </div>
