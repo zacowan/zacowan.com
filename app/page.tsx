@@ -31,12 +31,12 @@ export default function Page() {
     <section>
       <div className="flex flex-col w-full pb-8 md:pb-16 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl mb-4">Zach Cowan</h1>
-          <span className="flex items-center space-x-2 text-sm font-light">
+          <h1 className="text-2xl mb-4 font-normal">Zach Cowan</h1>
+          <span className="flex items-center space-x-2 text-sm">
             <FaLocationDot className="dark:fill-neutral-300 fill-neutral-600" />
             <h2>Orlando, FL</h2>
           </span>
-          <span className="flex items-center space-x-2 font-light text-sm">
+          <span className="flex items-center space-x-2 text-sm">
             <FaBriefcase className="dark:fill-neutral-300 fill-neutral-600" />
             <h2>
               Engineer x Design Systems @{" "}
@@ -51,8 +51,8 @@ export default function Page() {
       <div className="space-y-8">
         {featuredPost && (
           <div>
-            <h3 className="text-lg mb-4">Blog</h3>
-            <div className="grid grid-cols-2 gap-4 font-light">
+            <h3 className="text-lg mb-4 font-normal">Blog</h3>
+            <div className="grid grid-cols-2 gap-4">
               <Link
                 className="dark:hover:bg-neutral-900 dark:active:bg-neutral-950 dark:border-neutral-700 hover:bg-neutral-100 active:bg-neutral-50 border-neutral-300 border p-4 rounded-3xl"
                 href={`/blog/${featuredPost.slug}`}
@@ -81,7 +81,7 @@ export default function Page() {
           </div>
         )}
         <div>
-          <h3 className="text-lg mb-4">Links</h3>
+          <h3 className="text-lg mb-4 font-normal">Links</h3>
           <ul className="flex flex-wrap items-center gap-4">
             <li>
               <CallToAction href={GITHUB_HREF} startSlot={<FaGithub />}>
