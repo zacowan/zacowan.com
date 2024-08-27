@@ -93,7 +93,7 @@ export default function Page() {
                 LinkedIn
               </BadgeLink>
             </li>
-            <li>
+            {/* <li>
               <BadgeLink href={THREADS_HREF} startSlot={<FaThreads />}>
                 Threads
               </BadgeLink>
@@ -102,7 +102,7 @@ export default function Page() {
               <BadgeLink href={INSTAGRAM_HREF} startSlot={<FaInstagram />}>
                 Instagram
               </BadgeLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
