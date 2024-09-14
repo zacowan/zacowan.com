@@ -1,12 +1,15 @@
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
+import type { ImageProps } from "next/image";
+import Image from "next/image";
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React, {
+import type {
   ComponentPropsWithoutRef,
   PropsWithChildren,
   ReactNode,
 } from "react";
+import React from "react";
 
 function Table({
   data,
