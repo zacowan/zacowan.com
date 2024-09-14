@@ -54,7 +54,7 @@ export default function RootLayout({
       lang="en"
       className={cn(
         "text-black bg-white dark:text-white dark:bg-black font-light",
-        rubik.className
+        rubik.className,
       )}
     >
       <body className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0">

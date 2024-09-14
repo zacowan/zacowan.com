@@ -23,7 +23,7 @@ const getBaseUrl = () => {
         : `https://${safeEnv.VERCEL_URL}`;
     console.log(`Vercel environment variables found, using ${url} as base url`);
     return url;
-  } catch (error) {
+  } catch {
     return LOCAL_URL;
   }
 };

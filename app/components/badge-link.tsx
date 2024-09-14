@@ -18,7 +18,7 @@ export function BadgeLink({
     <Link
       className={cn(
         "rounded-full px-4 py-2 border min-w-11 min-h-11 inline-flex items-center space-x-2 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 active:bg-neutral-50 dark:hover:bg-neutral-900 dark:active:bg-neutral-950",
-        className
+        className,
       )}
       {...otherProps}
     >

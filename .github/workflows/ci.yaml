@@ -20,7 +20,7 @@ jobs:
         run: pnpm i
       - name: build
         run: pnpm build
-      - name: typecheck
-        run: pnpm typecheck
       - name: lint
         run: pnpm lint
+      - name: typecheck
+        run: pnpm typecheck
