@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatDate, getBlogPosts } from "./blog/utils";
 import { BadgeLink } from "./components/badge-link";
 import { CallToAction } from "./components/call-to-action";
-import { ProfilePicture } from "./components/profile-picture";
+import { ProfilePicture } from "./components/profile-picture/profile-picture";
 import {
   FaThreads,
   FaInstagram,
