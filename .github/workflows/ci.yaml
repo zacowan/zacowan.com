@@ -7,7 +7,7 @@ on:
 
 jobs:
   checks:
-    name: Checks
+    name: 🧪 Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,6 +18,8 @@ jobs:
         run: corepack enable
       - name: install dependencies
         run: pnpm i
+      - name: build
+        run: pnpm build
       - name: typecheck
         run: pnpm typecheck
       - name: lint
