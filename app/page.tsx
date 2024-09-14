@@ -4,19 +4,14 @@ import { BadgeLink } from "./components/badge-link";
 import { CallToAction } from "./components/call-to-action";
 import { ProfilePicture } from "./components/profile-picture/profile-picture";
 import {
-  FaThreads,
-  FaInstagram,
   FaLinkedin,
   FaGithub,
   FaLocationDot,
   FaBriefcase,
-  FaReadme,
   FaArrowRight,
 } from "react-icons/fa6";
 
 const AMEX_CAREERS_HREF = "https://www.americanexpress.com/en-us/careers/";
-const THREADS_HREF = "https://www.threads.net/@zacowan";
-const INSTAGRAM_HREF = "https://www.instagram.com/zacowan/";
 const LINKEDIN_HREF = "https://www.linkedin.com/in/zacowan/";
 const GITHUB_HREF = "https://github.com/zacowan";
 
@@ -24,7 +19,7 @@ const FEATURED_BLOG_POST_SLUG = "ml-eye-tracking";
 
 export default function Page() {
   const featuredPost = getBlogPosts().find(
-    (post) => post.slug === FEATURED_BLOG_POST_SLUG
+    (post) => post.slug === FEATURED_BLOG_POST_SLUG,
   );
 
   return (

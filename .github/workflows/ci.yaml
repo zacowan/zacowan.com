@@ -18,9 +18,11 @@ jobs:
         run: corepack enable
       - name: install dependencies
         run: pnpm i
+      - name: check format
+        run: pnpm format:check
       - name: build
         run: pnpm build
-      - name: typecheck
-        run: pnpm typecheck
       - name: lint
         run: pnpm lint
+      - name: typecheck
+        run: pnpm typecheck

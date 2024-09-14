@@ -1,12 +1,15 @@
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
+import type { ImageProps } from "next/image";
+import Image from "next/image";
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React, {
+import type {
   ComponentPropsWithoutRef,
   PropsWithChildren,
   ReactNode,
 } from "react";
+import React from "react";
 
 function Table({
   data,
@@ -16,10 +19,10 @@ function Table({
     rows: ReactNode[][];
   };
 }) {
-  let headers = data.headers.map((header, index) => (
+  const headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ));
-  let rows = data.rows.map((row, index) => (
+  const rows = data.rows.map((row, index) => (
     <tr key={index}>
       {row.map((cell, cellIndex) => (
         <td key={cellIndex}>{cell}</td>
@@ -75,7 +78,7 @@ function Code({
 }: ComponentPropsWithoutRef<"code"> & PropsWithChildren) {
   if (typeof children !== "string") {
     throw new Error(
-      `Cannot render code because it is not a string: ${children}`
+      `Cannot render code because it is not a string: ${children}`,
     );
   }
   const codeHTML = highlight(children);
@@ -97,7 +100,7 @@ function createHeading(level: number) {
   const Heading = ({ children }: PropsWithChildren) => {
     if (typeof children !== "string") {
       throw new Error(
-        `Cannot render heading because it is not a string: ${children}`
+        `Cannot render heading because it is not a string: ${children}`,
       );
     }
     const slug = slugify(children);
@@ -111,7 +114,7 @@ function createHeading(level: number) {
           className: "anchor",
         }),
       ],
-      children
+      children,
     );
   };
 
