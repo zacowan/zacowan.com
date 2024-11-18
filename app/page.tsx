@@ -9,11 +9,23 @@ import {
   FaLocationDot,
   FaBriefcase,
   FaArrowRight,
+  FaThreads,
+  FaInstagram,
+  FaChevronDown,
+  FaBluesky,
+  FaMastodon,
 } from "react-icons/fa6";
+import * as Accordion from "@radix-ui/react-accordion";
+import accordionStyles from "./accordion.module.css";
+import { cn } from "./utils/cn";
 
 const AMEX_CAREERS_HREF = "https://www.americanexpress.com/en-us/careers/";
 const LINKEDIN_HREF = "https://www.linkedin.com/in/zacowan/";
 const GITHUB_HREF = "https://github.com/zacowan";
+const THREADS_HREF = "https://www.threads.net/@zacowan";
+const INSTAGRAM_HREF = "https://www.instagram.com/zacowan/";
+const BLUESKY_HREF = "https://bsky.app/profile/zacowan.bsky.social";
+const MASTODON_HREF = "https://mastodon.social/@zacowan";
 
 const FEATURED_BLOG_POST_SLUG = "ml-eye-tracking";
 
@@ -76,7 +88,7 @@ export default function Page() {
           </div>
         )}
         <div>
-          <h3 className="text-lg mb-4 font-normal">Links</h3>
+          <h3 className="text-lg mb-4 font-normal">Professional Links</h3>
           <ul className="flex flex-wrap items-center gap-4">
             <li>
               <CallToAction href={GITHUB_HREF} startSlot={<FaGithub />}>
@@ -88,17 +100,61 @@ export default function Page() {
                 LinkedIn
               </BadgeLink>
             </li>
-            {/* <li>
-              <BadgeLink href={THREADS_HREF} startSlot={<FaThreads />}>
-                Threads
-              </BadgeLink>
-            </li>
-            <li>
-              <BadgeLink href={INSTAGRAM_HREF} startSlot={<FaInstagram />}>
-                Instagram
-              </BadgeLink>
-            </li> */}
           </ul>
+        </div>
+        <div>
+          <Accordion.Root type="single" collapsible={true}>
+            <Accordion.Item
+              value="personal"
+              className="border-b dark:border-neutral-700 border-neutral-300"
+            >
+              <Accordion.Header className="text-lg mb-4 font-normal">
+                <Accordion.Trigger
+                  className={cn(
+                    accordionStyles.trigger,
+                    "flex flex-row justify-between items-center w-full group",
+                  )}
+                >
+                  <span>Personal Socials</span>
+                  <div
+                    className={cn(
+                      accordionStyles.chevronContainer,
+                      "dark:group-hover:bg-neutral-900 group-hover:bg-neutral-100 group-active:scale-95 p-4 rounded-full",
+                    )}
+                  >
+                    <FaChevronDown />
+                  </div>
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className={cn(accordionStyles.content)}>
+                <ul className="flex flex-wrap items-center gap-4 pb-8">
+                  <li>
+                    <BadgeLink href={THREADS_HREF} startSlot={<FaThreads />}>
+                      Threads
+                    </BadgeLink>
+                  </li>
+                  <li>
+                    <BadgeLink
+                      href={INSTAGRAM_HREF}
+                      startSlot={<FaInstagram />}
+                    >
+                      Instagram
+                    </BadgeLink>
+                  </li>
+                  <li>
+                    <BadgeLink href={BLUESKY_HREF} startSlot={<FaBluesky />}>
+                      Bluesky
+                    </BadgeLink>
+                  </li>
+                  <li>
+                    <BadgeLink href={MASTODON_HREF} startSlot={<FaMastodon />}>
+                      Mastodon
+                    </BadgeLink>
+                  </li>
+                </ul>
+              </Accordion.Content>
+            </Accordion.Item>
+          </Accordion.Root>
         </div>
       </div>
     </section>
