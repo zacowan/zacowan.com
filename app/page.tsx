@@ -27,7 +27,7 @@ const INSTAGRAM_HREF = "https://www.instagram.com/zacowan/";
 const BLUESKY_HREF = "https://bsky.app/profile/zacowan.bsky.social";
 const MASTODON_HREF = "https://mastodon.social/@zacowan";
 
-const FEATURED_BLOG_POST_SLUG = "ml-eye-tracking";
+const FEATURED_BLOG_POST_SLUG = "importance-of-testing";
 
 export default function Page() {
   const featuredPost = getBlogPosts().find(
