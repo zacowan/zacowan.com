@@ -15,7 +15,10 @@ export async function generateStaticParams() {
 
 type StaticParams = Awaited<ReturnType<typeof generateStaticParams>>[number];
 
-export function generateMetadata({ params }: { params: StaticParams }) {
+export async function generateMetadata(props: {
+  params: Promise<StaticParams>;
+}) {
+  const params = await props.params;
   const post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
@@ -52,7 +55,8 @@ export function generateMetadata({ params }: { params: StaticParams }) {
   };
 }
 
-export default function Blog({ params }: { params: StaticParams }) {
+export default async function Blog(props: { params: Promise<StaticParams> }) {
+  const params = await props.params;
   const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
