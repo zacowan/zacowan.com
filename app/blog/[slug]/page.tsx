@@ -15,7 +15,9 @@ export async function generateStaticParams() {
 
 type StaticParams = Awaited<ReturnType<typeof generateStaticParams>>[number];
 
-export async function generateMetadata(props: { params: Promise<StaticParams> }) {
+export async function generateMetadata(props: {
+  params: Promise<StaticParams>;
+}) {
   const params = await props.params;
   const post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
