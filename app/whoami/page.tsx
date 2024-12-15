@@ -11,10 +11,15 @@ const TECH = [
   "github actions",
 ] as const;
 
+export const metadata = {
+  title: "About",
+  description: "A little about me and my skills.",
+};
+
 export default function Page() {
   return (
     <section className="flex items-center justify-center min-h-screen">
-      <div className="border p-16 font-mono uppercase gap-8 flex flex-col max-w-96">
+      <div className="border p-16 font-mono uppercase gap-8 flex flex-col max-w-xl">
         <h1>/whoami</h1>
         <ul className="text-xs gap-2 flex flex-col">
           <li>

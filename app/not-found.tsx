@@ -1,25 +1,23 @@
-import { BadgeLink } from "./components/badge-link";
-import { FaReadme, FaHouse } from "react-icons/fa6";
+import Link from "next/link";
+import { PAGE_LINKS } from "./constants";
 
 export default function NotFound() {
   return (
-    <section>
-      <h1 className="mb-8 text-2xl">404 - Page Not Found</h1>
-      <p className="text-sm font-light">
-        {`It's an empty desert out here. Maybe what you're looking for is elsewhere.`}
-      </p>
-      <ul className="flex flex-wrap items-center gap-4 mt-12">
-        <li>
-          <BadgeLink startSlot={<FaHouse />} href="/">
-            Home
-          </BadgeLink>
-        </li>
-        <li>
-          <BadgeLink href="/blog" startSlot={<FaReadme />}>
-            Blog
-          </BadgeLink>
-        </li>
-      </ul>
+    <section className="flex items-center justify-center min-h-screen">
+      <div className="border p-16 font-mono uppercase gap-8 flex flex-col max-w-xl w-full">
+        <h1>/404</h1>
+        <ul className="text-xs gap-8 flex underline">
+          <li>
+            <Link href={PAGE_LINKS.HOME}>Home</Link>
+          </li>
+          <li>
+            <Link href={PAGE_LINKS.ABOUT}>About</Link>
+          </li>
+          <li>
+            <Link href={PAGE_LINKS.BLOG}>Blog</Link>
+          </li>
+        </ul>
+      </div>
     </section>
   );
 }

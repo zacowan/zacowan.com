@@ -5,6 +5,7 @@ export const PAGE_LINKS = {
   HOME: "/",
   ABOUT: "/whoami",
   BLOG: "/blog",
+  BLOG_POST: (slug: string) => `${PAGE_LINKS.BLOG}/${slug}`,
 } as const;
 export const EXTERNAL_LINKS = {
   GITHUB: "https://github.com/zacowan",

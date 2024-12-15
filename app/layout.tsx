@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={"text-slate-950 bg-yellow-300 min-h-screen"}>
       <body>
-        <header className="border-b border-slate-950 flex h-24 fixed w-full">
+        <header className="border-b border-slate-950 flex h-24 fixed w-full bg-yellow-300">
           {/* HOME */}
           <h1 className="border-r h-full flex items-center justify-center">
             <Link

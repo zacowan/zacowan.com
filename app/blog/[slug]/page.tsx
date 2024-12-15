@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
-import { CustomMDX } from "app/components/mdx";
+import { CustomMDX } from "components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { BASE_URL } from "app/sitemap";
-import { BadgeLink } from "app/components/badge-link";
-import { FaArrowLeft } from "react-icons/fa6";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -64,7 +62,7 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
   }
 
   return (
-    <section>
+    <section className="pt-32 flex justify-center items-center">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -85,18 +83,15 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
           }),
         }}
       />
-      <BadgeLink href="/blog" startSlot={<FaArrowLeft />}>
-        All Posts
-      </BadgeLink>
-      <h1 className="title text-2xl mt-8 font-normal">{post.metadata.title}</h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm dark:text-neutral-300 text-neutral-600">
-          {formatDate(post.metadata.publishDate)}
-        </p>
+      <div className="border gap-4 flex flex-col p-16 mb-24">
+        <h1 className="text-2xl mt-8">{post.metadata.title}</h1>
+        <div className="flex justify-between items-center mt-2 text-sm">
+          <p className="text-sm">{formatDate(post.metadata.publishDate)}</p>
+        </div>
+        <article className="prose max-w-2xl">
+          <CustomMDX source={post.content} />
+        </article>
       </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
-      </article>
     </section>
   );
 }
