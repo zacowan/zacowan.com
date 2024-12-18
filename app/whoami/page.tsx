@@ -19,7 +19,7 @@ export const metadata = {
 export default function Page() {
   return (
     <section className="flex items-center justify-center min-h-screen">
-      <div className="border p-16 font-mono uppercase gap-8 flex flex-col max-w-xl">
+      <div className="border p-4 sm:p-16 font-mono uppercase gap-8 flex flex-col max-w-xl">
         <h1>/whoami</h1>
         <ul className="text-xs gap-2 flex flex-col">
           <li>

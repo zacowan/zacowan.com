@@ -22,7 +22,7 @@ export default function Page() {
 
   return (
     <section className="flex items-center justify-center min-h-screen">
-      <div className="border p-16 font-mono uppercase gap-8 flex flex-col max-w-xl">
+      <div className="border p-4 sm:p-16 font-mono uppercase gap-8 flex flex-col max-w-xl">
         <h1>/blog</h1>
         <ul className="text-xs flex flex-col gap-2">
           {blogPosts.sort(newestFirst).map((post) => (
@@ -30,7 +30,7 @@ export default function Page() {
               <Link
                 key={post.slug}
                 href={PAGE_LINKS.BLOG_POST(post.slug)}
-                className="flex gap-8"
+                className="flex gap-8 underline"
               >
                 <span className="min-w-22 opacity-50">
                   {formatDate(post.metadata.publishDate)}

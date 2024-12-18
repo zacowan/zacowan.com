@@ -83,7 +83,7 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
           }),
         }}
       />
-      <div className="border gap-4 flex flex-col p-16 mb-24">
+      <div className="border gap-4 flex flex-col p-4 sm:p-16 mb-24">
         <h1 className="text-2xl mt-8">{post.metadata.title}</h1>
         <div className="flex justify-between items-center mt-2 text-sm">
           <p className="text-sm">{formatDate(post.metadata.publishDate)}</p>

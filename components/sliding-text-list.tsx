@@ -9,7 +9,7 @@ export default function SlidingTextList({ items = [] }: SlidingTextListProps) {
   const restOfItems = items.slice(0, -1);
 
   return (
-    <div className="p-4 overflow-clip flex flex-col justify-end uppercase">
+    <div className="p-4 overflow-clip flex flex-col justify-end uppercase h-full">
       {restOfItems.map((item, index) => (
         <div key={item + index} className="text-slate-950 opacity-30">
           {item}
