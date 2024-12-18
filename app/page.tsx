@@ -1,12 +1,25 @@
+import Link from "next/link";
 import { GiDaemonSkull } from "react-icons/gi";
+import { getBlogPosts } from "./blog/utils";
 
 export default function Page() {
+  const blogPosts = getBlogPosts();
+  const latestPost = blogPosts.at(0);
+
   return (
-    <section className="flex items-center justify-center min-h-screen">
+    <section className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex items-center">
         <span className="text-9xl">PWN</span>
         <GiDaemonSkull className="w-48 h-48" />
       </div>
+      {latestPost && (
+        <div className="text-xs space-x-1 pt-8 font-mono uppercase">
+          <span>Latest blog post:</span>
+          <Link className="underline" href={`/blog/${latestPost.slug}`}>
+            {latestPost.metadata.title}
+          </Link>
+        </div>
+      )}
     </section>
   );
 }
