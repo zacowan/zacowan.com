@@ -3,9 +3,9 @@ import { Rubik } from "next/font/google";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "../components/composite/footer";
+import Footer from "@/components/composite/footer";
 import { BASE_URL, DESCRIPTION, TITLE } from "@/lib/constants";
-import Header from "../components/composite/header";
+import Header from "@/components/composite/header";
 import { cn } from "@/lib/utils";
 
 const rubik = Rubik({ subsets: ["latin"] });
