@@ -19,14 +19,7 @@ import {
   FaBluesky,
   FaMastodon,
 } from "react-icons/fa6";
-
-const AMEX_CAREERS_HREF = "https://www.americanexpress.com/en-us/careers/";
-const LINKEDIN_HREF = "https://www.linkedin.com/in/zacowan/";
-const GITHUB_HREF = "https://github.com/zacowan";
-const THREADS_HREF = "https://www.threads.net/@zacowan";
-const INSTAGRAM_HREF = "https://www.instagram.com/zacowan/";
-const BLUESKY_HREF = "https://bsky.app/profile/zacowan.bsky.social";
-const MASTODON_HREF = "https://mastodon.social/@zacowan";
+import { EXTERNAL_LINKS } from "@/lib/constants";
 
 const FEATURED_BLOG_POST_SLUG = "importance-of-testing";
 
@@ -48,7 +41,7 @@ export default function Page() {
             <FaBriefcase className="fill-foreground" />
             <h2>
               Engineer x Design Systems @{" "}
-              <a href={AMEX_CAREERS_HREF} className="underline">
+              <a href={EXTERNAL_LINKS.AMEX_CAREERS} className="underline">
                 American Express
               </a>
             </h2>
@@ -94,14 +87,17 @@ export default function Page() {
             <li>
               <BadgeLink
                 variant="default"
-                href={GITHUB_HREF}
+                href={EXTERNAL_LINKS.GITHUB}
                 startSlot={<FaGithub />}
               >
                 GitHub
               </BadgeLink>
             </li>
             <li>
-              <BadgeLink href={LINKEDIN_HREF} startSlot={<FaLinkedin />}>
+              <BadgeLink
+                href={EXTERNAL_LINKS.LINKEDIN}
+                startSlot={<FaLinkedin />}
+              >
                 LinkedIn
               </BadgeLink>
             </li>
@@ -114,25 +110,34 @@ export default function Page() {
               <AccordionContent>
                 <ul className="flex flex-wrap items-center gap-4">
                   <li>
-                    <BadgeLink href={THREADS_HREF} startSlot={<FaThreads />}>
+                    <BadgeLink
+                      href={EXTERNAL_LINKS.THREADS}
+                      startSlot={<FaThreads />}
+                    >
                       Threads
                     </BadgeLink>
                   </li>
                   <li>
                     <BadgeLink
-                      href={INSTAGRAM_HREF}
+                      href={EXTERNAL_LINKS.INSTAGRAM}
                       startSlot={<FaInstagram />}
                     >
                       Instagram
                     </BadgeLink>
                   </li>
                   <li>
-                    <BadgeLink href={BLUESKY_HREF} startSlot={<FaBluesky />}>
+                    <BadgeLink
+                      href={EXTERNAL_LINKS.BLUESKY}
+                      startSlot={<FaBluesky />}
+                    >
                       Bluesky
                     </BadgeLink>
                   </li>
                   <li>
-                    <BadgeLink href={MASTODON_HREF} startSlot={<FaMastodon />}>
+                    <BadgeLink
+                      href={EXTERNAL_LINKS.MASTODON}
+                      startSlot={<FaMastodon />}
+                    >
                       Mastodon
                     </BadgeLink>
                   </li>

@@ -1,4 +1,4 @@
-import { TITLE } from "app/constants";
+import { TITLE } from "@/lib/constants";
 import { ImageResponse } from "next/og";
 
 export function GET(request: Request) {
