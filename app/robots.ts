@@ -1,4 +1,4 @@
-import { BASE_URL } from "app/sitemap";
+import { BASE_URL } from "@/lib/constants";
 
 export default function robots() {
   return {

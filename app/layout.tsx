@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/composite/footer";
-import { BASE_URL } from "./sitemap";
-import { DESCRIPTION, TITLE } from "../lib/constants";
+import { BASE_URL, DESCRIPTION, TITLE } from "@/lib/constants";
 import Header from "../components/composite/header";
 import { cn } from "@/lib/utils";
 
