@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "./blog/utils";
-import { BadgeLink } from "../components/composite/badge-link";
-import { ProfilePicture } from "../components/composite/profile-picture/profile-picture";
+import { BadgeLink } from "@/components/composite/badge-link";
+import { ProfilePicture } from "@/components/composite/profile-picture/profile-picture";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   FaLinkedin,
   FaGithub,
@@ -10,13 +16,9 @@ import {
   FaArrowRight,
   FaThreads,
   FaInstagram,
-  FaChevronDown,
   FaBluesky,
   FaMastodon,
 } from "react-icons/fa6";
-import * as Accordion from "@radix-ui/react-accordion";
-import accordionStyles from "./accordion.module.css";
-import { cn } from "@/lib/utils";
 
 const AMEX_CAREERS_HREF = "https://www.americanexpress.com/en-us/careers/";
 const LINKEDIN_HREF = "https://www.linkedin.com/in/zacowan/";
@@ -106,31 +108,11 @@ export default function Page() {
           </ul>
         </div>
         <div>
-          <Accordion.Root type="single" collapsible={true}>
-            <Accordion.Item
-              value="personal"
-              className="border-b dark:border-neutral-700 border-neutral-300"
-            >
-              <Accordion.Header className="text-lg mb-4">
-                <Accordion.Trigger
-                  className={cn(
-                    accordionStyles.trigger,
-                    "flex flex-row justify-between items-center w-full group",
-                  )}
-                >
-                  <span>Personal Socials</span>
-                  <div
-                    className={cn(
-                      accordionStyles.chevronContainer,
-                      "dark:group-hover:bg-neutral-900 group-hover:bg-neutral-100 group-active:scale-95 p-4 rounded-full",
-                    )}
-                  >
-                    <FaChevronDown />
-                  </div>
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content className={cn(accordionStyles.content)}>
-                <ul className="flex flex-wrap items-center gap-4 pb-8">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Personal Socials</AccordionTrigger>
+              <AccordionContent>
+                <ul className="flex flex-wrap items-center gap-4">
                   <li>
                     <BadgeLink href={THREADS_HREF} startSlot={<FaThreads />}>
                       Threads
@@ -155,9 +137,9 @@ export default function Page() {
                     </BadgeLink>
                   </li>
                 </ul>
-              </Accordion.Content>
-            </Accordion.Item>
-          </Accordion.Root>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
     </section>
