@@ -1,4 +1,4 @@
-import { cn } from "app/utils/cn";
+import { cn } from "@/lib/utils";
 import type { LinkProps } from "next/link";
 import Link from "next/link";
 import type { PropsWithChildren, ReactNode } from "react";

@@ -17,7 +17,7 @@ import {
 } from "react-icons/fa6";
 import * as Accordion from "@radix-ui/react-accordion";
 import accordionStyles from "./accordion.module.css";
-import { cn } from "./utils/cn";
+import { cn } from "@/lib/utils";
 
 const AMEX_CAREERS_HREF = "https://www.americanexpress.com/en-us/careers/";
 const LINKEDIN_HREF = "https://www.linkedin.com/in/zacowan/";

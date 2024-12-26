@@ -1,7 +1,7 @@
-import { cn } from "app/utils/cn";
 import type { ImageProps } from "next/image";
 import Image from "next/image";
 import laptopProfileImage from "./latop_profile.png";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_ALT = "Zach Cowan, headshot";
 const DEFAULT_SIZE = 128;

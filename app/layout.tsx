@@ -5,9 +5,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { BASE_URL } from "./sitemap";
-import { cn } from "./utils/cn";
 import { DESCRIPTION, TITLE } from "./constants";
 import Header from "./components/header";
+import { cn } from "@/lib/utils";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
