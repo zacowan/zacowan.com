@@ -1,4 +1,4 @@
-import { getBlogPosts } from "app/blog/utils";
+import { getBlogPosts } from "@/lib/blog/utils";
 import { z } from "zod";
 
 // https://vercel.com/docs/projects/environment-variables/system-environment-variables#system-environment-variables

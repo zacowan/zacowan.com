@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDate, getBlogPosts } from "./blog/utils";
+import { formatDate, getBlogPosts } from "@/lib/blog/utils";
 import { BadgeLink } from "@/components/composite/badge-link";
 import { ProfilePicture } from "@/components/composite/profile-picture/profile-picture";
 import {

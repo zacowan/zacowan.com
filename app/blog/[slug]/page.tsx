@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/composite/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import { formatDate, getBlogPosts } from "@/lib/blog/utils";
 import { BASE_URL } from "app/sitemap";
 import { BadgeLink } from "@/components/composite/badge-link";
 import { FaArrowLeft } from "react-icons/fa6";
