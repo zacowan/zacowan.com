@@ -1,4 +1,4 @@
-import { BadgeLink } from "./components/badge-link";
+import { BadgeLink } from "../components/composite/badge-link";
 import { FaReadme, FaHouse } from "react-icons/fa6";
 
 export default function NotFound() {

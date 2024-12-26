@@ -2,14 +2,18 @@ import { cn } from "@/lib/utils";
 import type { LinkProps } from "next/link";
 import Link from "next/link";
 import type { PropsWithChildren, ReactNode } from "react";
+import { badgeVariants } from "../ui/badge";
+import type { VariantProps } from "class-variance-authority";
 
-export function CallToAction({
-  className,
+export function BadgeLink({
   children,
+  className,
   startSlot,
   endSlot,
+  variant = "outline",
   ...otherProps
 }: LinkProps &
+  VariantProps<typeof badgeVariants> &
   PropsWithChildren & {
     className?: string;
     startSlot?: ReactNode;
@@ -18,7 +22,8 @@ export function CallToAction({
   return (
     <Link
       className={cn(
-        "bg-blue-600 hover:bg-blue-700 active:bg-blue-600 text-white rounded-full px-4 py-2 min-w-11 min-h-11 inline-flex items-center space-x-2",
+        badgeVariants({ variant }),
+        "space-x-1 min-w-11 min-h-11 inline-flex items-center",
         className,
       )}
       {...otherProps}

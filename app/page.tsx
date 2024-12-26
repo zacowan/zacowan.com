@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "./blog/utils";
-import { BadgeLink } from "./components/badge-link";
-import { CallToAction } from "./components/call-to-action";
-import { ProfilePicture } from "./components/profile-picture/profile-picture";
+import { BadgeLink } from "../components/composite/badge-link";
+import { ProfilePicture } from "../components/composite/profile-picture/profile-picture";
 import {
   FaLinkedin,
   FaGithub,
@@ -91,9 +90,13 @@ export default function Page() {
           <h3 className="text-lg mb-4 font-normal">Professional Links</h3>
           <ul className="flex flex-wrap items-center gap-4">
             <li>
-              <CallToAction href={GITHUB_HREF} startSlot={<FaGithub />}>
+              <BadgeLink
+                variant="default"
+                href={GITHUB_HREF}
+                startSlot={<FaGithub />}
+              >
                 GitHub
-              </CallToAction>
+              </BadgeLink>
             </li>
             <li>
               <BadgeLink href={LINKEDIN_HREF} startSlot={<FaLinkedin />}>
