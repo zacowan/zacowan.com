@@ -15,7 +15,7 @@ export function ProfilePicture({
 }: Omit<ImageProps, "src" | "alt"> & { alt?: string }) {
   return (
     <Image
-      className={cn("rounded-[3rem] p-0.5 bg-blue-600", className)}
+      className={cn("rounded-[3rem] p-0.5 bg-secondary", className)}
       src={laptopProfileImage}
       alt={alt}
       width={width}
