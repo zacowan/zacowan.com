@@ -22,9 +22,7 @@ import {
 import { EXTERNAL_LINKS, RELATIVE_SITE_LINKS } from "@/lib/constants";
 import {
   CardActionable,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/composite/card-actionable";
