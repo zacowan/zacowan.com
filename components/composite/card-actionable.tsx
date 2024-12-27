@@ -5,6 +5,7 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
+  cardClasses,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import Link, { type LinkProps } from "next/link";
@@ -23,6 +24,11 @@ type CardActionableLinkProps = React.PropsWithChildren<LinkProps> & {
 
 type CardActionableProps = CardActionableButtonProps | CardActionableLinkProps;
 
+const cardActionableClasses = cn(
+  cardClasses,
+  "cursor-pointer hover:shadow-md transition-shadow",
+);
+
 const CardActionable = React.forwardRef<HTMLElement, CardActionableProps>(
   (
     {
@@ -36,11 +42,7 @@ const CardActionable = React.forwardRef<HTMLElement, CardActionableProps>(
     return asElement === "link" && props.href ? (
       <Link
         ref={ref as React.Ref<HTMLAnchorElement>}
-        className={cn(
-          "rounded-lg border bg-card text-card-foreground shadow-sm",
-          className,
-          "cursor-pointer",
-        )}
+        className={cn(cardActionableClasses, className)}
         {...(props as React.ComponentPropsWithoutRef<typeof Link>)}
       >
         {children}
@@ -48,11 +50,7 @@ const CardActionable = React.forwardRef<HTMLElement, CardActionableProps>(
     ) : (
       <button
         ref={ref as React.Ref<HTMLButtonElement>}
-        className={cn(
-          "rounded-lg border bg-card text-card-foreground shadow-sm",
-          className,
-          "cursor-pointer",
-        )}
+        className={cn(cardActionableClasses, className)}
         {...(props as React.ComponentPropsWithoutRef<"button">)}
       >
         {children}

@@ -1,21 +1,12 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "@/lib/blog/utils";
 
-type BlogPostData = ReturnType<typeof getBlogPosts>[number];
-
-const newestFirst = (a: BlogPostData, b: BlogPostData): -1 | 0 | 1 => {
-  if (new Date(a.metadata.publishDate) > new Date(b.metadata.publishDate)) {
-    return -1;
-  }
-  return 1;
-};
-
 export function BlogPosts() {
   const blogPosts = getBlogPosts();
 
   return (
     <div>
-      {blogPosts.sort(newestFirst).map((post) => (
+      {blogPosts.map((post) => (
         <Link
           key={post.slug}
           className="flex flex-col space-y-1 mb-4"

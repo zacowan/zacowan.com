@@ -19,14 +19,18 @@ import {
   FaBluesky,
   FaMastodon,
 } from "react-icons/fa6";
-import { EXTERNAL_LINKS } from "@/lib/constants";
-
-const FEATURED_BLOG_POST_SLUG = "importance-of-testing";
+import { EXTERNAL_LINKS, RELATIVE_SITE_LINKS } from "@/lib/constants";
+import {
+  CardActionable,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/composite/card-actionable";
 
 export default function Page() {
-  const featuredPost = getBlogPosts().find(
-    (post) => post.slug === FEATURED_BLOG_POST_SLUG,
-  );
+  const blogPosts = getBlogPosts();
 
   return (
     <section>
@@ -50,34 +54,34 @@ export default function Page() {
         <ProfilePicture className="order-first mb-2 md:order-none md:mb-0" />
       </div>
       <div className="space-y-8">
-        {featuredPost && (
+        {blogPosts.length > 0 && (
           <div>
-            <h3 className="text-lg mb-4">Blog</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="mb-4 flex justify-between">
+              <h3 className="text-lg">Blog</h3>
               <Link
-                className="dark:hover:bg-neutral-900 dark:active:bg-neutral-950 dark:border-neutral-700 hover:bg-neutral-100 active:bg-neutral-50 border-neutral-300 border p-4 rounded-3xl"
-                href={`/blog/${featuredPost.slug}`}
+                href={RELATIVE_SITE_LINKS.BLOG}
+                className="flex items-center space-x-1 text-xs group underline"
               >
-                {featuredPost ? (
-                  <div className="space-y-2">
-                    <p className="tracking-tight">
-                      {featuredPost.metadata.title}
-                    </p>
-                    <p className="dark:text-neutral-300 text-neutral-600 tabular-nums text-sm">
-                      {formatDate(featuredPost.metadata.publishDate)}
-                    </p>
-                  </div>
-                ) : (
-                  "TODO"
-                )}
+                <span>See All</span>
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link
-                className="dark:hover:bg-neutral-900 dark:active:bg-neutral-950 dark:border-neutral-700 hover:bg-neutral-100 active:bg-neutral-50 border-neutral-300 border p-4 rounded-3xl flex items-center justify-center gap-8"
-                href="/blog"
-              >
-                <span>All Posts</span>
-                <FaArrowRight className="dark:fill-neutral-300 fill-neutral-600" />
-              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {blogPosts.slice(0, Math.min(2, blogPosts.length)).map((post) => (
+                <CardActionable
+                  key={post.slug}
+                  asElement="link"
+                  href={RELATIVE_SITE_LINKS.BLOG_POST(post.slug)}
+                >
+                  <CardHeader>
+                    <CardTitle>{post.metadata.title}</CardTitle>
+                    <CardDescription className="flex flex-col space-y-1.5">
+                      <span>{formatDate(post.metadata.publishDate)}</span>
+                      <span>{post.metadata.summary}</span>
+                    </CardDescription>
+                  </CardHeader>
+                </CardActionable>
+              ))}
             </div>
           </div>
         )}
