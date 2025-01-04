@@ -7,6 +7,7 @@ import Footer from "@/components/composite/footer";
 import { BASE_URL, DESCRIPTION, TITLE } from "@/lib/constants";
 import Header from "@/components/composite/header";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -52,15 +53,24 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn("bg-background text-foreground", rubik.className)}
+      // next-themes dynamically adds the class to the html element
+      suppressHydrationWarning
     >
       <body className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0">
-        <Header />
-        <main className="flex-auto min-w-0 flex flex-col py-16 min-h-[60vh]">
-          {children}
-        </main>
-        <Footer />
-        <Analytics />
-        <SpeedInsights />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="flex-auto min-w-0 flex flex-col py-16 min-h-[60vh]">
+            {children}
+          </main>
+          <Footer />
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );
