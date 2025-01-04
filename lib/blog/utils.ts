@@ -12,6 +12,8 @@ const metadataSchema = z.object({
 
 export type Metadata = z.infer<typeof metadataSchema>;
 
+export type BlogPostData = ReturnType<typeof getMDXData>[number];
+
 function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
@@ -44,8 +46,17 @@ function getMDXData(dir: string) {
   });
 }
 
+const newestFirst = (a: BlogPostData, b: BlogPostData): -1 | 0 | 1 => {
+  if (new Date(a.metadata.publishDate) > new Date(b.metadata.publishDate)) {
+    return -1;
+  }
+  return 1;
+};
+
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+  return getMDXData(path.join(process.cwd(), "app", "blog", "posts")).toSorted(
+    newestFirst,
+  );
 }
 
 export function formatDate(date: string, includeRelative = false) {

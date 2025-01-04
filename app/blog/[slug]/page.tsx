@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils";
-import { BASE_URL } from "app/sitemap";
-import { BadgeLink } from "app/components/badge-link";
+import { CustomMDX } from "@/components/composite/mdx";
+import { formatDate, getBlogPosts } from "@/lib/blog/utils";
 import { FaArrowLeft } from "react-icons/fa6";
+import { BASE_URL, RELATIVE_SITE_LINKS } from "@/lib/constants";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -19,7 +19,8 @@ export async function generateMetadata(props: {
   params: Promise<StaticParams>;
 }) {
   const params = await props.params;
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const blogPosts = getBlogPosts();
+  const post = blogPosts.find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
@@ -57,7 +58,8 @@ export async function generateMetadata(props: {
 
 export default async function Blog(props: { params: Promise<StaticParams> }) {
   const params = await props.params;
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const blogPosts = getBlogPosts();
+  const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
@@ -85,10 +87,15 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
           }),
         }}
       />
-      <BadgeLink href="/blog" startSlot={<FaArrowLeft />}>
-        All Posts
-      </BadgeLink>
-      <h1 className="title text-2xl mt-8 font-normal">{post.metadata.title}</h1>
+      <Link
+        href={RELATIVE_SITE_LINKS.BLOG}
+        className="flex items-center space-x-1 text-xs group underline"
+      >
+        <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+
+        <span>All Posts</span>
+      </Link>
+      <h1 className="title text-2xl mt-8">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm dark:text-neutral-300 text-neutral-600">
           {formatDate(post.metadata.publishDate)}
