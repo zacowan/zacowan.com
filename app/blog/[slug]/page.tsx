@@ -19,7 +19,8 @@ export async function generateMetadata(props: {
   params: Promise<StaticParams>;
 }) {
   const params = await props.params;
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const blogPosts = getBlogPosts();
+  const post = blogPosts.find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
@@ -57,7 +58,8 @@ export async function generateMetadata(props: {
 
 export default async function Blog(props: { params: Promise<StaticParams> }) {
   const params = await props.params;
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const blogPosts = getBlogPosts();
+  const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
