@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/composite/mdx";
 import { formatDate, getBlogPosts } from "@/lib/blog/utils";
-import { BadgeLink } from "@/components/composite/badge-link";
 import { FaArrowLeft } from "react-icons/fa6";
-import { BASE_URL } from "@/lib/constants";
+import { BASE_URL, RELATIVE_SITE_LINKS } from "@/lib/constants";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -87,9 +87,14 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
           }),
         }}
       />
-      <BadgeLink href="/blog" startSlot={<FaArrowLeft />}>
-        All Posts
-      </BadgeLink>
+      <Link
+        href={RELATIVE_SITE_LINKS.BLOG}
+        className="flex items-center space-x-1 text-xs group underline"
+      >
+        <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+
+        <span>All Posts</span>
+      </Link>
       <h1 className="title text-2xl mt-8">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm dark:text-neutral-300 text-neutral-600">
