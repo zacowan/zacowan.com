@@ -28,10 +28,12 @@ const main = async () => {
     CHALLENGE_SOLUTION: string;
   };
   // write the new file with the caesar-shifted CHALLENGE_SOLUTION
-  const code = `export const CHALLENGE_INPUT = "${caesarShift(CHALLENGE_SOLUTION, 23)}";`;
+  const challengeInput = caesarShift(CHALLENGE_SOLUTION, 23);
+  const code = `export const CHALLENGE_INPUT = \`${caesarShift(CHALLENGE_SOLUTION, 23)}\`;`;
   await writeFile(OUTPUT_FILE, code);
   // remove the temporary constants file
   await rm(TMP_SERVER_CONSTANTS_FILE);
+  console.log("Using the following challenge input:", challengeInput);
 };
 
 main();
