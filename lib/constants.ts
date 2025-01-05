@@ -48,5 +48,3 @@ const getBaseUrl = () => {
 };
 
 export const BASE_URL = getBaseUrl();
-
-export const CHALLENGE_SOLUTION = `"I'm going on an adventure!" - Bilbo Baggins`;

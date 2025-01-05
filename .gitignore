@@ -35,3 +35,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated
+lib/constants.server.tmp.ts
+lib/challenge-input.ts

@@ -1,4 +1,4 @@
-import { CHALLENGE_SOLUTION } from "@/lib/constants";
+import { CHALLENGE_SOLUTION } from "@/lib/constants.server";
 import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
