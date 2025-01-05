@@ -67,20 +67,20 @@ export default function RootLayout({
       // next-themes dynamically adds the class to the html element
       suppressHydrationWarning
     >
-      <body className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0 font-mono">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="flex-auto min-w-0 flex flex-col py-16 min-h-[60vh]">
-            {children}
-          </main>
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
+          <div className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0 font-mono">
+            <Header />
+            <main className="min-w-0 py-16 min-h-[60vh]">{children}</main>
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </div>
         </ThemeProvider>
       </body>
     </html>
