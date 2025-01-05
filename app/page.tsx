@@ -19,6 +19,7 @@ import {
   FaBluesky,
   FaMastodon,
   FaXTwitter,
+  FaQuestion,
 } from "react-icons/fa6";
 import { EXTERNAL_LINKS, RELATIVE_SITE_LINKS } from "@/lib/constants";
 import {
@@ -27,6 +28,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/composite/card-actionable";
+import { ChallengeDialog } from "@/components/challenge-dialog";
 
 export default function Page() {
   const blogPosts = getBlogPosts();
@@ -48,6 +50,10 @@ export default function Page() {
                 American Express
               </a>
             </h2>
+          </span>
+          <span className="flex items-center space-x-2 text-sm relative">
+            <FaQuestion className="fill-foreground" />
+            <ChallengeDialog />
           </span>
         </div>
         <ProfilePicture className="order-first mb-2 md:order-none md:mb-0" />
