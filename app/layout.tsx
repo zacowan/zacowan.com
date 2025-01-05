@@ -1,5 +1,5 @@
 import "./global.css";
-import { Rubik } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,7 +9,14 @@ import Header from "@/components/composite/header";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const rubik = Rubik({ subsets: ["latin"] });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+});
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -52,11 +59,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("bg-background text-foreground", rubik.className)}
+      className={cn(
+        "bg-background text-foreground",
+        geistMono.variable,
+        geist.variable,
+      )}
       // next-themes dynamically adds the class to the html element
       suppressHydrationWarning
     >
-      <body className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0">
+      <body className="max-w-xl mx-4 mt-8 md:mx-auto px-2 md:px-0 font-mono">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
