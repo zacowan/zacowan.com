@@ -46,12 +46,23 @@ const caesarShift = (str: string, amount: number): string => {
 export function ChallengeDialog() {
   const [solution, setSolution] = useState("");
   const [message, setMessage] = useState("");
+  const [isSolutionCorrect, setIsSolutionCorrect] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (isLoading) return;
+    setMessage("");
+    setIsLoading(true);
     const response = await fetch(`/api/challenge?answer=${solution}`);
     const text = await response.text();
+    if (response.status === 200) {
+      setIsSolutionCorrect(true);
+    } else {
+      setIsSolutionCorrect(false);
+    }
     setMessage(text);
+    setIsLoading(false);
   };
 
   return (
@@ -63,7 +74,9 @@ export function ChallengeDialog() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>A Secret in Hiding</DialogTitle>
-            <DialogDescription>Solve the code for a gift.</DialogDescription>
+            <DialogDescription>
+              Decode the challenge for a gift.
+            </DialogDescription>
           </DialogHeader>
           <div>
             <div>
@@ -78,15 +91,17 @@ export function ChallengeDialog() {
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-sm">Hint 1</AccordionTrigger>
                 <AccordionContent>
-                  <p>What might be Caesar&apos;s least-favorite number?</p>
+                  <p>
+                    What might be <b>Caesar&apos;s</b> least-favorite number?
+                  </p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger className="text-sm">Hint 2</AccordionTrigger>
                 <AccordionContent>
                   <p>
-                    The shift key on your keyboard is quite useful, isn&apos;t
-                    it?
+                    The <b>shift</b> key on your keyboard is quite useful,
+                    isn&apos;t it?
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -103,10 +118,26 @@ export function ChallengeDialog() {
               />
             </div>
             <div className="w-full flex justify-end">
-              <Button type="submit">Submit</Button>
+              <Button type="submit" disabled={isLoading ? true : undefined}>
+                Submit
+              </Button>
             </div>
           </form>
-          {message && <p>{message}</p>}
+          {isSolutionCorrect === false
+            ? message && <p>{message}</p>
+            : message && (
+                <p>
+                  That&apos;s correct! Thanks for solving the challenge. You can
+                  claim your gift{" "}
+                  <a
+                    href="https://youtu.be/oHg5SJYRHA0?si=uygtnUWCYdEIKKMN"
+                    className="underline"
+                  >
+                    here
+                  </a>
+                  .
+                </p>
+              )}
         </DialogContent>
       </DialogPortal>
     </Dialog>
