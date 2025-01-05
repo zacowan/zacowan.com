@@ -57,9 +57,16 @@ export default function Page() {
           <p>
             I&apos;m a software engineer with a passion for design and developer
             experience in the frontend engineering space. I currently work at
-            American Express on the web design system and the internal core
-            React framework, One App. I&apos;ve previously worked at Lockheed
-            Martin and done small contract work.
+            American Express on the web design system and the microfrontend core
+            React framework,{" "}
+            <a
+              className="underline"
+              href="https://github.com/americanexpress/one-app"
+            >
+              One App
+            </a>
+            . I&apos;ve previously worked at Lockheed Martin and done small
+            contract work.
           </p>
           <p>
             Some of my most impactful projects in the frontend space have been:
