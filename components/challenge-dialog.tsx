@@ -44,8 +44,10 @@ const caesarShift = (str: string, amount: number): string => {
 };
 
 export function ChallengeDialog() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [solution, setSolution] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState<Error | null>(null);
   const [isSolutionCorrect, setIsSolutionCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -54,21 +56,28 @@ export function ChallengeDialog() {
     if (isLoading) return;
     setMessage("");
     setIsLoading(true);
-    const response = await fetch(`/api/challenge?answer=${solution}`);
-    const text = await response.text();
-    if (response.status === 200) {
-      setIsSolutionCorrect(true);
-    } else {
-      setIsSolutionCorrect(false);
+    try {
+      const response = await fetch(`/api/challenge?answer=${solution}`);
+      const text = await response.text();
+      if (response.status === 200) {
+        setIsSolutionCorrect(true);
+      } else {
+        setIsSolutionCorrect(false);
+      }
+      setMessage(text);
+    } catch (error) {
+      setError(error as Error);
+    } finally {
+      setIsLoading(false);
     }
-    setMessage(text);
-    setIsLoading(false);
   };
 
   return (
-    <Dialog>
-      <DialogTrigger className="hover:underline">
-        <HackedText>Investigate</HackedText>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger className="underline">
+        <HackedText forceUnhack={isDialogOpen || isSolutionCorrect}>
+          {isSolutionCorrect ? "View Solved Challenge" : "Investigate"}
+        </HackedText>
       </DialogTrigger>
       <DialogPortal>
         <DialogContent>
@@ -123,21 +132,28 @@ export function ChallengeDialog() {
               </Button>
             </div>
           </form>
-          {isSolutionCorrect === false
-            ? message && <p>{message}</p>
-            : message && (
-                <p>
-                  That&apos;s correct! Thanks for solving the challenge. You can
-                  claim your gift{" "}
-                  <a
-                    href="https://youtu.be/oHg5SJYRHA0?si=uygtnUWCYdEIKKMN"
-                    className="underline"
-                  >
-                    here
-                  </a>
-                  .
-                </p>
-              )}
+          {error ? (
+            <div>
+              <p>An unexpected error occurred. Please try again.</p>
+              <p>Error message: {error.message}</p>
+            </div>
+          ) : isSolutionCorrect === false ? (
+            message && <p>{message}</p>
+          ) : (
+            message && (
+              <p>
+                That&apos;s correct! Thanks for solving the challenge. You can
+                claim your gift{" "}
+                <a
+                  href="https://youtu.be/oHg5SJYRHA0?si=uygtnUWCYdEIKKMN"
+                  className="underline"
+                >
+                  here
+                </a>
+                .
+              </p>
+            )
+          )}
         </DialogContent>
       </DialogPortal>
     </Dialog>
