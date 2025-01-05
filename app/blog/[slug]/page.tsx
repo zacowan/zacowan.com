@@ -102,7 +102,7 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
           {formatDate(post.metadata.publishDate)}
         </p>
       </div>
-      <article className="prose font-sans">
+      <article className="prose text-sm">
         <CustomMDX source={post.content} />
       </article>
     </section>
