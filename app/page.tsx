@@ -128,8 +128,10 @@ export default function Page() {
                   href={RELATIVE_SITE_LINKS.BLOG_POST(post.slug)}
                 >
                   <CardHeader>
-                    <CardTitle>{post.metadata.title}</CardTitle>
-                    <CardDescription className="flex flex-col space-y-1.5">
+                    <CardTitle className="text-lg">
+                      {post.metadata.title}
+                    </CardTitle>
+                    <CardDescription className="flex flex-col space-y-1.5 text-xs">
                       <span>{formatDate(post.metadata.publishDate)}</span>
                       <span>{post.metadata.summary}</span>
                     </CardDescription>
