@@ -51,6 +51,54 @@ export default function Page() {
         </div>
         <ProfilePicture className="order-first mb-2 md:order-none md:mb-0" />
       </div>
+      <div className="pb-8">
+        <h3 className="text-lg mb-4">What I Do</h3>
+        <div className="space-y-4">
+          <p>
+            I&apos;m a software engineer with a passion for design and developer
+            experience in the frontend engineering space. I currently work at
+            American Express on the web design system and the internal core
+            React framework, One App. I&apos;ve previously worked at Lockheed
+            Martin and done small contract work.
+          </p>
+          <p>
+            Some of my most impactful projects in the frontend space have been:
+          </p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>
+              Transitioning the Amex design system from a JavaScript polyrepo
+              npm package ecosystem into a{" "}
+              <b>TypeScript-first, scalable monorepo</b>
+            </li>
+            <li>
+              Developing a <b>GitHub repo scraper</b> to gather design system
+              data using the JavaScript AST data structure
+            </li>
+            <li>
+              Delivering a user-focused <b>data dashboard</b> that loads SQLite
+              data and allows querying the data without API responses using Web
+              Assembly (WASM)
+            </li>
+            <li>
+              Engineering a <b>large-scale Codemod framework</b> to
+              automatically migrate breaking changes in microfrontend projects
+              from old versions of the design system to a new major version
+            </li>
+            <li>
+              Building <b>accessible React components</b> for the next
+              generation of the Amex design system using TypeScript
+            </li>
+            <li>
+              <b>Optimizing CSS bundling for Webpack and esbuild</b> plugins
+              used in Amex&apos;s One App bundler
+            </li>
+            <li>
+              Using the Web Assembly build of esbuild to{" "}
+              <b>compile and execute React code on-the-fly</b> in the browser
+            </li>
+          </ul>
+        </div>
+      </div>
       <div className="space-y-8">
         {blogPosts.length > 0 && (
           <div>
