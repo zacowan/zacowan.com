@@ -92,16 +92,17 @@ export default async function Blog(props: { params: Promise<StaticParams> }) {
         className="flex items-center space-x-1 text-xs group underline"
       >
         <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-
         <span>All Posts</span>
       </Link>
-      <h1 className="title text-2xl mt-8">{post.metadata.title}</h1>
+      <h1 className="title text-2xl mt-8 tracking-tight">
+        {post.metadata.title}
+      </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm dark:text-neutral-300 text-neutral-600">
+        <p className="text-sm text-muted-foreground">
           {formatDate(post.metadata.publishDate)}
         </p>
       </div>
-      <article className="prose">
+      <article className="prose font-sans">
         <CustomMDX source={post.content} />
       </article>
     </section>

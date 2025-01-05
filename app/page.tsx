@@ -54,7 +54,7 @@ export default function Page() {
       </div>
       <div className="pb-8">
         <h3 className="text-lg mb-4">What I Do</h3>
-        <div className="space-y-4">
+        <div className="space-y-4 text-sm">
           <p>
             I&apos;m a software engineer with a passion for design and developer
             experience in the frontend engineering space. I currently work at
