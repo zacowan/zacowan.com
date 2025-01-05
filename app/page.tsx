@@ -18,6 +18,7 @@ import {
   FaInstagram,
   FaBluesky,
   FaMastodon,
+  FaXTwitter,
 } from "react-icons/fa6";
 import { EXTERNAL_LINKS, RELATIVE_SITE_LINKS } from "@/lib/constants";
 import {
@@ -168,18 +169,18 @@ export default function Page() {
                 <ul className="flex flex-wrap items-center gap-4">
                   <li>
                     <BadgeLink
-                      href={EXTERNAL_LINKS.THREADS}
-                      startSlot={<FaThreads />}
+                      href={EXTERNAL_LINKS.TWITTER}
+                      startSlot={<FaXTwitter />}
                     >
-                      Threads
+                      Twitter
                     </BadgeLink>
                   </li>
                   <li>
                     <BadgeLink
-                      href={EXTERNAL_LINKS.INSTAGRAM}
-                      startSlot={<FaInstagram />}
+                      href={EXTERNAL_LINKS.THREADS}
+                      startSlot={<FaThreads />}
                     >
-                      Instagram
+                      Threads
                     </BadgeLink>
                   </li>
                   <li>
@@ -196,6 +197,14 @@ export default function Page() {
                       startSlot={<FaMastodon />}
                     >
                       Mastodon
+                    </BadgeLink>
+                  </li>
+                  <li>
+                    <BadgeLink
+                      href={EXTERNAL_LINKS.INSTAGRAM}
+                      startSlot={<FaInstagram />}
+                    >
+                      Instagram
                     </BadgeLink>
                   </li>
                 </ul>

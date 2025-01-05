@@ -13,6 +13,7 @@ export const EXTERNAL_LINKS = {
   AMEX_CAREERS: "https://www.americanexpress.com/en-us/careers/",
   LINKEDIN: "https://www.linkedin.com/in/zacowan/",
   GITHUB: "https://github.com/zacowan",
+  TWITTER: "https://x.com/zacowan_",
   THREADS: "https://www.threads.net/@zacowan",
   INSTAGRAM: "https://www.instagram.com/zacowan/",
   BLUESKY: "https://bsky.app/profile/zacowan.bsky.social",
