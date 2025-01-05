@@ -3,7 +3,13 @@ import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   const answer = request.nextUrl.searchParams.get("answer");
-  if (answer === CHALLENGE_SOLUTION) {
+  const sanitizedAnswer = answer
+    ?.trim()
+    .replace(/['’]/g, "'")
+    .replace(/["“”]/g, '"')
+    .replace(/[-–—]/g, "-");
+
+  if (sanitizedAnswer === CHALLENGE_SOLUTION) {
     return new Response("https://youtu.be/oHg5SJYRHA0?si=fQZaS-PsW4geFmOd", {
       status: 200,
     });
