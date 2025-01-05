@@ -28,7 +28,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/composite/card-actionable";
-import { ChallengeDialog } from "@/components/composite/challenge-dialog";
+import { ChallengeDialog } from "@/components/challenge-dialog";
 
 export default function Page() {
   const blogPosts = getBlogPosts();
