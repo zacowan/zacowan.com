@@ -69,7 +69,7 @@ export function ChallengeDialog() {
             </DialogTitle>
             <DialogDescription>
               {isSolutionCorrect
-                ? "Excellent work! Click the link below to claim your gift!"
+                ? "Excellent work! Use the link below to view your gift."
                 : "Decode the challenge input and receive a surprise gift."}
             </DialogDescription>
           </DialogHeader>
@@ -81,7 +81,7 @@ export function ChallengeDialog() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Claim Gift
+                  View Gift
                 </a>
               </Button>
             </DialogFooter>
@@ -103,8 +103,8 @@ export function ChallengeDialog() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <p>
-                        What might be <b>Caesar&apos;s</b> least-favorite
-                        number?
+                        What might <b>Caesar&apos;s</b> least-favorite number
+                        be?
                       </p>
                     </AccordionContent>
                   </AccordionItem>
