@@ -9,9 +9,9 @@ import {
   DialogTitle,
   DialogContent,
   DialogPortal,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { HackedText } from "@/components/ui/hacked-text";
-import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -62,73 +62,90 @@ export function ChallengeDialog() {
       <DialogPortal>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>A Secret in Hiding</DialogTitle>
+            <DialogTitle>
+              {isSolutionCorrect
+                ? "You Solved the Challenge!"
+                : "A Secret in Hiding"}
+            </DialogTitle>
             <DialogDescription>
-              Decode the challenge for a gift.
+              {isSolutionCorrect
+                ? "Excellent work! Click the link below to claim your gift!"
+                : "Decode the challenge input and receive a surprise gift."}
             </DialogDescription>
           </DialogHeader>
-          <div>
-            <div>
-              <Label htmlFor="challenge-code">Code</Label>
-              <Input id="challenge-code" value={CHALLENGE_INPUT} readOnly />
-            </div>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="text-sm">Hint 1</AccordionTrigger>
-                <AccordionContent>
-                  <p>
-                    What might be <b>Caesar&apos;s</b> least-favorite number?
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="text-sm">Hint 2</AccordionTrigger>
-                <AccordionContent>
-                  <p>
-                    The <b>shift</b> key on your keyboard is quite useful,
-                    isn&apos;t it?
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div>
-              <Label htmlFor="challenge-solution">Your Solution</Label>
-              <Textarea
-                id="challenge-solution"
-                placeholder="Enter your solution here."
-                value={solution}
-                onChange={(e) => setSolution(e.target.value)}
-              />
-            </div>
-            <div className="w-full flex justify-end">
-              <Button type="submit" disabled={isLoading ? true : undefined}>
-                Submit
-              </Button>
-            </div>
-          </form>
-          {error ? (
-            <div>
-              <p>An unexpected error occurred. Please try again.</p>
-              <p>Error message: {error.message}</p>
-            </div>
-          ) : isSolutionCorrect === false ? (
-            message && <p>{message}</p>
-          ) : (
-            message && (
-              <p>
-                That&apos;s correct! Thanks for solving the challenge. You can
-                claim your gift{" "}
+          {isSolutionCorrect ? (
+            <DialogFooter>
+              <Button asChild>
                 <a
                   href="https://youtu.be/oHg5SJYRHA0?si=uygtnUWCYdEIKKMN"
-                  className="underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  here
+                  Claim Gift
                 </a>
-                .
-              </p>
-            )
+              </Button>
+            </DialogFooter>
+          ) : (
+            <>
+              <div>
+                <div>
+                  <Label htmlFor="challenge-input">Challenge Input</Label>
+                  <Input
+                    id="challenge-input"
+                    value={CHALLENGE_INPUT}
+                    readOnly
+                  />
+                </div>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="text-sm">
+                      Hint 1
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p>
+                        What might be <b>Caesar&apos;s</b> least-favorite
+                        number?
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger className="text-sm">
+                      Hint 2
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p>
+                        The <b>shift</b> key on your keyboard is quite useful,
+                        isn&apos;t it?
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <Label htmlFor="challenge-solution">Your Solution</Label>
+                  <Input
+                    id="challenge-solution"
+                    placeholder="Enter your solution here."
+                    value={solution}
+                    onChange={(e) => setSolution(e.target.value)}
+                  />
+                </div>
+                <div className="w-full flex justify-end">
+                  <Button type="submit" disabled={isLoading ? true : undefined}>
+                    Submit
+                  </Button>
+                </div>
+              </form>
+              {error ? (
+                <div>
+                  <p>An unexpected error occurred. Please try again.</p>
+                  <p>Error message: {error.message}</p>
+                </div>
+              ) : (
+                isSolutionCorrect === false && message && <p>{message}</p>
+              )}
+            </>
           )}
         </DialogContent>
       </DialogPortal>
