@@ -14,6 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+      - name: install latest version of corepack
+        run: npm i -g corepack@latest
       - name: enable corepack
         run: corepack enable
       - name: install dependencies
