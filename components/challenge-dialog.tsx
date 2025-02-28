@@ -55,12 +55,15 @@ export function ChallengeDialog() {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger className="underline">
-        <HackedText forceUnhack={isDialogOpen || isSolutionCorrect}>
+        <HackedText
+          forceUnhack={isDialogOpen || isSolutionCorrect}
+          shouldUnhackOnHover={true}
+        >
           {isSolutionCorrect ? "View Solved Challenge" : "Investigate"}
         </HackedText>
       </DialogTrigger>
       <DialogPortal>
-        <DialogContent>
+        <DialogContent className="font-mono">
           <DialogHeader>
             <DialogTitle>
               {isSolutionCorrect
@@ -88,7 +91,7 @@ export function ChallengeDialog() {
           ) : (
             <>
               <div>
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="challenge-input">Challenge Input</Label>
                   <Input
                     id="challenge-input"
@@ -122,7 +125,7 @@ export function ChallengeDialog() {
                 </Accordion>
               </div>
               <form className="space-y-4" onSubmit={handleSubmit}>
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="challenge-solution">Your Solution</Label>
                   <Input
                     id="challenge-solution"

@@ -17,13 +17,18 @@ const hackText = (text: string) => {
     .join("");
 };
 
+const HACK_UPDATE_INTERVAL_MS = 500;
+const UNHACK_UPDATE_INTERVAL_MS = 50;
+
 function HackedText({
   className,
   children,
   forceUnhack,
+  shouldUnhackOnHover,
   ...otherProps
 }: Omit<ComponentProps<"div">, "children"> & {
   children: string;
+  shouldUnhackOnHover?: boolean;
   forceUnhack?: boolean;
 }) {
   const [hackedText, setHackedText] = useState(hackText(children));
@@ -37,9 +42,12 @@ function HackedText({
     }
 
     if (!isHovered) {
-      const interval = setInterval(() => setHackedText(hackText(children)), 50);
+      const interval = setInterval(
+        () => setHackedText(hackText(children)),
+        HACK_UPDATE_INTERVAL_MS,
+      );
       return () => clearInterval(interval);
-    } else {
+    } else if (shouldUnhackOnHover) {
       const interval = setInterval(() => {
         setHackedText(() => {
           const middleIndex = Math.floor(children.length / 2);
@@ -61,10 +69,16 @@ function HackedText({
           return resolved;
         });
         setResolvedTextIndex((prev) => prev + 1);
-      }, 50);
+      }, UNHACK_UPDATE_INTERVAL_MS);
       return () => clearInterval(interval);
     }
-  }, [children, isHovered, resolvedTextIndex, forceUnhack]);
+  }, [
+    children,
+    isHovered,
+    resolvedTextIndex,
+    forceUnhack,
+    shouldUnhackOnHover,
+  ]);
 
   return (
     <div

@@ -29,6 +29,7 @@ import {
   CardTitle,
 } from "@/components/composite/card-actionable";
 import { ChallengeDialog } from "@/components/challenge-dialog";
+import { HackedText } from "@/components/ui/hacked-text";
 
 export default function Page() {
   const blogPosts = getBlogPosts();
@@ -45,10 +46,8 @@ export default function Page() {
           <span className="flex items-center space-x-2 text-sm">
             <FaBriefcase className="fill-foreground" />
             <h2>
-              Engineer x Design Systems @{" "}
-              <a href={EXTERNAL_LINKS.AMEX_CAREERS} className="underline">
-                American Express
-              </a>
+              Software Engineer @
+              <HackedText className="inline">Unknown</HackedText>
             </h2>
           </span>
           <span className="flex items-center space-x-2 text-sm relative">
@@ -63,54 +62,12 @@ export default function Page() {
         <div className="space-y-4 text-sm">
           <p>
             I&apos;m a software engineer with a passion for design and developer
-            experience in the frontend engineering space. I currently work at
-            American Express on the web design system and the microfrontend core
-            React framework,{" "}
-            <a
-              className="underline"
-              href="https://github.com/americanexpress/one-app"
-            >
-              One App
-            </a>
-            . I&apos;ve previously worked at Lockheed Martin and done small
-            contract work.
+            experience in the frontend engineering space. Over the past 2 years,
+            I&apos;ve worked extensively on design systems using React and
+            contributed to Amex&apos;s microfrontend React framework One App,
+            where I gained experience with monorepos, JS/TS bundlers, JS/TS
+            codemods, WebAssembly, and more.
           </p>
-          <p>
-            Some of my most impactful projects in the frontend space have been:
-          </p>
-          <ul className="list-disc list-inside space-y-1">
-            <li>
-              Transitioning the Amex design system from a JavaScript polyrepo
-              npm package ecosystem into a{" "}
-              <b>TypeScript-first, scalable monorepo</b>
-            </li>
-            <li>
-              Developing a <b>GitHub repo scraper</b> to gather design system
-              data using the JavaScript AST data structure
-            </li>
-            <li>
-              Delivering a user-focused <b>data dashboard</b> that loads SQLite
-              data and allows querying the data without API responses using Web
-              Assembly (WASM)
-            </li>
-            <li>
-              Engineering a <b>large-scale Codemod framework</b> to
-              automatically migrate breaking changes in microfrontend projects
-              from old versions of the design system to a new major version
-            </li>
-            <li>
-              Building <b>accessible React components</b> for the next
-              generation of the Amex design system using TypeScript
-            </li>
-            <li>
-              <b>Optimizing CSS bundling for Webpack and esbuild</b> plugins
-              used in Amex&apos;s One App bundler
-            </li>
-            <li>
-              Using the Web Assembly build of esbuild to{" "}
-              <b>compile and execute React code on-the-fly</b> in the browser
-            </li>
-          </ul>
         </div>
       </div>
       <div className="space-y-8">
