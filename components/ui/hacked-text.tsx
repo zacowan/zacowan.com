@@ -17,8 +17,15 @@ const hackText = (text: string) => {
     .join("");
 };
 
-const HACK_UPDATE_INTERVAL_MS = 500;
-const UNHACK_UPDATE_INTERVAL_MS = 50;
+const HACK_UPDATE_INTERVAL_MS = 75;
+const UNHACK_UPDATE_INTERVAL_MS = 75;
+const RANDOM_SCALAR_MS = 50;
+
+const getIntervalWithRandomScalar = (baseInterval: number) => {
+  const sign = Math.random() > 0.5 ? 1 : -1;
+  const randomScalar = Math.random() * RANDOM_SCALAR_MS;
+  return baseInterval + sign * randomScalar;
+};
 
 function HackedText({
   className,
@@ -31,6 +38,8 @@ function HackedText({
   shouldUnhackOnHover?: boolean;
   forceUnhack?: boolean;
 }) {
+  const hackInterval = getIntervalWithRandomScalar(HACK_UPDATE_INTERVAL_MS);
+  const unhackInterval = getIntervalWithRandomScalar(UNHACK_UPDATE_INTERVAL_MS);
   const [hackedText, setHackedText] = useState(hackText(children));
   const [isHovered, setIsHovered] = useState(false);
   const [resolvedTextIndex, setResolvedTextIndex] = useState(0);
@@ -44,7 +53,7 @@ function HackedText({
     if (!isHovered) {
       const interval = setInterval(
         () => setHackedText(hackText(children)),
-        HACK_UPDATE_INTERVAL_MS,
+        hackInterval,
       );
       return () => clearInterval(interval);
     } else if (shouldUnhackOnHover) {
@@ -69,7 +78,7 @@ function HackedText({
           return resolved;
         });
         setResolvedTextIndex((prev) => prev + 1);
-      }, UNHACK_UPDATE_INTERVAL_MS);
+      }, unhackInterval);
       return () => clearInterval(interval);
     }
   }, [
@@ -78,6 +87,8 @@ function HackedText({
     resolvedTextIndex,
     forceUnhack,
     shouldUnhackOnHover,
+    hackInterval,
+    unhackInterval,
   ]);
 
   return (
