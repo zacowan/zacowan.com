@@ -9,3 +9,34 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+    # Group dependencies that should be updated together
+    groups:
+      # Group React and related packages
+      react-packages:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - "minor"
+          - "patch"
+
+      # Group Next.js and related packages
+      nextjs-packages:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+        update-types:
+          - "minor"
+          - "patch"
+
+      # Group ESLint related packages
+      eslint-packages:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "typescript-eslint"
+        update-types:
+          - "minor"
+          - "patch"
