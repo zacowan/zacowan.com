@@ -63,8 +63,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
       sugar-high:
-        specifier: ^0.7.5
-        version: 0.7.5
+        specifier: ^0.9.3
+        version: 0.9.3
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -2623,8 +2623,8 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
-  sugar-high@0.7.5:
-    resolution: {integrity: sha512-lfGxo0il0Mx4WLdXEt0WsJ8V3QkQWssXnolj5xBurzlGJW07LuwmJWKtS0B2WJ5XWz1439RHngXAmzsnLD0rFA==}
+  sugar-high@0.9.3:
+    resolution: {integrity: sha512-sjJH8J76D1dRMU3QINnsYr1wfQyXbyEVQQvdgzJvIer6mkgM8ahB9fNrb+FDWzRKsLuITiBOR0ZbbhDZDUbqjg==}
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -5691,7 +5691,7 @@ snapshots:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
 
-  sugar-high@0.7.5: {}
+  sugar-high@0.9.3: {}
 
   supports-color@5.5.0:
     dependencies:
