@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
+import smartypants from "remark-smartypants";
 import type {
   ComponentPropsWithoutRef,
   PropsWithChildren,
@@ -144,6 +145,7 @@ export function CustomMDX({
     <MDXRemote
       {...otherProps}
       components={{ ...components, ...componentsProp }}
+      options={{ mdxOptions: { remarkPlugins: [smartypants] } }}
     />
   );
 }

@@ -32,11 +32,17 @@ function readMDXFile(filePath: string) {
   }
 }
 
+function stripLeadingNumberAndDash(str: string) {
+  return str.replace(/^\d+-/, "");
+}
+
 function getMDXData(dir: string) {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
+    const slug = stripLeadingNumberAndDash(
+      path.basename(file, path.extname(file)),
+    );
 
     return {
       metadata,
@@ -54,7 +60,7 @@ const newestFirst = (a: BlogPostData, b: BlogPostData): -1 | 0 | 1 => {
 };
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "app", "blog", "posts")).toSorted(
+  return getMDXData(path.join(process.cwd(), "feed", "blog")).toSorted(
     newestFirst,
   );
 }
