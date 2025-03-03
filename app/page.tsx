@@ -29,7 +29,6 @@ import {
   CardTitle,
 } from "@/components/composite/card-actionable";
 import { ChallengeDialog } from "@/components/challenge-dialog";
-import { HackedText } from "@/components/ui/hacked-text";
 
 export default function Page() {
   const blogPosts = getBlogPosts();
@@ -46,8 +45,10 @@ export default function Page() {
           <span className="flex items-center space-x-2 text-sm">
             <FaBriefcase className="fill-foreground" />
             <h2>
-              Software Engineer @
-              <HackedText className="inline">Unknown</HackedText>
+              Software Engineer at <span className="text-[0.625rem]">▲</span>
+              <a className="underline" href={EXTERNAL_LINKS.VERCEL_CAREERS}>
+                Vercel
+              </a>
             </h2>
           </span>
           <span className="flex items-center space-x-2 text-sm relative">
@@ -62,11 +63,12 @@ export default function Page() {
         <div className="space-y-4 text-sm">
           <p>
             I&apos;m a software engineer with a passion for design and developer
-            experience in the frontend engineering space. Over the past 2 years,
-            I&apos;ve worked extensively on design systems using React and
-            contributed to Amex&apos;s microfrontend React framework One App,
-            where I gained experience with monorepos, JS/TS bundlers, JS/TS
-            codemods, WebAssembly, and more.
+            experience in the frontend engineering space, currently working at
+            Vercel on the Core Platform team. Over the past 2 years, I&apos;ve
+            worked extensively on design systems using React and contributed to
+            Amex&apos;s microfrontend React framework One App, where I gained
+            experience with monorepos, JS/TS bundlers, JS/TS codemods,
+            WebAssembly, and more.
           </p>
         </div>
       </div>

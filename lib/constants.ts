@@ -10,7 +10,7 @@ export const RELATIVE_SITE_LINKS = {
 } as const;
 
 export const EXTERNAL_LINKS = {
-  AMEX_CAREERS: "https://www.americanexpress.com/en-us/careers/",
+  VERCEL_CAREERS: "https://vercel.com/careers",
   LINKEDIN: "https://www.linkedin.com/in/zacowan/",
   GITHUB: "https://github.com/zacowan",
   TWITTER: "https://x.com/zacowan_",
