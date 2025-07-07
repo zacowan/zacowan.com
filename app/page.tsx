@@ -40,7 +40,7 @@ export default function Page() {
           <h1 className="text-2xl mb-4">Zach Cowan</h1>
           <span className="flex items-center space-x-2 text-sm">
             <FaLocationDot className="fill-foreground" />
-            <h2>Orlando, FL</h2>
+            <h2>Brooklyn, NY</h2>
           </span>
           <span className="flex items-center space-x-2 text-sm">
             <FaBriefcase className="fill-foreground" />
