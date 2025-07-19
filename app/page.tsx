@@ -1,185 +1,103 @@
-import Link from "next/link";
-import { formatDate, getBlogPosts } from "@/lib/blog/utils";
-import { BadgeLink } from "@/components/composite/badge-link";
-import { ProfilePicture } from "@/components/composite/profile-picture/profile-picture";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  FaLinkedin,
-  FaGithub,
-  FaLocationDot,
-  FaBriefcase,
-  FaArrowRight,
-  FaThreads,
-  FaInstagram,
-  FaBluesky,
-  FaMastodon,
-  FaXTwitter,
-  FaQuestion,
-} from "react-icons/fa6";
-import { EXTERNAL_LINKS, RELATIVE_SITE_LINKS } from "@/lib/constants";
-import {
-  CardActionable,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/composite/card-actionable";
-import { ChallengeDialog } from "@/components/challenge-dialog";
+import Image from "next/image";
 
-export default function Page() {
-  const blogPosts = getBlogPosts();
-
+export default function Home() {
   return (
-    <section>
-      <div className="flex flex-col w-full pb-8 md:pb-16 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-2xl mb-4">Zach Cowan</h1>
-          <span className="flex items-center space-x-2 text-sm">
-            <FaLocationDot className="fill-foreground" />
-            <h2>Brooklyn, NY</h2>
-          </span>
-          <span className="flex items-center space-x-2 text-sm">
-            <FaBriefcase className="fill-foreground" />
-            <h2>
-              Software Engineer at <span className="text-[0.625rem]">▲</span>
-              <a className="underline" href={EXTERNAL_LINKS.VERCEL_CAREERS}>
-                Vercel
-              </a>
-            </h2>
-          </span>
-          <span className="flex items-center space-x-2 text-sm relative">
-            <FaQuestion className="fill-foreground" />
-            <ChallengeDialog />
-          </span>
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
+        />
+        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
+          <li className="mb-2 tracking-[-.01em]">
+            Get started by editing{" "}
+            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
+              app/page.tsx
+            </code>
+            .
+          </li>
+          <li className="tracking-[-.01em]">
+            Save and see your changes instantly.
+          </li>
+        </ol>
+
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          <a
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
+            />
+            Deploy now
+          </a>
+          <a
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read our docs
+          </a>
         </div>
-        <ProfilePicture className="order-first mb-2 md:order-none md:mb-0" />
-      </div>
-      <div className="pb-8">
-        <h3 className="text-lg mb-4">What I Do</h3>
-        <div className="space-y-4 text-sm">
-          <p>
-            I&apos;m a software engineer with a passion for design and developer
-            experience in the frontend engineering space, currently working at
-            Vercel on the Core Platform team. Over the past 2 years, I&apos;ve
-            worked extensively on design systems using React and contributed to
-            Amex&apos;s microfrontend React framework One App, where I gained
-            experience with monorepos, JS/TS bundlers, JS/TS codemods,
-            WebAssembly, and more.
-          </p>
-        </div>
-      </div>
-      <div className="space-y-8">
-        {blogPosts.length > 0 && (
-          <div>
-            <div className="mb-4 flex justify-between">
-              <h3 className="text-lg">Blog</h3>
-              <Link
-                href={RELATIVE_SITE_LINKS.BLOG}
-                className="flex items-center space-x-1 text-xs group underline"
-              >
-                <span>See All</span>
-                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {blogPosts.slice(0, Math.min(2, blogPosts.length)).map((post) => (
-                <CardActionable
-                  key={post.slug}
-                  asElement="link"
-                  href={RELATIVE_SITE_LINKS.BLOG_POST(post.slug)}
-                >
-                  <CardHeader>
-                    <CardTitle className="text-lg">
-                      {post.metadata.title}
-                    </CardTitle>
-                    <CardDescription className="flex flex-col space-y-1.5 text-xs">
-                      <span>{formatDate(post.metadata.publishDate)}</span>
-                      <span>{post.metadata.summary}</span>
-                    </CardDescription>
-                  </CardHeader>
-                </CardActionable>
-              ))}
-            </div>
-          </div>
-        )}
-        <div>
-          <h3 className="text-lg mb-4">Professional Links</h3>
-          <ul className="flex flex-wrap items-center gap-4">
-            <li>
-              <BadgeLink
-                variant="default"
-                href={EXTERNAL_LINKS.GITHUB}
-                startSlot={<FaGithub />}
-              >
-                GitHub
-              </BadgeLink>
-            </li>
-            <li>
-              <BadgeLink
-                href={EXTERNAL_LINKS.LINKEDIN}
-                startSlot={<FaLinkedin />}
-              >
-                LinkedIn
-              </BadgeLink>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Personal Socials</AccordionTrigger>
-              <AccordionContent>
-                <ul className="flex flex-wrap items-center gap-4">
-                  <li>
-                    <BadgeLink
-                      href={EXTERNAL_LINKS.TWITTER}
-                      startSlot={<FaXTwitter />}
-                    >
-                      Twitter
-                    </BadgeLink>
-                  </li>
-                  <li>
-                    <BadgeLink
-                      href={EXTERNAL_LINKS.THREADS}
-                      startSlot={<FaThreads />}
-                    >
-                      Threads
-                    </BadgeLink>
-                  </li>
-                  <li>
-                    <BadgeLink
-                      href={EXTERNAL_LINKS.BLUESKY}
-                      startSlot={<FaBluesky />}
-                    >
-                      Bluesky
-                    </BadgeLink>
-                  </li>
-                  <li>
-                    <BadgeLink
-                      href={EXTERNAL_LINKS.MASTODON}
-                      startSlot={<FaMastodon />}
-                    >
-                      Mastodon
-                    </BadgeLink>
-                  </li>
-                  <li>
-                    <BadgeLink
-                      href={EXTERNAL_LINKS.INSTAGRAM}
-                      startSlot={<FaInstagram />}
-                    >
-                      Instagram
-                    </BadgeLink>
-                  </li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </div>
-    </section>
+      </main>
+      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
+      </footer>
+    </div>
   );
 }
