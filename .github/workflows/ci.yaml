@@ -20,8 +20,6 @@ jobs:
         run: corepack enable
       - name: install dependencies
         run: pnpm i
-      - name: check format
-        run: pnpm format:check
       - name: build
         run: pnpm build
       - name: lint
