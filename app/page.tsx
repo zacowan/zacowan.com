@@ -10,7 +10,7 @@ export default function Home() {
 				</h1>
 
 				{/* Description section with wave animation */}
-				<div className="flex items-start gap-8 mb-16">
+				<div className="flex justify-between gap-8 mb-16">
 					<div className="text-2xl md:text-3xl text-black leading-relaxed">
 						<div className="mb-1">
 							building{" "}
@@ -26,7 +26,7 @@ export default function Home() {
 					</div>
 
 					{/* Canvas wave animation */}
-					<div className="w-16 h-16 border-2 border-[#f4a261] flex-shrink-0 mt-2 relative overflow-hidden">
+					<div className="w-16 h-16 border-x-2 border-b-2 border-orange-500 flex-shrink-0 mt-2 relative overflow-hidden">
 						<WaveCanvas />
 					</div>
 				</div>

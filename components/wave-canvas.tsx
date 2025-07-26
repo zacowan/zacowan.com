@@ -23,7 +23,7 @@ export default function WaveCanvas() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 			// Set orange color
-			ctx.fillStyle = "#f4a261";
+			ctx.fillStyle = "oklch(70.5% 0.213 47.604)";
 
 			// Create wave effect
 			ctx.beginPath();
@@ -49,16 +49,6 @@ export default function WaveCanvas() {
 			ctx.lineTo(canvas.width, canvas.height);
 			ctx.lineTo(0, canvas.height);
 			ctx.closePath();
-			ctx.fill();
-
-			// Add some splash effects
-			ctx.fillStyle = "#f4a261";
-			const splashX = 32 + Math.sin(time * speed * 2) * 15;
-			const splashY = baseHeight - 5 + Math.cos(time * speed * 3) * 3;
-			const splashSize = 2 + Math.abs(Math.sin(time * speed * 4)) * 2;
-
-			ctx.beginPath();
-			ctx.arc(splashX, splashY, splashSize, 0, Math.PI * 2);
 			ctx.fill();
 
 			time++;
