@@ -1,0 +1,22 @@
+{
+	"$schema": "node_modules/turbo/schema.json",
+	"tasks": {
+		"dev": {
+			"dependsOn": [],
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {},
+		"typecheck": {
+			"dependsOn": ["build"],
+			"outputs": ["tsconfig.tsbuildinfo"]
+		},
+		"build": {
+			"dependsOn": [],
+			"outputs": [".next/**", "next-env.d.ts"]
+		},
+		"ci": {
+			"dependsOn": ["build", "lint", "typecheck"]
+		}
+	}
+}
