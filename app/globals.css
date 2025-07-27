@@ -46,3 +46,7 @@ a::before {
 a:hover::before {
 	height: 95%;
 }
+
+::selection {
+	@apply bg-orange-500 text-white;
+}
