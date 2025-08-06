@@ -17,7 +17,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={josefin.className}>{children}</body>
+			<body
+				className={`${josefin.className} bg-gradient-to-br from-slate-950 to-blue-950`}
+			>
+				{children}
+			</body>
 		</html>
 	);
 }
