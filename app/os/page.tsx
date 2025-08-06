@@ -1,6 +1,6 @@
 import LiquidGlassLink from "@/components/LiquidGlassLink";
 
-export default function Wip() {
+export default function Os() {
 	return (
 		<main className="min-h-screen flex items-center justify-center">
 			<div className="text-white text-center max-w-md flex flex-col gap-6 items-center">

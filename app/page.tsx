@@ -11,7 +11,7 @@ export default function Home() {
 				<div className="flex flex-col items-center justify-center gap-6">
 					<h1 className="text-5xl">zacOS</h1>
 					<hr className="w-48" />
-					<LiquidGlassLink href="/wip">Launch</LiquidGlassLink>
+					<LiquidGlassLink href="/os">Launch</LiquidGlassLink>
 				</div>
 				<div className="flex items-center justify-center gap-6 pt-24">
 					<Link href="https://x.com/zacowan_">
