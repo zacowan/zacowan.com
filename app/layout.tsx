@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import type React from "react";
 import "./globals.css";
 
-// Configure Rubik font
-const rubik = Rubik({ subsets: ["latin"] });
+const josefin = Josefin_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Zach in NYC",
-	description: "Personal website of Zach in NYC",
-	generator: "v0.dev",
+	title: "zacOS",
+	description: "The operating system built for me.",
 };
 
 export default function RootLayout({
@@ -19,7 +17,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={rubik.className}>{children}</body>
+			<body
+				className={`${josefin.className} bg-gradient-to-br from-slate-950 to-blue-950`}
+			>
+				{children}
+			</body>
 		</html>
 	);
 }

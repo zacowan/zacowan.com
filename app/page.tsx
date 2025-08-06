@@ -1,32 +1,28 @@
-import WaveCanvas from "@/components/wave-canvas";
+import Link from "next/link";
+import InstagramIcon from "@/components/icons/instagram";
+import LinkedInIcon from "@/components/icons/linkedin";
+import TwitterIcon from "@/components/icons/twitter";
+import LiquidGlassLink from "@/components/LiquidGlassLink";
 
 export default function Home() {
 	return (
-		<main className="min-h-screen bg-stone-100 px-8 py-16">
-			<div className="max-w-4xl mx-auto">
-				<h1 className="text-5xl md:text-7xl lg:text-8xl font-normal text-black mb-16 leading-tight">
-					Zach in NYC
-				</h1>
-
-				<div className="flex justify-between gap-8 mb-16">
-					<div className="text-2xl md:text-3xl text-black leading-relaxed">
-						<div className="mb-1">
-							building <a href="https://vercel.com/careers">Vercel</a>
-						</div>
-						<div className="mb-1">drinking coffee</div>
-						<div>meeting people</div>
-					</div>
-
-					<div className="w-16 h-16 border-x-2 border-b-2 border-orange-500 flex-shrink-0 mt-2 relative overflow-hidden">
-						<WaveCanvas />
-					</div>
+		<main className="min-h-screen flex items-center justify-center">
+			<div className="text-white">
+				<div className="flex flex-col items-center justify-center gap-6">
+					<h1 className="text-5xl">zacOS</h1>
+					<hr className="w-48" />
+					<LiquidGlassLink href="/os">Launch</LiquidGlassLink>
 				</div>
-
-				<div className="flex gap-8 text-xl md:text-2xl text-black">
-					<a href="https://www.instagram.com/zacowan/">ig</a>
-					<a href="https://x.com/zacowan_">bird</a>
-					<a href="https://github.com/zacowan">octocat</a>
-					<a href="https://www.linkedin.com/in/zacowan/">b2b saas</a>
+				<div className="flex items-center justify-center gap-6 pt-24">
+					<Link href="https://x.com/zacowan_">
+						<TwitterIcon />
+					</Link>
+					<Link href="https://www.instagram.com/zacowan/">
+						<InstagramIcon />
+					</Link>
+					<Link href="https://www.linkedin.com/in/zacowan/">
+						<LinkedInIcon />
+					</Link>
 				</div>
 			</div>
 		</main>
