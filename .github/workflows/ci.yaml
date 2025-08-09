@@ -20,6 +20,4 @@ jobs:
         run: corepack enable
       - name: install node deps
         run: pnpm i
-      - name: install rust deps
-        run: cargo install
       - run: pnpm turbo run ci
