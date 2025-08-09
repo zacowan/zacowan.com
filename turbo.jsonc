@@ -15,8 +15,18 @@
 			"dependsOn": [],
 			"outputs": [".next/**", "next-env.d.ts"]
 		},
+		"build:rust": {
+			"dependsOn": [],
+			"outputs": ["target/**"]
+		},
+		"check:rust": {
+			"dependsOn": []
+		},
+		"lint:rust": {
+			"dependsOn": []
+		},
 		"ci": {
-			"dependsOn": ["build", "lint", "typecheck"]
+			"dependsOn": ["build", "lint", "typecheck", "check:rust", "lint:rust"]
 		}
 	}
 }
