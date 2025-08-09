@@ -25,8 +25,11 @@
 		"lint:rust": {
 			"dependsOn": []
 		},
-		"ci": {
-			"dependsOn": ["build", "lint", "typecheck", "check:rust", "lint:rust"]
+		"ci:node": {
+			"dependsOn": ["build", "lint", "typecheck"]
+		},
+		"ci:rust": {
+			"dependsOn": ["check:rust", "lint:rust"]
 		}
 	}
 }

@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  checks:
-    name: 🧪 Checks
+  checks-node:
+    name: 🧪 Checks (Node)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,4 +20,19 @@ jobs:
         run: corepack enable
       - name: install node deps
         run: pnpm i
-      - run: pnpm turbo run ci
+      - run: pnpm turbo run ci:node
+
+  checks-rust:
+    name: 🧪 Checks (Rust)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ALSA development libs
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev pkg-config
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: install latest version of corepack
+        run: npm i -g corepack@latest
+      - run: pnpm i turbo
+      - run: pnpm turbo run ci:rust
