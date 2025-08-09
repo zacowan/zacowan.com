@@ -50,6 +50,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+          cache: "pnpm"
       - name: install latest version of corepack
         run: npm i -g corepack@latest
       - run: pnpm i
@@ -78,9 +79,12 @@ jobs:
             pkg-config \
             libasound2-dev \
             libudev-dev
+      - name: Set up wasm target
+        run: rustup target add wasm32-unknown-unknown
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+          cache: "pnpm"
       - name: install latest version of corepack
         run: npm i -g corepack@latest
       - run: pnpm i
