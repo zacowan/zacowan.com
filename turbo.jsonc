@@ -1,6 +1,7 @@
 {
 	"$schema": "node_modules/turbo/schema.json",
 	"tasks": {
+		// Node tasks
 		"dev": {
 			"dependsOn": [],
 			"cache": false,
@@ -15,9 +16,13 @@
 			"dependsOn": [],
 			"outputs": [".next/**", "next-env.d.ts"]
 		},
+		"ci:node": {
+			"dependsOn": ["build", "lint", "typecheck"]
+		},
+
+		// Rust tasks
 		"build:rust": {
-			"dependsOn": [],
-			"outputs": ["target/**"]
+			"dependsOn": []
 		},
 		"check:rust": {
 			"dependsOn": []
@@ -25,11 +30,8 @@
 		"lint:rust": {
 			"dependsOn": []
 		},
-		"ci:node": {
-			"dependsOn": ["build", "lint", "typecheck"]
-		},
 		"ci:rust": {
-			"dependsOn": ["check:rust", "lint:rust"]
+			"dependsOn": ["check:rust", "lint:rust", "build:rust"]
 		}
 	}
 }
