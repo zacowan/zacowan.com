@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
@@ -19,8 +18,8 @@ jobs:
         run: npm i -g corepack@latest
       - name: enable corepack
         run: corepack enable
-      - name: install node and rust dependencies concurrently
-        run: |
-          pnpm i &
-          cargo install
+      - name: install node deps
+        run: pnpm i
+      - name: install rust deps
+        run: cargo install
       - run: pnpm turbo run ci
