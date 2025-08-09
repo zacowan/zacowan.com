@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: read
 
 jobs:
-  checks:
-    name: 🧪 Checks
+  checks-node:
+    name: 🧪 Checks (Node)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,6 +20,39 @@ jobs:
         run: npm i -g corepack@latest
       - name: enable corepack
         run: corepack enable
-      - name: install dependencies
+      - name: install node deps
         run: pnpm i
-      - run: pnpm turbo run ci
+      - run: pnpm turbo run ci:node
+
+  checks-rust:
+    name: 🧪 Checks (Rust)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up cache
+        uses: actions/cache@v3
+        with:
+            path: |
+                ~/.cargo/bin/
+                ~/.cargo/registry/index/
+                ~/.cargo/registry/cache/
+                ~/.cargo/git/db/
+                target/
+            key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+            restore-keys: ${{ runner.os }}-cargo-
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pkg-config \
+            libasound2-dev \
+            libudev-dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Set up wasm target
+        run: rustup target add wasm32-unknown-unknown
+      - name: install latest version of corepack
+        run: npm i -g corepack@latest
+      - run: pnpm i
+      - run: pnpm turbo run ci:rust

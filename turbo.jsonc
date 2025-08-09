@@ -1,6 +1,7 @@
 {
 	"$schema": "node_modules/turbo/schema.json",
 	"tasks": {
+		// Node tasks
 		"dev": {
 			"dependsOn": [],
 			"cache": false,
@@ -15,8 +16,22 @@
 			"dependsOn": [],
 			"outputs": [".next/**", "next-env.d.ts"]
 		},
-		"ci": {
+		"ci:node": {
 			"dependsOn": ["build", "lint", "typecheck"]
+		},
+
+		// Rust tasks
+		"build:rust": {
+			"dependsOn": []
+		},
+		"check:rust": {
+			"dependsOn": []
+		},
+		"lint:rust": {
+			"dependsOn": []
+		},
+		"ci:rust": {
+			"dependsOn": ["check:rust", "lint:rust", "build:rust"]
 		}
 	}
 }
