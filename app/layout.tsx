@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import type React from "react";
 import "./globals.css";
+import AnimatedBackground from "@/components/animated-bg";
 
 const josefin = Josefin_Sans({ subsets: ["latin"] });
 
@@ -17,10 +18,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${josefin.className} bg-gradient-to-br from-slate-950 to-blue-950`}
-			>
-				{children}
+			<body className={`${josefin.className}`}>
+				<AnimatedBackground>{children}</AnimatedBackground>
 			</body>
 		</html>
 	);
