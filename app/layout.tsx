@@ -17,7 +17,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="bg-[#16213e]">
 			<body className={`${josefin.className}`}>
 				<AnimatedBackground>{children}</AnimatedBackground>
 			</body>
