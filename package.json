@@ -14,7 +14,7 @@
 		"build:rust": "cargo build --release --target wasm32-unknown-unknown"
 	},
 	"dependencies": {
-		"motion": "^12.23.12",
+		"@paper-design/shaders-react": "0.0.46",
 		"next": "15.4.2",
 		"react": "19.1.1",
 		"react-dom": "19.1.1"
