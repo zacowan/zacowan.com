@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Josefin_Sans } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import type React from "react";
 import "./globals.css";
-import AnimatedBackground from "@/components/animated-bg";
+import Link from "next/link";
 
-const josefin = Josefin_Sans({ subsets: ["latin"] });
+const ibmPlexMono = IBM_Plex_Mono({
+	subsets: ["latin"],
+	weight: "400",
+});
 
 export const metadata: Metadata = {
 	title: "zacOS",
@@ -17,9 +20,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className="bg-[#16213e]">
-			<body className={`${josefin.className}`}>
-				<AnimatedBackground>{children}</AnimatedBackground>
+		<html lang="en" className="bg-black text-white">
+			<body className={`${ibmPlexMono.className}`}>
+				<header className="flex items-center justify-center py-4 px-8 w-full space-x-4 pb-20">
+					<Link href="/">zacowan</Link>
+				</header>
+				{children}
 			</body>
 		</html>
 	);
