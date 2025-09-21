@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
 import type React from "react";
 import "./globals.css";
-import AnimatedBackground from "@/components/animated-bg";
 import Link from "next/link";
 import LinkedInIcon from "@/components/icons/linkedin";
 import InstagramIcon from "@/components/icons/instagram";
 import TwitterIcon from "@/components/icons/twitter";
 
-const instrumentSerif = Instrument_Serif({ weight: "400" });
+const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "zacOS",
