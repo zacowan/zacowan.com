@@ -1,29 +1,32 @@
-import Link from "next/link";
-import InstagramIcon from "@/components/icons/instagram";
-import LinkedInIcon from "@/components/icons/linkedin";
-import TwitterIcon from "@/components/icons/twitter";
-import LiquidGlassLink from "@/components/LiquidGlassLink";
+import Vercel from "@/components/icons/vercel";
 
 export default function Home() {
 	return (
-		<main className="min-h-screen flex items-center justify-center">
-			<div className="text-white">
-				<div className="flex flex-col items-center justify-center gap-6">
-					<h1 className="text-5xl">zacOS</h1>
-					<hr className="w-48" />
-					<LiquidGlassLink href="/os">Launch</LiquidGlassLink>
+		<main className="flex flex-col items-center justify-center space-y-4">
+			<div className="text-4xl md:text-6xl">Engineering in NYC.</div>
+			<div className="text-3xl md:text-5xl text-neutral-400">
+				Exploring design & experience.
+			</div>
+			<div className="flex flex-col text-xl md:text-2xl gap-4 mt-12 items-center justify-center">
+				<div className="space-x-4">
+					<span>Building at</span>
+					<a
+						href="https://vercel.com/careers"
+						className="border-neutral-800 border rounded-full px-5 py-3 inline-flex items-center justify-center hover:bg-neutral-900"
+					>
+						<Vercel />
+					</a>
 				</div>
-
-				<div className="flex items-center justify-center gap-6 pt-24">
-					<Link href="https://x.com/zacowan_">
-						<TwitterIcon />
-					</Link>
-					<Link href="https://www.instagram.com/zacowan/">
-						<InstagramIcon />
-					</Link>
-					<Link href="https://www.linkedin.com/in/zacowan/">
-						<LinkedInIcon />
-					</Link>
+				<div className="space-x-2 space-y-2 text-neutral-400 text-md md:text-lg text-center">
+					<span className="block md:inline">Previously at</span>
+					<span className="block md:inline space-x-2">
+						<span className="border-neutral-800 border rounded-full px-3 py-1 inline-flex items-center justify-center">
+							American Express
+						</span>
+						<span className="border-neutral-800 border rounded-full px-3 py-1 inline-flex items-center justify-center">
+							Lockheed Martin
+						</span>
+					</span>
 				</div>
 			</div>
 		</main>

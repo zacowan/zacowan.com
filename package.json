@@ -8,10 +8,7 @@
 		"start": "next start",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write",
-		"typecheck": "tsc --noEmit",
-		"check:rust": "cargo check",
-		"lint:rust": "cargo clippy",
-		"build:rust": "cargo build --release --target wasm32-unknown-unknown"
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@paper-design/shaders-react": "0.0.46",
