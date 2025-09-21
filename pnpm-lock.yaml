@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@paper-design/shaders-react':
-        specifier: 0.0.46
-        version: 0.0.46(@types/react@19.1.9)(react@19.1.1)
+        specifier: 0.0.54
+        version: 0.0.54(@types/react@19.1.9)(react@19.1.1)
       '@vercel/toolbar':
         specifier: ^0.1.41
         version: 0.1.41(next@15.4.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -320,8 +320,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@paper-design/shaders-react@0.0.46':
-    resolution: {integrity: sha512-bvgLvw8Cozmhw1spRmaabT/bh3N4G/Qq6Mb8yOWvWccTmo1UB7YKhEDbHbgCevvry2BgPGotrlfCE+YGeDeY7g==}
+  '@paper-design/shaders-react@0.0.54':
+    resolution: {integrity: sha512-yO4uJBZdWl9xAtfrHQQoDmfvJ0mkuxqB4tclSdZqS3X3dkLKYnzNxrpo/ZiNA0hkLcUXssCDQ8sB2dZO/m6Pww==}
     peerDependencies:
       '@types/react': ^18 || ^19
       react: ^18 || ^19
@@ -329,8 +329,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@paper-design/shaders@0.0.46':
-    resolution: {integrity: sha512-ErPQwLguvv7qI8E+bdwSaNQF27Q8MnZmtD8rGp+K473AYee+cXWv2OqBkKnuMl/n1JmL8vBxSSTflOfO6DB4aQ==}
+  '@paper-design/shaders@0.0.54':
+    resolution: {integrity: sha512-SYuWGPhyfxy0E/kquCmZ30aY96UyVmsIiqXEzQhwy1AdeIRbYkEjcPj6Eu9US7p0n/pOQOhINxIR1moKx3XNLQ==}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -1266,14 +1266,14 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@paper-design/shaders-react@0.0.46(@types/react@19.1.9)(react@19.1.1)':
+  '@paper-design/shaders-react@0.0.54(@types/react@19.1.9)(react@19.1.1)':
     dependencies:
-      '@paper-design/shaders': 0.0.46
+      '@paper-design/shaders': 0.0.54
       react: 19.1.1
     optionalDependencies:
       '@types/react': 19.1.9
 
-  '@paper-design/shaders@0.0.46': {}
+  '@paper-design/shaders@0.0.54': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
