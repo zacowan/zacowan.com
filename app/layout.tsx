@@ -1,3 +1,4 @@
+import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
 import type React from "react";
@@ -8,10 +9,36 @@ import LinkedInIcon from "@/components/icons/linkedin";
 import TwitterIcon from "@/components/icons/twitter";
 
 const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"] });
+const deploymentUrl =
+	process.env.NEXT_PUBLIC_SITE_URL ??
+	(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+const baseUrl = deploymentUrl ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
-	title: "zacOS",
-	description: "The operating system built for me.",
+	metadataBase: new URL(baseUrl),
+	title: "Zach Cowan",
+	description: "All about me.",
+	openGraph: {
+		title: "Zach Cowan",
+		description: "All about me.",
+		type: "website",
+		siteName: "Zach Cowan",
+		url: baseUrl,
+		images: [
+			{
+				url: "/opengraph-image.png",
+				width: 1200,
+				height: 630,
+				alt: "Zach Cowan",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Zach Cowan",
+		description: "All about me.",
+		images: ["/opengraph-image.png"],
+	},
 };
 
 export default function RootLayout({
@@ -19,6 +46,8 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const shouldInjectToolbar = process.env.NODE_ENV === "development";
+
 	return (
 		<html lang="en" className="bg-black text-white px-4 py-8 md:px-8 md:py-12">
 			<body className={`${instrumentSerif.className}`}>
@@ -45,6 +74,7 @@ export default function RootLayout({
 						</li>
 					</ul>
 				</footer>
+				{shouldInjectToolbar && <VercelToolbar />}
 			</body>
 		</html>
 	);
