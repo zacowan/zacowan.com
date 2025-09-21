@@ -19,7 +19,7 @@ export default function Home() {
 				</div>
 				<div className="space-x-2 space-y-2 text-neutral-400 text-md md:text-lg text-center">
 					<span className="block md:inline">Previously at</span>
-					<span className="block md:inline">
+					<span className="block md:inline space-x-2">
 						<span className="border-neutral-800 border rounded-full px-3 py-1 inline-flex items-center justify-center">
 							American Express
 						</span>

@@ -20,10 +20,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html
-			lang="en"
-			className="bg-black text-white min-h-screen px-4 py-8 md:px-8 md:py-12"
-		>
+		<html lang="en" className="bg-black text-white px-4 py-8 md:px-8 md:py-12">
 			<body className={`${instrumentSerif.className}`}>
 				<nav className="w-full flex justify-center items-center pb-12">
 					<Link href="/">Zach Cowan</Link>
