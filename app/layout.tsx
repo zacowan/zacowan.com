@@ -9,9 +9,13 @@ import LinkedInIcon from "@/components/icons/linkedin";
 import TwitterIcon from "@/components/icons/twitter";
 
 const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"] });
+const deploymentUrl =
+	process.env.NEXT_PUBLIC_SITE_URL ??
+	(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+const baseUrl = deploymentUrl ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://zacowan.com"),
+	metadataBase: new URL(baseUrl),
 	title: "Zach Cowan",
 	description: "All about me.",
 	openGraph: {
@@ -19,7 +23,7 @@ export const metadata: Metadata = {
 		description: "All about me.",
 		type: "website",
 		siteName: "Zach Cowan",
-		url: "https://zacowan.com",
+		url: baseUrl,
 		images: [
 			{
 				url: "/opengraph-image.png",
