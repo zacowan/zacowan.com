@@ -24,29 +24,31 @@ export default function RootLayout({
       lang="en"
       className="bg-black text-white min-h-screen px-4 py-8 md:px-8 md:py-12"
     >
-      <nav className="w-full flex justify-center items-center">
-        <Link href="/">Zach Cowan</Link>
-      </nav>
-      <body className={`${instrumentSerif.className}`}>{children}</body>
-      <footer className="w-full pt-24">
-        <ul className="flex items-center justify-center gap-6">
-          <li>
-            <a href="https://x.com/zacowan_">
-              <TwitterIcon />
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/zacowan">
-              <LinkedInIcon />
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/zaocwan">
-              <InstagramIcon />
-            </a>
-          </li>
-        </ul>
-      </footer>
+      <body className={`${instrumentSerif.className}`}>
+        <nav className="w-full flex justify-center items-center pb-12">
+          <Link href="/">Zach Cowan</Link>
+        </nav>
+        {children}
+        <footer className="w-full pt-24">
+          <ul className="flex items-center justify-center gap-6">
+            <li>
+              <a href="https://x.com/zacowan_">
+                <TwitterIcon />
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/zacowan">
+                <LinkedInIcon />
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/zaocwan">
+                <InstagramIcon />
+              </a>
+            </li>
+          </ul>
+        </footer>
+      </body>
     </html>
   );
 }
