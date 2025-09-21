@@ -11,30 +11,8 @@ import TwitterIcon from "@/components/icons/twitter";
 const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zacowan.com"),
   title: "Zach Cowan",
   description: "All about me.",
-  openGraph: {
-    title: "Zach Cowan",
-    description: "All about me.",
-    type: "website",
-    siteName: "Zach Cowan",
-    url: "https://zacowan.com",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Zach Cowan — all about me.",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Zach Cowan",
-    description: "All about me.",
-    images: ["/opengraph-image"],
-  },
 };
 
 export default function RootLayout({
