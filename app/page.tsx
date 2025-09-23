@@ -5,7 +5,7 @@ export default function Home() {
 		<main className="flex flex-col items-center justify-center space-y-4">
 			<div className="text-4xl md:text-6xl">Engineering in NYC.</div>
 			<div className="text-3xl md:text-5xl text-neutral-400">
-				Exploring design & experience.
+				Designing tools, infra, & reliability.
 			</div>
 			<div className="flex flex-col text-xl md:text-2xl gap-4 mt-12 items-center justify-center">
 				<div className="space-x-4">
