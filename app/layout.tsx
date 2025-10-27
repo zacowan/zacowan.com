@@ -68,7 +68,7 @@ export default function RootLayout({
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/zaocwan">
+              <a href="https://instagram.com/zacowan">
                 <InstagramIcon />
               </a>
             </li>
