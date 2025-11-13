@@ -12,6 +12,8 @@
 	},
 	"dependencies": {
 		"@paper-design/shaders-react": "0.0.46",
+		"@vercel/analytics": "^1.5.0",
+		"@vercel/speed-insights": "^1.2.0",
 		"@vercel/toolbar": "^0.1.41",
 		"next": "15.4.2",
 		"react": "19.1.1",

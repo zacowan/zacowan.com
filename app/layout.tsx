@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
@@ -74,6 +76,8 @@ export default function RootLayout({
             </li>
           </ul>
         </footer>
+        <Analytics />
+        <SpeedInsights />
         {shouldInjectToolbar && <VercelToolbar />}
       </body>
     </html>
