@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Space Grotesk", "Space Grotesk Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", monospace;
+
+  --color-background: #0a0f14;
+  --color-foreground: #e8eaed;
+  --color-muted: #6b7c93;
+  --color-muted-foreground: #8b9cb0;
+  --color-accent: #f97316;
+  --color-accent-foreground: #fff7ed;
+  --color-card: rgba(20, 30, 40, 0.6);
+  --color-card-foreground: #e8eaed;
+  --color-border: rgba(107, 124, 147, 0.25);
+
+  --radius: 0.75rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}

@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata } from "next";
-import { Instrument_Serif } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import type React from "react";
 import "./globals.css";
 import Link from "next/link";
@@ -10,7 +10,8 @@ import InstagramIcon from "@/components/icons/instagram";
 import LinkedInIcon from "@/components/icons/linkedin";
 import TwitterIcon from "@/components/icons/twitter";
 
-const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 const deploymentUrl =
 	process.env.NEXT_PUBLIC_SITE_URL ??
 	(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
@@ -51,26 +52,45 @@ export default function RootLayout({
 	const shouldInjectToolbar = process.env.NODE_ENV === "development";
 
 	return (
-		<html lang="en" className="bg-black text-white px-4 py-8 md:px-8 md:py-12">
-			<body className={`${instrumentSerif.className} antialiased`}>
+		<html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+			<body className="font-sans antialiased min-h-screen flex flex-col px-4 py-8 md:px-8 md:py-12">
 				<nav className="w-full flex justify-center items-center pb-12">
-					<Link href="/">Zach Cowan</Link>
+					<Link 
+						href="/" 
+						className="font-mono text-sm tracking-widest uppercase text-muted-foreground hover:text-accent transition-colors"
+					>
+						Zach Cowan
+					</Link>
 				</nav>
-				{children}
+				<div className="flex-1 flex items-center justify-center">
+					{children}
+				</div>
 				<footer className="w-full pt-24">
-					<ul className="flex items-center justify-center gap-6">
+					<ul className="flex items-center justify-center gap-8">
 						<li>
-							<a href="https://x.com/zacowan_">
+							<a 
+								href="https://x.com/zacowan_"
+								className="text-muted hover:text-accent transition-colors"
+								aria-label="Twitter"
+							>
 								<TwitterIcon />
 							</a>
 						</li>
 						<li>
-							<a href="https://linkedin.com/in/zacowan">
+							<a 
+								href="https://linkedin.com/in/zacowan"
+								className="text-muted hover:text-accent transition-colors"
+								aria-label="LinkedIn"
+							>
 								<LinkedInIcon />
 							</a>
 						</li>
 						<li>
-							<a href="https://instagram.com/zacowan">
+							<a 
+								href="https://instagram.com/zacowan"
+								className="text-muted hover:text-accent transition-colors"
+								aria-label="Instagram"
+							>
 								<InstagramIcon />
 							</a>
 						</li>
