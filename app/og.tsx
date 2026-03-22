@@ -16,24 +16,9 @@ export const ogAlt =
 
 export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
 	const [instrumentSerif, geistSans, geistMono] = await Promise.all([
-		readFile(
-			path.join(
-				process.cwd(),
-				".next/static/media/17fa6e55aa617c3e-s.p.836846e7.woff2",
-			),
-		),
-		readFile(
-			path.join(
-				process.cwd(),
-				".next/static/media/b0a57561b6cb5495-s.p.1a6fa3e1.woff2",
-			),
-		),
-		readFile(
-			path.join(
-				process.cwd(),
-				".next/static/media/8ee3a1ba4ed5baee-s.p.be19f591.woff2",
-			),
-		),
+		readFile(path.join(process.cwd(), "app/og-fonts/instrument-serif.woff2")),
+		readFile(path.join(process.cwd(), "app/og-fonts/geist.woff2")),
+		readFile(path.join(process.cwd(), "app/og-fonts/geist-mono.woff2")),
 	]);
 
 	return [
@@ -55,7 +40,7 @@ export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
 			style: "normal" as const,
 			weight: 400,
 		},
-	];
+	] as ImageResponseOptions["fonts"];
 }
 
 export function OgCard(): ReactElement {
