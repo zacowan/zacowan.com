@@ -44,21 +44,12 @@ export const metadata: Metadata = {
 		type: "website",
 		siteName: "Zach Cowan",
 		url: baseUrl,
-		images: [
-			{
-				url: "/opengraph-image",
-				width: 1200,
-				height: 630,
-				alt: "Zach Cowan homepage preview with monochrome editorial design and telemetry panel.",
-			},
-		],
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: "Zach Cowan",
 		description:
 			"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
-		images: ["/twitter-image"],
 	},
 };
 
