@@ -1,7 +1,3 @@
-import GitHubIcon from "@/components/icons/github";
-import InstagramIcon from "@/components/icons/instagram";
-import LinkedInIcon from "@/components/icons/linkedin";
-import TwitterIcon from "@/components/icons/twitter";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
@@ -9,6 +5,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import type React from "react";
+import GitHubIcon from "@/components/icons/github";
+import InstagramIcon from "@/components/icons/instagram";
+import LinkedInIcon from "@/components/icons/linkedin";
+import TwitterIcon from "@/components/icons/twitter";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({

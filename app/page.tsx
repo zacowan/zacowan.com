@@ -61,7 +61,9 @@ export default function Home() {
 								<p className="font-tech text-[10px] uppercase tracking-[0.24em] text-zinc-500">
 									NODE[1]
 								</p>
-								<p className="font-copy mt-2 text-base text-zinc-300">American Express</p>
+								<p className="font-copy mt-2 text-base text-zinc-300">
+									American Express
+								</p>
 								<p className="font-tech mt-2 text-[10px] uppercase tracking-[0.2em] text-zinc-600">
 									SOFTWARE_ENGINEERING
 								</p>
@@ -70,7 +72,9 @@ export default function Home() {
 								<p className="font-tech text-[10px] uppercase tracking-[0.24em] text-zinc-500">
 									NODE[2]
 								</p>
-								<p className="font-copy mt-2 text-base text-zinc-300">Lockheed Martin</p>
+								<p className="font-copy mt-2 text-base text-zinc-300">
+									Lockheed Martin
+								</p>
 								<p className="font-tech mt-2 text-[10px] uppercase tracking-[0.2em] text-zinc-600">
 									SOFTWARE_ENGINEERING
 								</p>
@@ -81,8 +85,8 @@ export default function Home() {
 								DESCRIPTION
 							</p>
 							<p className="font-copy mt-4 max-w-xl text-sm leading-7 text-zinc-400 md:text-base">
-								Designing systems for core infrastructure reliability and agentic
-								guardrails for shipping safe, production-ready code.
+								Designing systems for core infrastructure reliability and
+								agentic guardrails for shipping safe, production-ready code.
 							</p>
 						</div>
 					</div>
@@ -116,22 +120,33 @@ export default function Home() {
 									<span className="status-pulse inline-block size-2 bg-white" />
 									Active
 								</span>
-								<span className="text-right text-zinc-300 whitespace-nowrap">100%</span>
+								<span className="text-right text-zinc-300 whitespace-nowrap">
+									100%
+								</span>
 							</div>
 							<div className="pt-1">
 								<div className="grid grid-cols-[repeat(72,minmax(0,1fr))] gap-px md:hidden">
 									{uptimeBarsSmall.map((bar, index) => (
-										<div key={`telemetry-small-${index}`} className={`h-1.5 ${bar}`} />
+										<div
+											key={`telemetry-small-${index}`}
+											className={`h-1.5 ${bar}`}
+										/>
 									))}
 								</div>
 								<div className="hidden grid-cols-[repeat(96,minmax(0,1fr))] gap-px md:grid lg:hidden">
 									{uptimeBarsMedium.map((bar, index) => (
-										<div key={`telemetry-medium-${index}`} className={`h-1.5 ${bar}`} />
+										<div
+											key={`telemetry-medium-${index}`}
+											className={`h-1.5 ${bar}`}
+										/>
 									))}
 								</div>
 								<div className="hidden grid-cols-[repeat(48,minmax(0,1fr))] gap-px lg:grid">
 									{uptimeBarsWide.map((bar, index) => (
-										<div key={`telemetry-wide-${index}`} className={`h-1.5 ${bar}`} />
+										<div
+											key={`telemetry-wide-${index}`}
+											className={`h-1.5 ${bar}`}
+										/>
 									))}
 								</div>
 							</div>
@@ -171,7 +186,9 @@ export default function Home() {
 									{link.index} / {link.label}
 								</span>
 								<div className="flex items-end justify-between">
-									<span className="font-copy text-3xl text-white md:text-4xl">{link.code}</span>
+									<span className="font-copy text-3xl text-white md:text-4xl">
+										{link.code}
+									</span>
 									<span className="font-tech text-[10px] uppercase tracking-[0.24em] text-zinc-600 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
 										{link.route}
 									</span>
