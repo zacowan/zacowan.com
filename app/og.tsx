@@ -169,7 +169,14 @@ export function OgCard(): ReactElement {
 						>
 							NODE[1]
 						</div>
-						<div style={{ display: "flex", marginTop: 14, fontSize: 24, color: "#d4d4d8" }}>
+						<div
+							style={{
+								display: "flex",
+								marginTop: 14,
+								fontSize: 24,
+								color: "#d4d4d8",
+							}}
+						>
 							American Express
 						</div>
 						<div
@@ -199,7 +206,14 @@ export function OgCard(): ReactElement {
 						>
 							NODE[2]
 						</div>
-						<div style={{ display: "flex", marginTop: 14, fontSize: 24, color: "#d4d4d8" }}>
+						<div
+							style={{
+								display: "flex",
+								marginTop: 14,
+								fontSize: 24,
+								color: "#d4d4d8",
+							}}
+						>
 							Lockheed Martin
 						</div>
 						<div
@@ -281,23 +295,32 @@ export function OgCard(): ReactElement {
 					}}
 				>
 					<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-						<div style={{ display: "flex", width: 10, height: 10, background: "white" }} />
+						<div
+							style={{
+								display: "flex",
+								width: 10,
+								height: 10,
+								background: "white",
+							}}
+						/>
 						<div style={{ display: "flex" }}>ACTIVE</div>
 					</div>
 					<div style={{ display: "flex", color: subtle }}>100%</div>
 				</div>
 				<div style={{ display: "flex", gap: 2, marginTop: 16 }}>
-					{Array.from({ length: 48 }).map((_, index) => (
-						<div
-							key={index}
-							style={{
-								display: "flex",
-								flex: 1,
-								height: 6,
-								background: "white",
-							}}
-						/>
-					))}
+					{Array.from({ length: 48 }, (_, segment) => segment + 1).map(
+						(segment) => (
+							<div
+								key={segment}
+								style={{
+									display: "flex",
+									flex: 1,
+									height: 6,
+									background: "white",
+								}}
+							/>
+						),
+					)}
 				</div>
 			</div>
 		</div>
