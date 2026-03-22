@@ -1,16 +1,60 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import type { ReactElement } from "react";
 
 const gridLine = "rgba(255, 255, 255, 0.045)";
 const muted = "#71717a";
-const body = "#d4d4d8";
 
 export const ogSize = {
 	width: 1200,
 	height: 630,
 };
 
-export const ogAlt =
-	"Zach Cowan preview image with name and description on a monochrome editorial background.";
+export const ogAlt = "Zach Cowan preview image with monochrome editorial name card.";
+
+export async function getOgFonts() {
+	const [instrumentSerif, geistSans, geistMono] = await Promise.all([
+		readFile(
+			path.join(
+				process.cwd(),
+				".next/static/media/17fa6e55aa617c3e-s.p.836846e7.woff2",
+			),
+		),
+		readFile(
+			path.join(
+				process.cwd(),
+				".next/static/media/b0a57561b6cb5495-s.p.1a6fa3e1.woff2",
+			),
+		),
+		readFile(
+			path.join(
+				process.cwd(),
+				".next/static/media/8ee3a1ba4ed5baee-s.p.be19f591.woff2",
+			),
+		),
+	]);
+
+	return [
+		{
+			name: "OgDisplay",
+			data: instrumentSerif,
+			style: "normal" as const,
+			weight: 400,
+		},
+		{
+			name: "OgSans",
+			data: geistSans,
+			style: "normal" as const,
+			weight: 400,
+		},
+		{
+			name: "OgMono",
+			data: geistMono,
+			style: "normal" as const,
+			weight: 400,
+		},
+	];
+}
 
 export function OgCard(): ReactElement {
 	return (
@@ -22,8 +66,7 @@ export function OgCard(): ReactElement {
 				position: "relative",
 				backgroundColor: "#0a0a0a",
 				color: "white",
-				fontFamily:
-					'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+				fontFamily: "OgSans",
 			}}
 		>
 			<div
@@ -64,8 +107,7 @@ export function OgCard(): ReactElement {
 					left: 120,
 					top: 52,
 					display: "flex",
-					fontFamily:
-						'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
+					fontFamily: "OgMono",
 					fontSize: 22,
 					letterSpacing: "0.28em",
 					color: "#a1a1aa",
@@ -87,8 +129,7 @@ export function OgCard(): ReactElement {
 				<div
 					style={{
 						display: "flex",
-						fontFamily:
-							'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
+						fontFamily: "OgMono",
 						fontSize: 20,
 						letterSpacing: "0.24em",
 						color: muted,
@@ -101,7 +142,7 @@ export function OgCard(): ReactElement {
 						display: "flex",
 						marginTop: 30,
 						flexDirection: "column",
-						fontFamily: 'Georgia, "Times New Roman", serif',
+						fontFamily: "OgDisplay",
 						fontSize: 122,
 						lineHeight: 0.88,
 						letterSpacing: "-0.05em",
@@ -109,32 +150,6 @@ export function OgCard(): ReactElement {
 				>
 					<div style={{ display: "flex" }}>Zach</div>
 					<div style={{ display: "flex" }}>Cowan</div>
-				</div>
-				<div
-					style={{
-						display: "flex",
-						marginTop: 42,
-						fontFamily:
-							'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
-						fontSize: 18,
-						letterSpacing: "0.2em",
-						color: muted,
-					}}
-				>
-					DESCRIPTION
-				</div>
-				<div
-					style={{
-						display: "flex",
-						marginTop: 18,
-						maxWidth: 820,
-						fontSize: 34,
-						lineHeight: 1.35,
-						color: body,
-					}}
-				>
-					Designing systems for core infrastructure reliability and agentic
-					guardrails for shipping safe, production-ready code.
 				</div>
 			</div>
 		</div>
