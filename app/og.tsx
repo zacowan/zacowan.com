@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import type { ImageResponseOptions } from "next/server";
 import type { ReactElement } from "react";
 
 const gridLine = "rgba(255, 255, 255, 0.045)";
@@ -13,7 +14,7 @@ export const ogSize = {
 export const ogAlt =
 	"Zach Cowan preview image with monochrome editorial name card.";
 
-export async function getOgFonts() {
+export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
 	const [instrumentSerif, geistSans, geistMono] = await Promise.all([
 		readFile(
 			path.join(
@@ -40,19 +41,19 @@ export async function getOgFonts() {
 			name: "OgDisplay",
 			data: instrumentSerif,
 			style: "normal" as const,
-			weight: "400" as const,
+			weight: 400,
 		},
 		{
 			name: "OgSans",
 			data: geistSans,
 			style: "normal" as const,
-			weight: "400" as const,
+			weight: 400,
 		},
 		{
 			name: "OgMono",
 			data: geistMono,
 			style: "normal" as const,
-			weight: "400" as const,
+			weight: 400,
 		},
 	];
 }
