@@ -1,6 +1,3 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-import type { ImageResponseOptions } from "next/server";
 import type { ReactElement } from "react";
 
 const gridLine = "rgba(255, 255, 255, 0.045)";
@@ -14,35 +11,6 @@ export const ogSize = {
 export const ogAlt =
 	"Zach Cowan preview image with monochrome editorial name card.";
 
-export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
-	const [instrumentSerif, geistSans, geistMono] = await Promise.all([
-		readFile(path.join(process.cwd(), "app/og-fonts/instrument-serif.woff2")),
-		readFile(path.join(process.cwd(), "app/og-fonts/geist.woff2")),
-		readFile(path.join(process.cwd(), "app/og-fonts/geist-mono.woff2")),
-	]);
-
-	return [
-		{
-			name: "OgDisplay",
-			data: instrumentSerif,
-			style: "normal" as const,
-			weight: 400,
-		},
-		{
-			name: "OgSans",
-			data: geistSans,
-			style: "normal" as const,
-			weight: 400,
-		},
-		{
-			name: "OgMono",
-			data: geistMono,
-			style: "normal" as const,
-			weight: 400,
-		},
-	] as ImageResponseOptions["fonts"];
-}
-
 export function OgCard(): ReactElement {
 	return (
 		<div
@@ -53,7 +21,7 @@ export function OgCard(): ReactElement {
 				position: "relative",
 				backgroundColor: "#0a0a0a",
 				color: "white",
-				fontFamily: "OgSans",
+				fontFamily: "serif",
 			}}
 		>
 			<div
@@ -94,7 +62,7 @@ export function OgCard(): ReactElement {
 					left: 120,
 					top: 52,
 					display: "flex",
-					fontFamily: "OgMono",
+					fontFamily: "monospace",
 					fontSize: 22,
 					letterSpacing: "0.28em",
 					color: "#a1a1aa",
@@ -116,9 +84,9 @@ export function OgCard(): ReactElement {
 				<div
 					style={{
 						display: "flex",
-						fontFamily: "OgMono",
+						fontFamily: "monospace",
 						fontSize: 20,
-						letterSpacing: "0.24em",
+						letterSpacing: "0.28em",
 						color: muted,
 					}}
 				>
@@ -129,10 +97,11 @@ export function OgCard(): ReactElement {
 						display: "flex",
 						marginTop: 30,
 						flexDirection: "column",
-						fontFamily: "OgDisplay",
-						fontSize: 122,
-						lineHeight: 0.88,
-						letterSpacing: "-0.05em",
+						fontFamily: "serif",
+						fontSize: 112,
+						fontWeight: 700,
+						lineHeight: 0.9,
+						letterSpacing: "-0.04em",
 					}}
 				>
 					<div style={{ display: "flex" }}>Zach</div>
