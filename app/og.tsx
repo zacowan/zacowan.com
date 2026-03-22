@@ -10,7 +10,8 @@ export const ogSize = {
 	height: 630,
 };
 
-export const ogAlt = "Zach Cowan preview image with monochrome editorial name card.";
+export const ogAlt =
+	"Zach Cowan preview image with monochrome editorial name card.";
 
 export async function getOgFonts() {
 	const [instrumentSerif, geistSans, geistMono] = await Promise.all([
