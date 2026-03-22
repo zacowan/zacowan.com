@@ -1,8 +1,17 @@
 import Vercel from "@/components/icons/vercel";
 
-const uptimeBarsSmall = Array.from({ length: 72 }, () => "bg-white");
-const uptimeBarsMedium = Array.from({ length: 96 }, () => "bg-white");
-const uptimeBarsWide = Array.from({ length: 48 }, () => "bg-white");
+const uptimeBarsSmall = Array.from({ length: 72 }, (_, index) => ({
+	id: `telemetry-small-${index + 1}`,
+	className: "bg-white",
+}));
+const uptimeBarsMedium = Array.from({ length: 96 }, (_, index) => ({
+	id: `telemetry-medium-${index + 1}`,
+	className: "bg-white",
+}));
+const uptimeBarsWide = Array.from({ length: 48 }, (_, index) => ({
+	id: `telemetry-wide-${index + 1}`,
+	className: "bg-white",
+}));
 
 const links = [
 	{
@@ -126,27 +135,18 @@ export default function Home() {
 							</div>
 							<div className="pt-1">
 								<div className="grid grid-cols-[repeat(72,minmax(0,1fr))] gap-px md:hidden">
-									{uptimeBarsSmall.map((bar, index) => (
-										<div
-											key={`telemetry-small-${index}`}
-											className={`h-1.5 ${bar}`}
-										/>
+									{uptimeBarsSmall.map((bar) => (
+										<div key={bar.id} className={`h-1.5 ${bar.className}`} />
 									))}
 								</div>
 								<div className="hidden grid-cols-[repeat(96,minmax(0,1fr))] gap-px md:grid lg:hidden">
-									{uptimeBarsMedium.map((bar, index) => (
-										<div
-											key={`telemetry-medium-${index}`}
-											className={`h-1.5 ${bar}`}
-										/>
+									{uptimeBarsMedium.map((bar) => (
+										<div key={bar.id} className={`h-1.5 ${bar.className}`} />
 									))}
 								</div>
 								<div className="hidden grid-cols-[repeat(48,minmax(0,1fr))] gap-px lg:grid">
-									{uptimeBarsWide.map((bar, index) => (
-										<div
-											key={`telemetry-wide-${index}`}
-											className={`h-1.5 ${bar}`}
-										/>
+									{uptimeBarsWide.map((bar) => (
+										<div key={bar.id} className={`h-1.5 ${bar.className}`} />
 									))}
 								</div>
 							</div>
