@@ -35,27 +35,30 @@ const baseUrl = deploymentUrl ?? "http://localhost:3000";
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
 	title: "Zach Cowan",
-	description: "All about me.",
+	description:
+		"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
 	openGraph: {
 		title: "Zach Cowan",
-		description: "All about me.",
+		description:
+			"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
 		type: "website",
 		siteName: "Zach Cowan",
 		url: baseUrl,
 		images: [
 			{
-				url: "/opengraph-image.png",
+				url: "/opengraph-image",
 				width: 1200,
 				height: 630,
-				alt: "Zach Cowan",
+				alt: "Zach Cowan homepage preview with monochrome editorial design and telemetry panel.",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: "Zach Cowan",
-		description: "All about me.",
-		images: ["/opengraph-image.png"],
+		description:
+			"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
+		images: ["/twitter-image"],
 	},
 };
 
