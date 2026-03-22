@@ -40,19 +40,19 @@ export async function getOgFonts() {
 			name: "OgDisplay",
 			data: instrumentSerif,
 			style: "normal" as const,
-			weight: 400,
+			weight: "400" as const,
 		},
 		{
 			name: "OgSans",
 			data: geistSans,
 			style: "normal" as const,
-			weight: 400,
+			weight: "400" as const,
 		},
 		{
 			name: "OgMono",
 			data: geistMono,
 			style: "normal" as const,
-			weight: 400,
+			weight: "400" as const,
 		},
 	];
 }
