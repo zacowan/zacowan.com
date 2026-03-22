@@ -55,15 +55,17 @@ export default function Home() {
 							<p className="font-tech text-[10px] uppercase tracking-[0.24em] text-zinc-500">
 								NODE[0]
 							</p>
-							<p className="font-copy text-lg leading-8 text-zinc-200 md:text-xl">
-								Core platform engineering at{" "}
+							<div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1">
+								<p className="font-copy text-lg leading-8 text-zinc-200 md:text-xl">
+									Core platform engineering at
+								</p>
 								<a
 									href="https://vercel.com/careers"
-									className="ml-4 inline-flex items-center border border-white/10 bg-neutral-900 px-4 py-3 text-white transition-colors hover:bg-zinc-800"
+									className="inline-flex items-center border border-white/10 bg-neutral-900 px-4 py-3 text-white transition-colors hover:bg-zinc-800"
 								>
 									<Vercel />
 								</a>
-							</p>
+							</div>
 						</div>
 						<div className="grid gap-6 pt-8 md:grid-cols-2">
 							<div>
