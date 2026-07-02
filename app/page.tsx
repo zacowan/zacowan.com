@@ -1,7 +1,7 @@
 const socials = [
-	{ href: "https://x.com/zacowan_", label: "X" },
-	{ href: "https://linkedin.com/in/zacowan", label: "Li" },
-	{ href: "https://github.com/zacowan", label: "GH" },
+	{ href: "https://x.com/zacowan_", label: "X", title: "X" },
+	{ href: "https://linkedin.com/in/zacowan", label: "LI", title: "LinkedIn" },
+	{ href: "https://github.com/zacowan", label: "GH", title: "GitHub" },
 ];
 
 export default function Home() {
@@ -22,6 +22,8 @@ export default function Home() {
 									href={social.href}
 									target="_blank"
 									rel="noopener noreferrer"
+									title={social.title}
+									aria-label={social.title}
 									className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
 								>
 									{social.label}
