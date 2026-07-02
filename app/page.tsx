@@ -6,8 +6,8 @@ const socials = [
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen items-end px-6 py-12 md:items-center md:px-12 md:py-16">
-			<div className="w-full max-w-2xl">
+		<main className="mx-auto flex min-h-screen max-w-3xl items-end px-6 py-12 md:items-center md:px-12 md:py-16">
+			<div className="w-full">
 				<h1 className="text-2xl leading-tight tracking-tight md:text-4xl">
 					Zach Cowan
 				</h1>
