@@ -1,7 +1,7 @@
 const socials = [
 	{ href: "https://x.com/zacowan_", label: "X", title: "X" },
-	{ href: "https://linkedin.com/in/zacowan", label: "LI", title: "LinkedIn" },
-	{ href: "https://github.com/zacowan", label: "GH", title: "GitHub" },
+	{ href: "https://linkedin.com/in/zacowan", label: "Li", title: "LinkedIn" },
+	{ href: "https://github.com/zacowan", label: "Gh", title: "GitHub" },
 ];
 
 export default function Home() {
