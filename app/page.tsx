@@ -11,11 +11,10 @@ export default function Home() {
 				<h1 className="text-2xl leading-tight tracking-tight md:text-4xl">
 					Zach Cowan
 				</h1>
-				<ul className="mt-8 flex flex-col gap-3 text-sm leading-relaxed md:text-base">
-					<li>- Core platform engineering at Vercel</li>
-					<li>- Prev. American Express, Lockheed Martin</li>
+				<ul className="mt-8 flex flex-col gap-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+					<li>Core platform engineering at Vercel</li>
+					<li>Prev. American Express, Lockheed Martin</li>
 					<li className="flex items-center gap-2">
-						<span>-</span>
 						{socials.map((social, index) => (
 							<span key={social.label} className="flex items-center gap-2">
 								{index > 0 && <span aria-hidden="true">*</span>}
@@ -23,7 +22,7 @@ export default function Home() {
 									href={social.href}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="underline-offset-4 hover:underline"
+									className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
 								>
 									{social.label}
 								</a>
