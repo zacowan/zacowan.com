@@ -24,7 +24,7 @@ export default function Home() {
 									rel="noopener noreferrer"
 									title={social.title}
 									aria-label={social.title}
-									className="-my-2 inline-flex min-h-11 min-w-11 items-center justify-center underline-offset-4 transition-colors hover:text-foreground hover:underline"
+									className="relative inline-flex items-center underline-offset-4 transition-colors before:absolute before:left-1/2 before:top-1/2 before:h-11 before:min-w-11 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] hover:text-foreground hover:underline"
 								>
 									{social.label}
 								</a>
