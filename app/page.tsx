@@ -4,6 +4,14 @@ const socials = [
 	{ href: "https://github.com/zacowan", label: "Gh", title: "GitHub" },
 ];
 
+const shipped = [
+	{
+		href: "https://vercel.com/blog/making-agent-friendly-pages-with-content-negotiation",
+		title: "Making agent-friendly pages with content negotiation",
+		type: "blog",
+	},
+];
+
 export default function Home() {
 	return (
 		<main className="mx-auto flex min-h-screen max-w-3xl items-end px-6 py-12 md:items-center md:px-12 md:py-16">
