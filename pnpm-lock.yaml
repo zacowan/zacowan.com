@@ -20,9 +20,6 @@ importers:
       '@vercel/toolbar':
         specifier: ^0.1.41
         version: 0.1.41(@vercel/analytics@1.5.0(next@15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2))(react@19.1.2))(@vercel/speed-insights@1.2.0(next@15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2))(react@19.1.2))(next@15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2))(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
-      geist:
-        specifier: ^1.7.2
-        version: 1.7.2(next@15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2))
       next:
         specifier: 15.4.8
         version: 15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
@@ -729,11 +726,6 @@ packages:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
-
-  geist@1.7.2:
-    resolution: {integrity: sha512-Gu5lDFa3pLRyoBlBPf0QIFHVdWAnpco7fS1bJm41jyLPFoguBgiubseUN2oLXMgqZ7uxAxDoXcHMhCY/fOTTgg==}
-    peerDependencies:
-      next: '>=13.2.0'
 
   get-port@5.1.1:
     resolution: {integrity: sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==}
@@ -1679,10 +1671,6 @@ snapshots:
 
   fsevents@2.3.3:
     optional: true
-
-  geist@1.7.2(next@15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2)):
-    dependencies:
-      next: 15.4.8(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
 
   get-port@5.1.1: {}
 
