@@ -4,6 +4,14 @@ const socials = [
 	{ href: "https://github.com/zacowan", label: "Gh", title: "GitHub" },
 ];
 
+const shipped = [
+	{
+		href: "https://vercel.com/blog/making-agent-friendly-pages-with-content-negotiation",
+		title: "Making agent-friendly pages with content negotiation",
+		meta: "Vercel Blog",
+	},
+];
+
 export default function Home() {
 	return (
 		<main className="mx-auto flex min-h-screen max-w-3xl items-end px-6 py-12 md:items-center md:px-12 md:py-16">
@@ -32,6 +40,26 @@ export default function Home() {
 						))}
 					</li>
 				</ul>
+				<section className="mt-12 text-sm leading-relaxed md:text-base">
+					<h2 className="text-foreground">Shipped</h2>
+					<ul className="mt-3 flex flex-col gap-3 text-muted-foreground">
+						{shipped.map((item) => (
+							<li key={item.href}>
+								<a
+									href={item.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group inline-flex max-w-full flex-col underline-offset-4 transition-colors hover:text-foreground hover:underline"
+								>
+									<span>{item.title}</span>
+									<span className="text-xs text-muted-foreground md:text-sm">
+										{item.meta}
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
 			</div>
 		</main>
 	);
