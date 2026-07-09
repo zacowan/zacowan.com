@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-	--background: #0a0a0a;
+	--background: #000;
 	--foreground: #fafafa;
 }
 
@@ -11,13 +11,9 @@ html {
 }
 
 body {
-	font-family: var(--font-tech), monospace;
+	font-family: var(--font-copy), sans-serif;
 	background-color: var(--background);
 	color: var(--foreground);
-}
-
-.font-display {
-	font-family: var(--font-display), serif;
 }
 
 .font-copy {
@@ -28,41 +24,38 @@ body {
 	font-family: var(--font-tech), monospace;
 }
 
-.technical-grid {
+.font-pixel {
+	font-family: var(--font-geist-pixel-square), var(--font-tech), monospace;
+	font-variant-numeric: tabular-nums;
+	text-rendering: optimizeSpeed;
+}
+
+.site-surface,
+.terminal-surface {
+	min-height: 100vh;
+}
+
+.site-surface {
 	background-image:
-		linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-		linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
-	background-size: 16px 16px;
+		linear-gradient(to bottom, rgb(255 255 255 / 0.06), transparent 20rem),
+		linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+		linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+	background-size:
+		100% 100%,
+		64px 64px,
+		64px 64px;
 }
 
-.glass-panel {
-	background: rgb(39 39 42 / 0.58);
-	backdrop-filter: blur(14px);
-}
-
-.status-pulse {
-	box-shadow: 0 0 0 0 rgb(255 255 255 / 0.38);
-	animation: status-pulse 2s infinite;
-}
-
-@keyframes status-pulse {
-	0% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgb(255 255 255 / 0.4);
-	}
-
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 10px rgb(255 255 255 / 0);
-	}
-
-	100% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgb(255 255 255 / 0);
-	}
+.terminal-surface {
+	background:
+		radial-gradient(
+			circle at 28% 20%,
+			rgb(16 185 129 / 0.08),
+			transparent 24rem
+		), linear-gradient(to bottom, #050505, #000 32rem);
 }
 
 ::selection {
-	background: rgb(250 250 250 / 0.9);
-	color: #0a0a0a;
+	background: #fafafa;
+	color: #000;
 }
