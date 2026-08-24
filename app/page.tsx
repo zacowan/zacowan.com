@@ -1,3 +1,5 @@
+import ArrowUpRightIcon from "@/components/icons/arrow-up-right";
+
 const links = [
 	{
 		command: "open github",
@@ -13,6 +15,32 @@ const links = [
 		command: "open x",
 		href: "https://x.com/zacowan_",
 		label: "x.com/zacowan_",
+	},
+];
+
+type Ship = {
+	name: string;
+	description: string;
+	href: string;
+	year: string;
+	context: string;
+};
+
+// TODO: replace the placeholders with the blog post or tweet for each ship
+const ships: Ship[] = [
+	{
+		name: "Ship title",
+		description: "One line on what shipped and why it mattered",
+		href: "https://x.com/zacowan_",
+		year: "2026",
+		context: "Vercel",
+	},
+	{
+		name: "Ship title",
+		description: "One line on what shipped and why it mattered",
+		href: "https://x.com/zacowan_",
+		year: "2025",
+		context: "Side project",
 	},
 ];
 
@@ -78,6 +106,46 @@ export default function Home() {
 							))}
 						</div>
 					</div>
+
+					<section
+						aria-labelledby="ships"
+						className="mt-4 rounded-lg border border-white/10 bg-black/30"
+					>
+						<div className="border-b border-white/10 px-4 py-3">
+							<h2 id="ships" className="font-tech text-sm text-zinc-500">
+								<span className="text-zinc-300">$</span> ships --all
+							</h2>
+						</div>
+						<div className="divide-y divide-white/10">
+							{ships.map((ship) => (
+								<a
+									key={`${ship.year}-${ship.name}`}
+									href={ship.href}
+									target="_blank"
+									rel="noreferrer"
+									className="group grid gap-1 px-4 py-4 transition-colors hover:bg-white/[0.03] focus-visible:bg-white/[0.03] focus-visible:outline-1 focus-visible:outline-emerald-400/60 sm:grid-cols-[7rem_1fr] sm:gap-4"
+								>
+									<p className="font-tech text-sm tabular-nums text-zinc-500">
+										{ship.year}
+									</p>
+									<div>
+										<p className="flex items-center gap-1.5 font-medium text-zinc-100 transition-colors group-hover:text-white">
+											<span translate="no">{ship.name}</span>
+											<span className="text-zinc-500 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+												<ArrowUpRightIcon />
+											</span>
+										</p>
+										<p className="mt-1 text-sm text-zinc-500">
+											{ship.description}
+										</p>
+										<p className="font-tech mt-1 text-xs text-zinc-600">
+											{ship.context}
+										</p>
+									</div>
+								</a>
+							))}
+						</div>
+					</section>
 
 					<div className="mt-10 space-y-3">
 						{links.map((link) => (
