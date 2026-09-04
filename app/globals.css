@@ -46,6 +46,7 @@ body {
 
 .hero-copy {
 	background: #000;
+	order: 1;
 }
 
 .flare-stage {
@@ -100,6 +101,10 @@ body {
 @media (min-width: 64rem) {
 	.hero-grid {
 		grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+	}
+
+	.hero-copy {
+		order: 0;
 	}
 }
 
