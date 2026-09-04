@@ -1,6 +1,3 @@
-packages:
-  - .
-
 allowBuilds:
   '@tailwindcss/oxide': true
   '@vercel/speed-insights': true

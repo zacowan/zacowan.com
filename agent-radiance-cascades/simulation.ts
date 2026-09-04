@@ -282,12 +282,12 @@ export function presentScene(
 	scene.effects.present.set({
 		present: {
 			display: [
-        0.8,
+				0.8,
 				resolveView(view, scene.cascadeCount).mode,
 				48,
 				scene.directionBase,
 			],
-      lighting: [0.055, 0.003, 0, 0],
+			lighting: [0.055, 0.003, 0, 0],
 		},
 		cascade_tex: scene.cascades[0],
 		emitter_tex: scene.emitter,
