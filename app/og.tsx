@@ -1,7 +1,12 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import type { ImageResponseOptions } from "next/server";
 import type { ReactElement } from "react";
+import { profile } from "@/lib/site-content";
 
-const gridLine = "rgba(255, 255, 255, 0.045)";
 const muted = "#71717a";
+const subtle = "#a1a1aa";
+const rule = "rgba(255, 255, 255, 0.15)";
 
 export const ogSize = {
 	width: 1200,
@@ -9,7 +14,36 @@ export const ogSize = {
 };
 
 export const ogAlt =
-	"Zach Cowan preview image with monochrome editorial name card.";
+	"Terminal-style preview for Zach Cowan, Software engineer on Vercel's Core Platform team.";
+
+export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
+	const [geistSans, geistMono, geistPixel] = await Promise.all([
+		readFile(path.join(process.cwd(), "app/og-fonts/geist.ttf")),
+		readFile(path.join(process.cwd(), "app/og-fonts/geist-mono.ttf")),
+		readFile(path.join(process.cwd(), "app/og-fonts/geist-pixel-square.ttf")),
+	]);
+
+	return [
+		{
+			name: "Geist Sans",
+			data: geistSans,
+			style: "normal" as const,
+			weight: 400,
+		},
+		{
+			name: "Geist Mono",
+			data: geistMono,
+			style: "normal" as const,
+			weight: 400,
+		},
+		{
+			name: "Geist Pixel Square",
+			data: geistPixel,
+			style: "normal" as const,
+			weight: 500,
+		},
+	] as ImageResponseOptions["fonts"];
+}
 
 export function OgCard(): ReactElement {
 	return (
@@ -18,95 +52,81 @@ export function OgCard(): ReactElement {
 				height: "100%",
 				width: "100%",
 				display: "flex",
-				position: "relative",
-				backgroundColor: "#0a0a0a",
-				color: "white",
-				fontFamily: "serif",
+				flexDirection: "column",
+				justifyContent: "center",
+				backgroundColor: "#000",
+				color: "#fafafa",
+				fontFamily: "Geist Mono",
+				padding: "72px 96px",
 			}}
 		>
 			<div
 				style={{
-					position: "absolute",
-					inset: 0,
-					backgroundImage: `
-						linear-gradient(to right, ${gridLine} 1px, transparent 1px),
-						linear-gradient(to bottom, ${gridLine} 1px, transparent 1px)
-					`,
-					backgroundSize: "24px 24px",
-				}}
-			/>
-			<div
-				style={{
-					position: "absolute",
-					left: 72,
-					right: 72,
-					top: 0,
-					bottom: 0,
-					borderLeft: `1px solid ${gridLine}`,
-					borderRight: `1px solid ${gridLine}`,
-				}}
-			/>
-			<div
-				style={{
-					position: "absolute",
-					left: 0,
-					right: 0,
-					top: 78,
-					height: 1,
-					background: gridLine,
-				}}
-			/>
-			<div
-				style={{
-					position: "absolute",
-					left: 120,
-					top: 52,
 					display: "flex",
-					fontFamily: "monospace",
+					alignItems: "center",
 					fontSize: 22,
-					letterSpacing: "0.28em",
-					color: "#a1a1aa",
+					color: muted,
 				}}
 			>
-				ZACOWAN
+				<span style={{ color: "#34d399" }}>~</span>
+				<span>&nbsp;/ zacowan</span>
 			</div>
 
 			<div
 				style={{
-					position: "absolute",
-					left: 120,
-					right: 120,
-					top: 154,
 					display: "flex",
 					flexDirection: "column",
+					marginTop: 58,
 				}}
 			>
-				<div
-					style={{
-						display: "flex",
-						fontFamily: "monospace",
-						fontSize: 20,
-						letterSpacing: "0.28em",
-						color: muted,
-					}}
-				>
-					MANIFEST
+				<div style={{ display: "flex", fontSize: 22, color: muted }}>
+					<span style={{ color: subtle }}>$</span>
+					<span>&nbsp;whoami</span>
 				</div>
 				<div
 					style={{
 						display: "flex",
-						marginTop: 30,
-						flexDirection: "column",
-						fontFamily: "serif",
-						fontSize: 112,
-						fontWeight: 700,
-						lineHeight: 0.9,
-						letterSpacing: "-0.04em",
+						marginTop: 18,
+						fontSize: 82,
+						fontFamily: "Geist Pixel Square",
+						fontWeight: 500,
+						lineHeight: 1,
+						letterSpacing: "0.01em",
 					}}
 				>
-					<div style={{ display: "flex" }}>Zach</div>
-					<div style={{ display: "flex" }}>Cowan</div>
+					{profile.name}
 				</div>
+				<div
+					style={{
+						display: "flex",
+						marginTop: 22,
+						fontFamily: "Geist Sans",
+						fontSize: 30,
+						lineHeight: 1.35,
+						color: "#d4d4d8",
+					}}
+				>
+					{profile.role}
+				</div>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "space-between",
+					width: "100%",
+					marginTop: 68,
+					paddingTop: 24,
+					borderTop: `1px solid ${rule}`,
+					fontSize: 20,
+					color: muted,
+				}}
+			>
+				<div style={{ display: "flex" }}>
+					<span style={{ color: subtle }}>$</span>
+					<span>&nbsp;profile --summary</span>
+				</div>
+				<div style={{ display: "flex", color: subtle }}>zacowan.com</div>
 			</div>
 		</div>
 	);
