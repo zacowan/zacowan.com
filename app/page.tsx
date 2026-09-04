@@ -1,141 +1,142 @@
-const links = [
-	{
-		command: "open github",
-		href: "https://github.com/zacowan",
-		label: "github.com/zacowan",
-	},
-	{
-		command: "open linkedin",
-		href: "https://linkedin.com/in/zacowan",
-		label: "linkedin.com/in/zacowan",
-	},
-	{
-		command: "open x",
-		href: "https://x.com/zacowan_",
-		label: "x.com/zacowan_",
-	},
-];
-
-const experience = [
-	["n - 1", "American Express", "Software engineering, web frameworks"],
-	["n - 2", "Lockheed Martin", "Software engineering, embedded systems"],
-];
-
-const recentShips = [
-	{
-		title: "sre incident response eve template",
-		href: "https://x.com/eve/status/2092310036462944710",
-	},
-];
+import {
+	experience,
+	links,
+	personJsonLd,
+	profile,
+	recentShips,
+} from "@/lib/site-content";
 
 export default function Home() {
 	return (
-		<main className="terminal-surface">
-			<section className="mx-auto grid min-h-screen w-full max-w-5xl content-center px-6 py-20 sm:px-8 lg:px-10">
-				<div className="max-w-3xl">
-					<p className="font-tech text-sm text-zinc-500">
-						<span className="text-emerald-400">~</span> / zacowan
-					</p>
+		<>
+			{/* The JSON-LD object is locally defined, contains no user input, and escapes HTML openers. */}
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: static structured data is escaped before insertion
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+				}}
+			/>
+			<a
+				href="#main-content"
+				className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+			>
+				Skip to content
+			</a>
+			<main id="main-content" className="terminal-surface">
+				<div className="mx-auto grid min-h-screen w-full max-w-5xl content-center px-6 py-20 sm:px-8 lg:px-10">
+					<article className="max-w-3xl">
+						<p className="font-tech text-sm text-zinc-500">
+							<span className="text-emerald-400">~</span> / zacowan
+						</p>
 
-					<div className="mt-10 space-y-7">
-						<div>
+						<header className="mt-10">
 							<p className="font-tech text-sm text-zinc-500">
 								<span className="text-zinc-300">$</span> whoami
 							</p>
 							<h1 className="font-pixel mt-3 text-4xl tracking-[0.01em] text-white sm:text-5xl md:text-6xl">
-								Zach Cowan
+								{profile.name}
 							</h1>
-						</div>
-					</div>
-
-					<div className="mt-12 rounded-lg border border-white/10 bg-white/[0.025]">
-						<div className="border-b border-white/10 px-4 py-3">
-							<p className="font-tech text-sm text-zinc-500">
-								<span className="text-zinc-300">$</span> work --current
+							<p className="mt-4 text-lg leading-8 text-zinc-300">
+								{profile.role}
 							</p>
-						</div>
-						<div className="px-4 py-5">
-							<div>
-								<p className="font-medium text-zinc-100">Vercel</p>
-								<p className="mt-1 text-sm text-zinc-500">
-									Software engineering, core platform
-								</p>
+						</header>
+
+						<section className="mt-14 border-t border-white/15 pt-6">
+							<h2 className="font-tech text-sm text-zinc-400">
+								<span className="text-zinc-300">$</span> profile --summary
+							</h2>
+							<div className="mt-5 space-y-4 text-base leading-7 text-zinc-300">
+								{profile.summary.map((paragraph) => (
+									<p key={paragraph}>{paragraph}</p>
+								))}
 							</div>
-						</div>
-					</div>
+						</section>
 
-					<div className="mt-4 rounded-lg border border-white/10 bg-black/30">
-						<div className="border-b border-white/10 px-4 py-3">
-							<p className="font-tech text-sm text-zinc-500">
-								<span className="text-zinc-300">$</span> work --previous
-							</p>
-						</div>
-						<div className="divide-y divide-white/10">
-							{experience.map(([status, company, role]) => (
-								<div
-									key={`${status}-${company}`}
-									className="grid gap-1 px-4 py-4 sm:grid-cols-[7rem_1fr] sm:gap-4"
-								>
-									<p className="font-tech text-sm text-zinc-500">{status}</p>
-									<div>
-										<p className="font-medium text-zinc-100">{company}</p>
-										<p className="mt-1 text-sm text-zinc-500">{role}</p>
+						<section className="mt-14 border-t border-white/15 pt-6">
+							<h2 className="font-tech text-sm text-zinc-400">
+								<span className="text-zinc-300">$</span> work --history
+							</h2>
+							<div className="mt-5 divide-y divide-white/10">
+								{experience.map(([status, company, role]) => (
+									<div
+										key={`${status}-${company}`}
+										className="grid gap-1 py-4 sm:grid-cols-[7rem_1fr] sm:gap-4"
+									>
+										<p className="font-tech text-sm text-zinc-500">{status}</p>
+										<div>
+											<p className="font-medium text-zinc-100">{company}</p>
+											<p className="mt-1 text-sm leading-6 text-zinc-500">
+												{role}
+											</p>
+										</div>
 									</div>
-								</div>
-							))}
-						</div>
-					</div>
+								))}
+							</div>
+						</section>
 
-					<div className="mt-4 rounded-lg border border-white/10 bg-black/30">
-						<div className="border-b border-white/10 px-4 py-3">
-							<p className="font-tech text-sm text-zinc-500">
+						<section className="mt-14 border-t border-white/15 pt-6">
+							<h2 className="font-tech text-sm text-zinc-400">
 								<span className="text-zinc-300">$</span> ships --recent
-							</p>
-						</div>
-						<div className="divide-y divide-white/10">
-							{recentShips.map((ship, index) => (
-								<a
-									key={ship.href}
-									href={ship.href}
-									target="_blank"
-									rel="noreferrer"
-									className="group grid gap-1 px-4 py-4 transition-colors hover:bg-white/[0.025] sm:grid-cols-[7rem_1fr] sm:gap-4"
-								>
-									<p className="font-tech text-sm text-emerald-400">
-										{index === 0 ? "latest" : `ship ${index + 1}`}
-									</p>
-									<p className="font-medium text-zinc-100 transition-colors group-hover:text-white">
-										{ship.title}
-										<span
-											aria-hidden="true"
-											className="ml-2 text-zinc-600 transition-colors group-hover:text-zinc-300"
-										>
-											↗
-										</span>
-									</p>
-								</a>
-							))}
-						</div>
-					</div>
+							</h2>
+							<div className="mt-5 divide-y divide-white/10">
+								{recentShips.map((ship) => (
+									<a
+										key={ship.href}
+										href={ship.href}
+										target="_blank"
+										rel="noreferrer"
+										className="group grid gap-2 py-4 transition-colors sm:grid-cols-[7rem_1fr] sm:gap-4"
+									>
+										<p className="font-tech text-sm text-zinc-500">
+											{ship.label}
+										</p>
+										<div>
+											<p className="font-medium text-zinc-100 transition-colors group-hover:text-white">
+												{ship.title}
+												<span aria-hidden="true" className="ml-2 text-zinc-600">
+													↗
+												</span>
+											</p>
+											<p className="mt-1 text-sm leading-6 text-zinc-500">
+												{ship.description}
+											</p>
+										</div>
+									</a>
+								))}
+							</div>
+						</section>
 
-					<div className="mt-10 space-y-3">
-						{links.map((link) => (
-							<a
-								key={link.href}
-								href={link.href}
-								className="group grid gap-1 text-sm sm:grid-cols-[9rem_1fr] sm:gap-4"
+						<nav
+							aria-labelledby="profiles-heading"
+							className="mt-14 border-t border-white/15 pt-6"
+						>
+							<h2
+								id="profiles-heading"
+								className="font-tech text-sm text-zinc-400"
 							>
-								<span className="font-tech text-zinc-500 transition-colors group-hover:text-zinc-300">
-									$ {link.command}
-								</span>
-								<span className="text-zinc-300 transition-colors group-hover:text-white">
-									{link.label}
-								</span>
-							</a>
-						))}
-					</div>
+								<span className="text-zinc-300">$</span> profiles --verified
+							</h2>
+							<div className="mt-5 space-y-3">
+								{links.map((link) => (
+									<a
+										key={link.href}
+										href={link.href}
+										className="group grid gap-1 text-sm sm:grid-cols-[9rem_1fr] sm:gap-4"
+									>
+										<span className="font-tech text-zinc-500 transition-colors group-hover:text-zinc-300">
+											$ {link.command}
+										</span>
+										<span className="text-zinc-300 transition-colors group-hover:text-white">
+											{link.label}
+										</span>
+									</a>
+								))}
+							</div>
+						</nav>
+					</article>
 				</div>
-			</section>
-		</main>
+			</main>
+		</>
 	);
 }

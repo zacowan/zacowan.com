@@ -5,6 +5,7 @@ import { GeistPixelSquare } from "geist/font/pixel";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type React from "react";
+import { profile, SITE_URL } from "@/lib/site-content";
 import "./globals.css";
 
 const geist = Geist({
@@ -17,29 +18,33 @@ const geistMono = Geist_Mono({
 	variable: "--font-tech",
 });
 
-const deploymentUrl =
-	process.env.NEXT_PUBLIC_SITE_URL ??
-	(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
-const baseUrl = deploymentUrl ?? "http://localhost:3000";
-
 export const metadata: Metadata = {
-	metadataBase: new URL(baseUrl),
-	title: "Zach Cowan",
-	description:
-		"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
+	metadataBase: new URL(SITE_URL),
+	title: "Zach Cowan | Software Engineer at Vercel",
+	description: profile.description,
+	alternates: {
+		canonical: "/",
+		types: {
+			"text/markdown": "/index.md",
+		},
+	},
+	authors: [{ name: profile.name, url: SITE_URL }],
+	creator: profile.name,
+	robots: {
+		index: true,
+		follow: true,
+	},
 	openGraph: {
-		title: "Zach Cowan",
-		description:
-			"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
+		title: "Zach Cowan | Software Engineer at Vercel",
+		description: profile.description,
 		type: "website",
 		siteName: "Zach Cowan",
-		url: baseUrl,
+		url: SITE_URL,
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Zach Cowan",
-		description:
-			"Designing systems for core infrastructure reliability and agentic guardrails for shipping safe, production-ready code.",
+		title: "Zach Cowan | Software Engineer at Vercel",
+		description: profile.description,
 	},
 };
 
