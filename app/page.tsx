@@ -21,11 +21,18 @@ const experience = [
 	["n - 2", "Lockheed Martin", "Software engineering, embedded systems"],
 ];
 
+const recentShips = [
+	{
+		title: "sre incident response eve template",
+		href: "https://x.com/eve/status/2092310036462944710",
+	},
+];
+
 export default function Home() {
 	return (
 		<main className="terminal-surface">
 			<section className="mx-auto grid min-h-screen w-full max-w-5xl content-center px-6 py-20 sm:px-8 lg:px-10">
-				<div className="max-w-3xl -translate-y-8">
+				<div className="max-w-3xl">
 					<p className="font-tech text-sm text-zinc-500">
 						<span className="text-emerald-400">~</span> / zacowan
 					</p>
@@ -75,6 +82,38 @@ export default function Home() {
 										<p className="mt-1 text-sm text-zinc-500">{role}</p>
 									</div>
 								</div>
+							))}
+						</div>
+					</div>
+
+					<div className="mt-4 rounded-lg border border-white/10 bg-black/30">
+						<div className="border-b border-white/10 px-4 py-3">
+							<p className="font-tech text-sm text-zinc-500">
+								<span className="text-zinc-300">$</span> ships --recent
+							</p>
+						</div>
+						<div className="divide-y divide-white/10">
+							{recentShips.map((ship, index) => (
+								<a
+									key={ship.href}
+									href={ship.href}
+									target="_blank"
+									rel="noreferrer"
+									className="group grid gap-1 px-4 py-4 transition-colors hover:bg-white/[0.025] sm:grid-cols-[7rem_1fr] sm:gap-4"
+								>
+									<p className="font-tech text-sm text-emerald-400">
+										{index === 0 ? "latest" : `ship ${index + 1}`}
+									</p>
+									<p className="font-medium text-zinc-100 transition-colors group-hover:text-white">
+										{ship.title}
+										<span
+											aria-hidden="true"
+											className="ml-2 text-zinc-600 transition-colors group-hover:text-zinc-300"
+										>
+											↗
+										</span>
+									</p>
+								</a>
 							))}
 						</div>
 					</div>
