@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { createRenderer } from "@/agent-radiance-cascades/renderer";
 
+const isWebGpuUnavailable = (error: unknown) =>
+	error instanceof Error &&
+	"code" in error &&
+	error.code === "VGPU-RING1-UNSUPPORTED";
+
 export function RadianceCascadesHero() {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const [rendering, setRendering] = useState(false);
@@ -17,8 +22,9 @@ export function RadianceCascadesHero() {
 			() => {
 				if (active) setRendering(true);
 			},
-			() => {
+			(error: unknown) => {
 				if (active) setRendering(false);
+				if (!isWebGpuUnavailable(error)) console.error(error);
 			},
 		);
 		return () => {
