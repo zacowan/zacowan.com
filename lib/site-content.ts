@@ -58,6 +58,8 @@ ${profile.role}
 
 ${profile.summary.join("\n\n")}
 
+The homepage includes an animated two-cube radiance field, rendered with the [vgpu](https://vgpu.sh) Agent Radiance Cascades pipeline. The profile content remains available in the server-rendered page and Markdown representation when WebGPU is unavailable.
+
 ## Experience
 
 ${experience.map(([, company, role]) => `- **${company}**: ${role}`).join("\n")}
