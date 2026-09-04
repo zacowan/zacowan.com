@@ -236,12 +236,10 @@ export function createRenderer({
 			rect.width,
 			rect.height,
 		);
-		dirty = true;
 	};
 
 	const onPointerLeave = () => {
 		hovered = undefined;
-		dirty = true;
 	};
 
 	const tick = (timestamp: number) => {
