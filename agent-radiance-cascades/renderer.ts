@@ -5,6 +5,7 @@ import {
 	approachGlow,
 	hoveredCube,
 	INTRO_DURATION,
+	INTRO_LIT_CUBE,
 	introGlow,
 	REST_GLOW,
 } from "./glow";
@@ -83,7 +84,7 @@ export function createRenderer({
 		paused: false,
 	};
 	let hovered: 0 | 1 | undefined;
-	let lit: 0 | 1 = 0;
+	let lit: 0 | 1 = INTRO_LIT_CUBE;
 	let hoverGlow: [number, number] = [REST_GLOW, REST_GLOW];
 	let gpu: Gpu | undefined;
 	let canvasSurface: Surface | undefined;
