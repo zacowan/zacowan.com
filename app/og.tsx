@@ -14,7 +14,7 @@ export const ogSize = {
 };
 
 export const ogAlt =
-	"Terminal-style preview for Zach Cowan, Software engineer on Vercel's Core Platform team.";
+	"Zach Cowan's terminal-style profile with two ember-lit radiance-cascade cubes.";
 
 export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
 	const [geistSans, geistMono, geistPixel] = await Promise.all([
@@ -53,11 +53,10 @@ export function OgCard(): ReactElement {
 				width: "100%",
 				display: "flex",
 				flexDirection: "column",
-				justifyContent: "center",
 				backgroundColor: "#000",
 				color: "#fafafa",
 				fontFamily: "Geist Mono",
-				padding: "72px 96px",
+				padding: "58px 72px",
 			}}
 		>
 			<div
@@ -75,38 +74,101 @@ export function OgCard(): ReactElement {
 			<div
 				style={{
 					display: "flex",
-					flexDirection: "column",
-					marginTop: 58,
+					flex: 1,
+					marginTop: 34,
+					border: `1px solid ${rule}`,
 				}}
 			>
-				<div style={{ display: "flex", fontSize: 22, color: muted }}>
-					<span style={{ color: subtle }}>$</span>
-					<span>&nbsp;whoami</span>
-				</div>
 				<div
 					style={{
 						display: "flex",
-						marginTop: 18,
-						fontSize: 82,
-						fontFamily: "Geist Pixel Square",
-						fontWeight: 500,
-						lineHeight: 1,
-						letterSpacing: "0.01em",
+						flexDirection: "column",
+						justifyContent: "center",
+						width: "58%",
+						padding: "44px",
 					}}
 				>
-					{profile.name}
+					<div style={{ display: "flex", fontSize: 20, color: muted }}>
+						<span style={{ color: subtle }}>$</span>
+						<span>&nbsp;whoami</span>
+					</div>
+					<div
+						style={{
+							display: "flex",
+							marginTop: 18,
+							fontSize: 72,
+							fontFamily: "Geist Pixel Square",
+							fontWeight: 500,
+							lineHeight: 1,
+						}}
+					>
+						{profile.name}
+					</div>
+					<div
+						style={{
+							display: "flex",
+							marginTop: 22,
+							maxWidth: 520,
+							fontFamily: "Geist Sans",
+							fontSize: 27,
+							lineHeight: 1.35,
+							color: "#d4d4d8",
+						}}
+					>
+						{profile.role}
+					</div>
 				</div>
 				<div
 					style={{
+						position: "relative",
 						display: "flex",
-						marginTop: 22,
-						fontFamily: "Geist Sans",
-						fontSize: 30,
-						lineHeight: 1.35,
-						color: "#d4d4d8",
+						alignItems: "center",
+						justifyContent: "center",
+						width: "42%",
+						borderLeft: `1px solid ${rule}`,
+						overflow: "hidden",
 					}}
 				>
-					{profile.role}
+					<div
+						style={{
+							position: "absolute",
+							left: 96,
+							top: 80,
+							display: "flex",
+							width: 360,
+							height: 2,
+							background: "#ef4444",
+							opacity: 0.25,
+							transform: "rotate(-18deg)",
+						}}
+					/>
+					{[150, 282].map((left) => (
+						<div
+							key={left}
+							style={{
+								position: "absolute",
+								left,
+								top: 160,
+								display: "flex",
+								width: 82,
+								height: 82,
+								background: "#ef4444",
+								border: "2px solid #fecaca",
+							}}
+						/>
+					))}
+					<div
+						style={{
+							position: "absolute",
+							top: 20,
+							right: 20,
+							display: "flex",
+							fontSize: 14,
+							color: muted,
+						}}
+					>
+						CASCADES / 01
+					</div>
 				</div>
 			</div>
 
@@ -115,9 +177,7 @@ export function OgCard(): ReactElement {
 					display: "flex",
 					justifyContent: "space-between",
 					width: "100%",
-					marginTop: 68,
-					paddingTop: 24,
-					borderTop: `1px solid ${rule}`,
+					marginTop: 24,
 					fontSize: 20,
 					color: muted,
 				}}

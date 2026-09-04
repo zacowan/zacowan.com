@@ -14,6 +14,7 @@ body {
 	font-family: var(--font-copy), sans-serif;
 	background-color: var(--background);
 	color: var(--foreground);
+	margin: 0;
 }
 
 .font-copy {
@@ -36,6 +37,34 @@ body {
 
 .terminal-surface {
 	background: var(--background);
+}
+
+.hero-grid {
+	display: grid;
+	background: #000;
+}
+
+.hero-copy {
+	background: #000;
+}
+
+.flare-stage {
+	position: absolute;
+	inset: 0;
+	background: #000;
+}
+
+.flare-canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+	touch-action: pan-y;
+}
+
+@media (min-width: 64rem) {
+	.hero-grid {
+		grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+	}
 }
 
 ::selection {

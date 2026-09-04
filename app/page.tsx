@@ -1,3 +1,4 @@
+import { RadianceCascadesHero } from "@/components/joystick-hero";
 import {
 	experience,
 	links,
@@ -24,25 +25,36 @@ export default function Home() {
 				Skip to content
 			</a>
 			<main id="main-content" className="terminal-surface">
-				<div className="mx-auto grid min-h-screen w-full max-w-5xl content-center px-6 py-20 sm:px-8 lg:px-10">
-					<article className="max-w-3xl">
-						<p className="font-tech text-sm text-zinc-500">
-							<span className="text-emerald-400">~</span> / zacowan
+				<div className="mx-auto w-full max-w-6xl px-6 pb-24 sm:px-8 lg:px-10">
+					<div className="site-path font-tech flex h-16 items-center justify-between px-5 text-xs text-zinc-500">
+						<p>
+							<span className="text-white">~</span> / zacowan
 						</p>
+						<p className="hidden sm:block">NYC / ONLINE</p>
+					</div>
 
-						<header className="mt-10">
-							<p className="font-tech text-sm text-zinc-500">
-								<span className="text-zinc-300">$</span> whoami
-							</p>
-							<h1 className="font-pixel mt-3 text-4xl tracking-[0.01em] text-white sm:text-5xl md:text-6xl">
-								{profile.name}
-							</h1>
-							<p className="mt-4 text-lg leading-8 text-zinc-300">
-								{profile.role}
-							</p>
-						</header>
+					<header className="hero-grid">
+						<div className="hero-copy flex min-h-[18rem] items-center p-6 sm:min-h-[22rem] sm:p-10 lg:min-h-[38rem] lg:p-12">
+							<div>
+								<p className="font-tech text-sm text-zinc-500">
+									<span className="text-zinc-300">$</span> whoami
+								</p>
+								<h1 className="font-pixel mt-4 text-5xl tracking-[0.01em] text-white sm:text-6xl lg:text-7xl">
+									{profile.name}
+								</h1>
+								<p className="mt-5 max-w-md text-lg leading-8 text-zinc-300">
+									{profile.role}
+								</p>
+							</div>
+						</div>
 
-						<section className="mt-14 border-t border-white/15 pt-6">
+						<div className="hero-visual relative min-h-[28rem] overflow-hidden lg:min-h-0">
+							<RadianceCascadesHero />
+						</div>
+					</header>
+
+					<article className="mx-auto max-w-3xl pt-20">
+						<section className="mt-16">
 							<h2 className="font-tech text-sm text-zinc-400">
 								<span className="text-zinc-300">$</span> profile --summary
 							</h2>
@@ -53,11 +65,11 @@ export default function Home() {
 							</div>
 						</section>
 
-						<section className="mt-14 border-t border-white/15 pt-6">
+						<section className="mt-16">
 							<h2 className="font-tech text-sm text-zinc-400">
 								<span className="text-zinc-300">$</span> work --history
 							</h2>
-							<div className="mt-5 divide-y divide-white/10">
+							<div className="mt-5">
 								{experience.map(([status, company, role]) => (
 									<div
 										key={`${status}-${company}`}
@@ -75,11 +87,11 @@ export default function Home() {
 							</div>
 						</section>
 
-						<section className="mt-14 border-t border-white/15 pt-6">
+						<section className="mt-16">
 							<h2 className="font-tech text-sm text-zinc-400">
 								<span className="text-zinc-300">$</span> ships --recent
 							</h2>
-							<div className="mt-5 divide-y divide-white/10">
+							<div className="mt-5">
 								{recentShips.map((ship) => (
 									<a
 										key={ship.href}
@@ -107,10 +119,7 @@ export default function Home() {
 							</div>
 						</section>
 
-						<nav
-							aria-labelledby="profiles-heading"
-							className="mt-14 border-t border-white/15 pt-6"
-						>
+						<nav aria-labelledby="profiles-heading" className="mt-16">
 							<h2
 								id="profiles-heading"
 								className="font-tech text-sm text-zinc-400"
