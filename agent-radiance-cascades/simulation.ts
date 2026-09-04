@@ -19,7 +19,6 @@ import sdfFinalizeWgsl from "./sdf-finalize.wgsl";
 type Output = Surface | Target;
 type Vec2 = readonly [number, number];
 export type CubeGlow = readonly [left: number, right: number];
-export type ScenePointer = readonly [x: number, y: number] | undefined;
 export type AgentRadianceView =
 	| "final"
 	| "emitters"
@@ -182,7 +181,6 @@ function buildChain(
 	scene: AgentRadianceScene,
 	view: AgentRadianceView,
 	glow: CubeGlow,
-	pointer: ScenePointer,
 ) {
 	const { size, effects } = scene;
 	const resolved = resolveView(view, scene.cascadeCount);
@@ -192,7 +190,6 @@ function buildChain(
 		agent: {
 			size: [size[0], size[1]],
 			glow: [glow[0], glow[1]],
-			pointer: pointer ? [pointer[0], pointer[1], 1, 0] : [0, 0, 0, 0],
 		},
 	});
 	passes.push({ target: scene.emitter, effect: effects.dots });
@@ -251,9 +248,8 @@ export function renderLighting(
 	scene: AgentRadianceScene,
 	view: AgentRadianceView,
 	glow: CubeGlow,
-	pointer: ScenePointer,
 ): void {
-	const passes = buildChain(scene, view, glow, pointer);
+	const passes = buildChain(scene, view, glow);
 	frame(scene.gpu, (currentFrame) => {
 		for (const pass of passes) {
 			currentFrame.pass(
