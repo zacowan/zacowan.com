@@ -8,7 +8,7 @@ const isWebGpuUnavailable = (error: unknown) =>
 	"code" in error &&
 	error.code === "VGPU-RING1-UNSUPPORTED";
 
-export function RadianceCascadesHero() {
+export function CubesHero() {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const [rendering, setRendering] = useState(false);
 

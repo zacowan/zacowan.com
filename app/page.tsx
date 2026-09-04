@@ -1,4 +1,4 @@
-import { RadianceCascadesHero } from "@/components/joystick-hero";
+import { CubesHero } from "@/components/cubes-hero";
 import {
 	experience,
 	links,
@@ -49,7 +49,7 @@ export default function Home() {
 						</div>
 
 						<div className="hero-visual relative min-h-[28rem] overflow-hidden lg:min-h-0">
-							<RadianceCascadesHero />
+							<CubesHero />
 						</div>
 					</header>
 
