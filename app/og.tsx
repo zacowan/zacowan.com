@@ -6,7 +6,7 @@ import { profile } from "@/lib/site-content";
 
 const muted = "#71717a";
 const subtle = "#a1a1aa";
-const rule = "rgba(255, 255, 255, 0.15)";
+const ember = "#ff3b1f";
 
 export const ogSize = {
 	width: 1200,
@@ -14,7 +14,7 @@ export const ogSize = {
 };
 
 export const ogAlt =
-	"Zach Cowan's terminal-style profile with two ember-lit radiance-cascade cubes.";
+	"Zach Cowan's terminal-style profile beside two ember-lit cubes.";
 
 export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
 	const [geistSans, geistMono, geistPixel] = await Promise.all([
@@ -46,6 +46,9 @@ export async function getOgFonts(): Promise<ImageResponseOptions["fonts"]> {
 }
 
 export function OgCard(): ReactElement {
+	const visualWidth = (1200 - 72 * 2) * 0.42;
+	const cube = visualWidth * 0.15;
+
 	return (
 		<div
 			style={{
@@ -62,30 +65,26 @@ export function OgCard(): ReactElement {
 			<div
 				style={{
 					display: "flex",
-					alignItems: "center",
-					fontSize: 22,
+					justifyContent: "space-between",
+					fontSize: 20,
 					color: muted,
 				}}
 			>
-				<span style={{ color: "#34d399" }}>~</span>
-				<span>&nbsp;/ zacowan</span>
+				<div style={{ display: "flex" }}>
+					<span style={{ color: "#fafafa" }}>~</span>
+					<span>&nbsp;/ zacowan</span>
+				</div>
+				<div style={{ display: "flex" }}>NYC / ONLINE</div>
 			</div>
 
-			<div
-				style={{
-					display: "flex",
-					flex: 1,
-					marginTop: 34,
-					border: `1px solid ${rule}`,
-				}}
-			>
+			<div style={{ display: "flex", flex: 1, marginTop: 34 }}>
 				<div
 					style={{
 						display: "flex",
 						flexDirection: "column",
 						justifyContent: "center",
 						width: "58%",
-						padding: "44px",
+						paddingRight: 44,
 					}}
 				>
 					<div style={{ display: "flex", fontSize: 20, color: muted }}>
@@ -120,55 +119,24 @@ export function OgCard(): ReactElement {
 				</div>
 				<div
 					style={{
-						position: "relative",
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "center",
 						width: "42%",
-						borderLeft: `1px solid ${rule}`,
-						overflow: "hidden",
+						gap: visualWidth * 0.22 - cube,
 					}}
 				>
-					<div
-						style={{
-							position: "absolute",
-							left: 96,
-							top: 80,
-							display: "flex",
-							width: 360,
-							height: 2,
-							background: "#ef4444",
-							opacity: 0.25,
-							transform: "rotate(-18deg)",
-						}}
-					/>
-					{[150, 282].map((left) => (
+					{["left", "right"].map((side) => (
 						<div
-							key={left}
+							key={side}
 							style={{
-								position: "absolute",
-								left,
-								top: 160,
 								display: "flex",
-								width: 82,
-								height: 82,
-								background: "#ef4444",
-								border: "2px solid #fecaca",
+								width: cube,
+								height: cube,
+								background: ember,
 							}}
 						/>
 					))}
-					<div
-						style={{
-							position: "absolute",
-							top: 20,
-							right: 20,
-							display: "flex",
-							fontSize: 14,
-							color: muted,
-						}}
-					>
-						CASCADES / 01
-					</div>
 				</div>
 			</div>
 

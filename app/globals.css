@@ -52,13 +52,49 @@ body {
 	position: absolute;
 	inset: 0;
 	background: #000;
+	container-type: size;
+}
+
+.flare-fallback {
+	position: absolute;
+	inset: 0;
+}
+
+.flare-cube {
+	position: absolute;
+	top: 50%;
+	width: min(15cqw, 15cqh);
+	height: min(15cqw, 15cqh);
+	background: #ff3b1f;
+	transform: translate(-50%, -50%);
+}
+
+.flare-cube-left {
+	left: 39%;
+}
+
+.flare-cube-right {
+	left: 61%;
 }
 
 .flare-canvas {
+	position: relative;
 	display: block;
 	width: 100%;
 	height: 100%;
 	touch-action: pan-y;
+	opacity: 0;
+	transition: opacity 400ms ease-out;
+}
+
+.flare-stage[data-rendering="true"] .flare-canvas {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.flare-canvas {
+		transition: none;
+	}
 }
 
 @media (min-width: 64rem) {
