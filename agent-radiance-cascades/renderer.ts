@@ -2,7 +2,14 @@ import GUI, { type Controller } from "lil-gui";
 import { type Gpu, type Surface, surface } from "vgpu";
 
 import {
-	type AgentRadianceAnimation,
+	approachGlow,
+	hoveredCube,
+	INTRO_DURATION,
+	INTRO_LIT_CUBE,
+	introGlow,
+	REST_GLOW,
+} from "./glow";
+import {
 	type AgentRadianceScene,
 	type AgentRadianceView,
 	createScene,
@@ -43,16 +50,10 @@ const QUALITY = {
 type Quality = keyof typeof QUALITY;
 interface Controls {
 	view: AgentRadianceView;
-	animation: AgentRadianceAnimation;
 	quality: Quality;
 	paused: boolean;
 }
 
-const ANIMATIONS: Record<string, AgentRadianceAnimation> = {
-	"Center-out wave": "center-out",
-	"Orbiting edge": "edge-orbit",
-	"Edges, then center": "edge-then-center",
-};
 const VIEWS: Record<string, AgentRadianceView> = {
 	"Final lighting": "final",
 	"Emitter / occluder mask": "emitters",
@@ -78,10 +79,12 @@ export function createRenderer({
 	let disposed = false;
 	const controls: Controls = {
 		view: "final",
-		animation: "center-out",
 		quality: "web",
 		paused: false,
 	};
+	let hovered: 0 | 1 | undefined;
+	let lit: 0 | 1 = INTRO_LIT_CUBE;
+	let hoverGlow: [number, number] = [REST_GLOW, REST_GLOW];
 	let gpu: Gpu | undefined;
 	let canvasSurface: Surface | undefined;
 	let scene: AgentRadianceScene | undefined;
@@ -129,6 +132,8 @@ export function createRenderer({
 		for (const cleanup of [
 			() => observer?.disconnect(),
 			unsubscribeResize,
+			() => canvas.removeEventListener("pointermove", onPointerMove),
+			() => canvas.removeEventListener("pointerleave", onPointerLeave),
 			() => gui?.destroy(),
 			() => gpu?.dispose(),
 		]) {
@@ -224,6 +229,21 @@ export function createRenderer({
 		if (!resizeFrame) resizeFrame = requestAnimationFrame(applyResize);
 	};
 
+	const onPointerMove = (event: PointerEvent) => {
+		const rect = canvas.getBoundingClientRect();
+		hovered = hoveredCube(
+			event.clientX - rect.left,
+			event.clientY - rect.top,
+			rect.width,
+			rect.height,
+		);
+		if (hovered !== undefined) lit = hovered;
+	};
+
+	const onPointerLeave = () => {
+		hovered = undefined;
+	};
+
 	const tick = (timestamp: number) => {
 		animationFrame = 0;
 		if (disposed) return;
@@ -233,18 +253,25 @@ export function createRenderer({
 					? Math.min((timestamp - lastTimestamp) / 1000, 0.1)
 					: 0;
 			if (!controls.paused) animationTime += delta;
+			hoverGlow =
+				animationTime < INTRO_DURATION
+					? [...introGlow(animationTime)]
+					: ([0, 1].map((i) =>
+							approachGlow(
+								hoverGlow[i],
+								hovered === i || (hovered === undefined && lit === i)
+									? 1
+									: REST_GLOW,
+								delta,
+							),
+						) as [number, number]);
 			const interval = 1000 / QUALITY[controls.quality].framesPerSecond;
 			try {
 				if (
 					dirty ||
 					(!controls.paused && timestamp - lastChainTimestamp >= interval)
 				) {
-					renderLighting(
-						scene,
-						animationTime,
-						controls.view,
-						controls.animation,
-					);
+					renderLighting(scene, controls.view, hoverGlow);
 					dirty = false;
 					lastChainTimestamp = timestamp;
 				}
@@ -269,13 +296,6 @@ export function createRenderer({
 			right: "16px",
 			zIndex: "10",
 		});
-		gui
-			.add(controls, "animation", ANIMATIONS)
-			.name("Animation")
-			.onChange(() => {
-				animationTime = 0;
-				dirty = true;
-			});
 		gui
 			.add(
 				controls,
@@ -327,6 +347,8 @@ export function createRenderer({
 				: new ResizeObserver(measure);
 		observer?.observe(canvas);
 		measure();
+		canvas.addEventListener("pointermove", onPointerMove);
+		canvas.addEventListener("pointerleave", onPointerLeave);
 		animationFrame = requestAnimationFrame(tick);
 	};
 

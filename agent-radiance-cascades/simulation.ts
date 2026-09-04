@@ -18,11 +18,7 @@ import sdfFinalizeWgsl from "./sdf-finalize.wgsl";
 
 type Output = Surface | Target;
 type Vec2 = readonly [number, number];
-
-export type AgentRadianceAnimation =
-	| "center-out"
-	| "edge-orbit"
-	| "edge-then-center";
+export type CubeGlow = readonly [left: number, right: number];
 export type AgentRadianceView =
 	| "final"
 	| "emitters"
@@ -34,13 +30,6 @@ const HDR_FORMAT: GPUTextureFormat = "rgba16float";
 // Seeds store absolute pixel coordinates, which need f32 precision past 2048.
 const SEED_FORMAT: GPUTextureFormat = "rgba32float";
 const RC_INTERVAL0 = 2;
-const DOT_SPACING = 0.105;
-const DOT_RADIUS = 0.0295;
-const ANIMATION_MODE: Record<AgentRadianceAnimation, number> = {
-	"center-out": 0,
-	"edge-orbit": 1,
-	"edge-then-center": 2,
-};
 
 export function scaledSize(
 	width: number,
@@ -190,9 +179,8 @@ function destroyTargets(targets: readonly Target[]): void {
 
 function buildChain(
 	scene: AgentRadianceScene,
-	time: number,
 	view: AgentRadianceView,
-	animation: AgentRadianceAnimation,
+	glow: CubeGlow,
 ) {
 	const { size, effects } = scene;
 	const resolved = resolveView(view, scene.cascadeCount);
@@ -201,10 +189,7 @@ function buildChain(
 	effects.dots.set({
 		agent: {
 			size: [size[0], size[1]],
-			time,
-			spacing: Math.min(size[0], size[1]) * DOT_SPACING,
-			radius: Math.min(size[0], size[1]) * DOT_RADIUS,
-			animation_mode: ANIMATION_MODE[animation],
+			glow: [glow[0], glow[1]],
 		},
 	});
 	passes.push({ target: scene.emitter, effect: effects.dots });
@@ -215,7 +200,8 @@ function buildChain(
 	let seedRead = scene.jfa[0];
 	let seedWrite = scene.jfa[1];
 	scene.jumps.forEach((jump, index) => {
-		const shader = effects.jfaSteps[index]!;
+		const shader = effects.jfaSteps[index];
+		if (!shader) throw new Error(`Missing JFA shader for jump ${jump}`);
 		shader.set({ jfa: { jump: [jump, 0, 0, 0] }, seeds: seedRead });
 		passes.push({ target: seedWrite, effect: shader });
 		[seedRead, seedWrite] = [seedWrite, seedRead];
@@ -234,7 +220,8 @@ function buildChain(
 		cascade >= resolved.stopAt;
 		cascade--
 	) {
-		const shader = effects.cascade[cascade]!;
+		const shader = effects.cascade[cascade];
+		if (!shader) throw new Error(`Missing cascade shader for index ${cascade}`);
 		shader.set({
 			rc: {
 				state: [
@@ -259,11 +246,10 @@ function buildChain(
 
 export function renderLighting(
 	scene: AgentRadianceScene,
-	time: number,
 	view: AgentRadianceView,
-	animation: AgentRadianceAnimation = "center-out",
+	glow: CubeGlow,
 ): void {
-	const passes = buildChain(scene, time, view, animation);
+	const passes = buildChain(scene, view, glow);
 	frame(scene.gpu, (currentFrame) => {
 		for (const pass of passes) {
 			currentFrame.pass(

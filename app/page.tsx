@@ -1,4 +1,4 @@
-import { RadianceCascadesHero } from "@/components/joystick-hero";
+import { CubesHero } from "@/components/cubes-hero";
 import {
 	experience,
 	links,
@@ -34,7 +34,7 @@ export default function Home() {
 					</div>
 
 					<header className="hero-grid">
-						<div className="hero-copy flex min-h-[18rem] items-center p-6 sm:min-h-[22rem] sm:p-10 lg:min-h-[38rem] lg:p-12">
+						<div className="hero-copy flex items-center px-6 pt-2 pb-8 sm:min-h-[22rem] sm:p-10 lg:min-h-[38rem] lg:p-12">
 							<div>
 								<p className="font-tech text-sm text-zinc-500">
 									<span className="text-zinc-300">$</span> whoami
@@ -48,8 +48,8 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div className="hero-visual relative min-h-[28rem] overflow-hidden lg:min-h-0">
-							<RadianceCascadesHero />
+						<div className="hero-visual relative min-h-[18rem] overflow-hidden sm:min-h-[28rem] lg:min-h-0">
+							<CubesHero />
 						</div>
 					</header>
 
