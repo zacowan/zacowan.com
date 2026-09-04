@@ -12,7 +12,6 @@ import {
 import {
 	type AgentRadianceScene,
 	type AgentRadianceView,
-	type CubeGlow,
 	createScene,
 	destroyScene,
 	prepareScene,
@@ -254,22 +253,25 @@ export function createRenderer({
 					? Math.min((timestamp - lastTimestamp) / 1000, 0.1)
 					: 0;
 			if (!controls.paused) animationTime += delta;
-			hoverGlow = [0, 1].map((i) =>
-				approachGlow(
-					hoverGlow[i],
-					hovered === i || (hovered === undefined && lit === i) ? 1 : REST_GLOW,
-					delta,
-				),
-			) as [number, number];
-			const glow: CubeGlow =
-				animationTime < INTRO_DURATION ? introGlow(animationTime) : hoverGlow;
+			hoverGlow =
+				animationTime < INTRO_DURATION
+					? [...introGlow(animationTime)]
+					: ([0, 1].map((i) =>
+							approachGlow(
+								hoverGlow[i],
+								hovered === i || (hovered === undefined && lit === i)
+									? 1
+									: REST_GLOW,
+								delta,
+							),
+						) as [number, number]);
 			const interval = 1000 / QUALITY[controls.quality].framesPerSecond;
 			try {
 				if (
 					dirty ||
 					(!controls.paused && timestamp - lastChainTimestamp >= interval)
 				) {
-					renderLighting(scene, controls.view, glow);
+					renderLighting(scene, controls.view, hoverGlow);
 					dirty = false;
 					lastChainTimestamp = timestamp;
 				}
