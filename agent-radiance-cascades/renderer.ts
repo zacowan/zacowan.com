@@ -17,6 +17,7 @@ import {
 	prepareScene,
 	presentScene,
 	renderLighting,
+	type ScenePointer,
 	scaledSize,
 } from "./simulation";
 
@@ -83,6 +84,8 @@ export function createRenderer({
 		paused: false,
 	};
 	let hovered: 0 | 1 | undefined;
+	let pointerPosition: [number, number] | undefined;
+	let lit: 0 | 1 = 0;
 	let hoverGlow: [number, number] = [REST_GLOW, REST_GLOW];
 	let gpu: Gpu | undefined;
 	let canvasSurface: Surface | undefined;
@@ -230,16 +233,16 @@ export function createRenderer({
 
 	const onPointerMove = (event: PointerEvent) => {
 		const rect = canvas.getBoundingClientRect();
-		hovered = hoveredCube(
-			event.clientX - rect.left,
-			event.clientY - rect.top,
-			rect.width,
-			rect.height,
-		);
+		const x = event.clientX - rect.left;
+		const y = event.clientY - rect.top;
+		hovered = hoveredCube(x, y, rect.width, rect.height);
+		pointerPosition = [x / rect.width, y / rect.height];
+		if (hovered !== undefined) lit = hovered;
 	};
 
 	const onPointerLeave = () => {
 		hovered = undefined;
+		pointerPosition = undefined;
 	};
 
 	const tick = (timestamp: number) => {
@@ -252,17 +255,27 @@ export function createRenderer({
 					: 0;
 			if (!controls.paused) animationTime += delta;
 			hoverGlow = [0, 1].map((i) =>
-				approachGlow(hoverGlow[i], hovered === i ? 1 : REST_GLOW, delta),
+				approachGlow(
+					hoverGlow[i],
+					hovered === i || (hovered === undefined && lit === i) ? 1 : REST_GLOW,
+					delta,
+				),
 			) as [number, number];
 			const glow: CubeGlow =
 				animationTime < INTRO_DURATION ? introGlow(animationTime) : hoverGlow;
+			const pointer: ScenePointer = pointerPosition
+				? [
+						pointerPosition[0] * scene.size[0],
+						pointerPosition[1] * scene.size[1],
+					]
+				: undefined;
 			const interval = 1000 / QUALITY[controls.quality].framesPerSecond;
 			try {
 				if (
 					dirty ||
 					(!controls.paused && timestamp - lastChainTimestamp >= interval)
 				) {
-					renderLighting(scene, controls.view, glow);
+					renderLighting(scene, controls.view, glow, pointer);
 					dirty = false;
 					lastChainTimestamp = timestamp;
 				}
