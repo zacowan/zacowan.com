@@ -2,6 +2,13 @@ import GUI, { type Controller } from "lil-gui";
 import { type Gpu, type Surface, surface } from "vgpu";
 
 import {
+	approachGlow,
+	hoveredCube,
+	INTRO_DURATION,
+	introGlow,
+	REST_GLOW,
+} from "./glow";
+import {
 	type AgentRadianceScene,
 	type AgentRadianceView,
 	type CubeGlow,
@@ -12,13 +19,6 @@ import {
 	renderLighting,
 	scaledSize,
 } from "./simulation";
-import {
-	INTRO_DURATION,
-	REST_GLOW,
-	approachGlow,
-	hoveredCube,
-	introGlow,
-} from "./glow";
 
 const QUALITY = {
 	web: {
@@ -264,11 +264,7 @@ export function createRenderer({
 					dirty ||
 					(!controls.paused && timestamp - lastChainTimestamp >= interval)
 				) {
-					renderLighting(
-						scene,
-						controls.view,
-						glow,
-					);
+					renderLighting(scene, controls.view, glow);
 					dirty = false;
 					lastChainTimestamp = timestamp;
 				}

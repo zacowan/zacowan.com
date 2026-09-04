@@ -25,7 +25,11 @@ export const introGlow = (time: number): CubeGlow => [
 ];
 
 /** Moves a hover glow toward its target: quick to light up, slow to fade. */
-export const approachGlow = (current: number, target: number, delta: number) => {
+export const approachGlow = (
+	current: number,
+	target: number,
+	delta: number,
+) => {
 	const rate = target > current ? 8 : 2.5;
 	return current + (target - current) * Math.min(1, delta * rate);
 };

@@ -200,7 +200,8 @@ function buildChain(
 	let seedRead = scene.jfa[0];
 	let seedWrite = scene.jfa[1];
 	scene.jumps.forEach((jump, index) => {
-		const shader = effects.jfaSteps[index]!;
+		const shader = effects.jfaSteps[index];
+		if (!shader) throw new Error(`Missing JFA shader for jump ${jump}`);
 		shader.set({ jfa: { jump: [jump, 0, 0, 0] }, seeds: seedRead });
 		passes.push({ target: seedWrite, effect: shader });
 		[seedRead, seedWrite] = [seedWrite, seedRead];
@@ -219,7 +220,8 @@ function buildChain(
 		cascade >= resolved.stopAt;
 		cascade--
 	) {
-		const shader = effects.cascade[cascade]!;
+		const shader = effects.cascade[cascade];
+		if (!shader) throw new Error(`Missing cascade shader for index ${cascade}`);
 		shader.set({
 			rc: {
 				state: [
