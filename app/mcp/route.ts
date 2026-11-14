@@ -12,12 +12,12 @@ import {
 	restoreEntry,
 	updateEntry,
 } from "@/lib/lists/data";
+import { issuer, limit, validAccess } from "@/lib/lists/oauth";
 import {
 	addEntryInput,
 	listInput,
 	updateEntryInput,
 } from "@/lib/lists/validation";
-import { issuer, limit, resource, validAccess } from "@/lib/lists/oauth";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;

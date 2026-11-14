@@ -1,7 +1,8 @@
 import nextEnv from "@next/env";
-import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
+import postgres from "postgres";
+
 nextEnv.loadEnvConfig(process.cwd());
 const url = process.env.POSTGRES_URL_NON_POOLING ?? process.env.POSTGRES_URL;
 if (!url) throw new Error("Database connection is required.");

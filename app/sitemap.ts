@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+
 import type { MetadataRoute } from "next";
 import { readLists } from "@/lib/lists/data";
 import { SITE_URL } from "@/lib/site-content";

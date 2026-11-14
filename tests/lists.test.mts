@@ -1,17 +1,17 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-	addEntryInput,
-	ratingLabel,
-	updateEntryInput,
-} from "../lib/lists/validation.ts";
-import {
 	challengeFor,
 	equalSecret,
 	signConsent,
 	validRedirect,
 	verifyConsent,
 } from "../lib/lists/crypto.ts";
+import {
+	addEntryInput,
+	ratingLabel,
+	updateEntryInput,
+} from "../lib/lists/validation.ts";
 
 test("ratings accept half-points out of ten and reject invalid scores", () => {
 	const rating = addEntryInput.shape.rating;

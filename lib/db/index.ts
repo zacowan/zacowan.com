@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
+
 let db: ReturnType<typeof drizzle<typeof schema>> | undefined;
 export function getDb() {
 	if (!db) {

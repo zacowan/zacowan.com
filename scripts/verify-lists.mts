@@ -2,6 +2,11 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { eq, inArray, sql } from "drizzle-orm";
+import {
+	GET as authorize,
+	POST as oauth,
+} from "../app/api/lists/oauth/[action]/route";
+import { POST as mcp } from "../app/mcp/route";
 import { getDb } from "../lib/db/index";
 import {
 	entries,
@@ -10,22 +15,18 @@ import {
 	oauthGrants,
 	revisions,
 } from "../lib/db/schema";
+import { challengeFor, randomToken } from "../lib/lists/crypto";
 import {
 	addEntry,
 	createList,
+	entryHistory,
 	publicEntry,
 	readList,
 	restoreEntry,
 	updateEntry,
-	entryHistory,
 } from "../lib/lists/data";
-import { challengeFor, randomToken } from "../lib/lists/crypto";
 import { validAccess } from "../lib/lists/oauth";
-import {
-	GET as authorize,
-	POST as oauth,
-} from "../app/api/lists/oauth/[action]/route";
-import { POST as mcp } from "../app/mcp/route";
+
 const base = "https://zacowan.com";
 process.env.LISTS_OAUTH_ISSUER = base;
 process.env.LISTS_OWNER_PASSWORD = randomToken();
