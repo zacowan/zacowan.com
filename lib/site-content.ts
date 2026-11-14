@@ -70,6 +70,10 @@ ${recentShips
 	.map((ship) => `- [${ship.title}](${ship.href}): ${ship.description}`)
 	.join("\n")}
 
+## Lists
+
+- [Personal lists](/lists): Places, movies, and other things, with my ratings and notes.
+
 ## Profiles
 
 ${links.map((link) => `- [${link.label}](${link.href})`).join("\n")}
@@ -118,6 +122,8 @@ Use the homepage Markdown representation for the canonical biography, experience
 ## Main
 
 - [Homepage](${SITE_URL}/index.md): Canonical profile, work history, recent work, and public profiles in Markdown.
+
+- [Lists](${SITE_URL}/lists.md): One feed of ratings and reviews, most recently rated first. Supports search and list-type filters.
 
 ## Optional
 

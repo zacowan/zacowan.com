@@ -74,7 +74,7 @@ export function OgCard(): ReactElement {
 					<span style={{ color: "#fafafa" }}>~</span>
 					<span>&nbsp;/ zacowan</span>
 				</div>
-				<div style={{ display: "flex" }}>NYC / ONLINE</div>
+				<div style={{ display: "flex" }}>PROFILE / LISTS</div>
 			</div>
 
 			<div style={{ display: "flex", flex: 1, marginTop: 34 }}>

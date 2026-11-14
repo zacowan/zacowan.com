@@ -50,6 +50,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
 	matcher: [
-		"/((?!api/|_next/|_vercel/|icon\\.png|opengraph-image|twitter-image|robots\\.txt|sitemap\\.xml|llms\\.txt).*)",
+		"/((?!api/|mcp(?:/|$)|\\.well-known/|_next/|_vercel/|icon\\.png|opengraph-image|twitter-image|robots\\.txt|sitemap\\.xml|llms\\.txt).*)",
 	],
 };

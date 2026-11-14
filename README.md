@@ -27,3 +27,7 @@ pnpm i
 ```sh
 pnpm dev
 ```
+
+## Lists
+
+See [Lists and MCP](docs-lists.md) for database migrations, owner sign-in configuration, and connecting an MCP client.

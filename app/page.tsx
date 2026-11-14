@@ -1,4 +1,5 @@
 import { CubesHero } from "@/components/cubes-hero";
+import { SiteHeader } from "@/components/site-header";
 import {
 	experience,
 	links,
@@ -26,12 +27,7 @@ export default function Home() {
 			</a>
 			<main id="main-content" className="terminal-surface">
 				<div className="mx-auto w-full max-w-6xl px-6 pb-24 sm:px-8 lg:px-10">
-					<div className="site-path font-tech flex h-16 items-center justify-between px-5 text-xs text-zinc-500">
-						<p>
-							<span className="text-white">~</span> / zacowan
-						</p>
-						<p className="hidden sm:block">NYC / ONLINE</p>
-					</div>
+					<SiteHeader />
 
 					<header className="hero-grid">
 						<div className="hero-copy flex items-center px-6 pt-2 pb-8 sm:min-h-[22rem] sm:p-10 lg:min-h-[38rem] lg:p-12">
