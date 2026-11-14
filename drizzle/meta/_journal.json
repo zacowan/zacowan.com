@@ -15,6 +15,13 @@
       "when": 1794625961872,
       "tag": "0001_curious_frog_thor",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794626545478,
+      "tag": "0002_starter-lists",
+      "breakpoints": true
     }
   ]
 }
