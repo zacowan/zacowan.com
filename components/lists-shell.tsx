@@ -14,10 +14,6 @@ export function ListsShell({ children }: { children: ReactNode }) {
 					<SiteHeader active="lists" />
 					<main id="main-content" className="mx-auto max-w-3xl pt-12 sm:pt-16">
 						{children}
-						<footer className="mt-16 text-sm text-zinc-400">
-							Rated out of ten, shown as five stars. Personal opinions, subject
-							to change.
-						</footer>
 					</main>
 				</div>
 			</div>

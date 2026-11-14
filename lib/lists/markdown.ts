@@ -26,5 +26,5 @@ export async function listsMarkdown(filters: FeedFilters): Promise<string> {
 			: filters.query || filters.types.length
 				? "No entries match your search and filters."
 				: "No ratings yet. Check back soon."
-	}\n\nRated out of ten, shown as five stars. Personal opinions, subject to change.\n`;
+	}\n`;
 }
