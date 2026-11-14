@@ -123,7 +123,7 @@ Use the homepage Markdown representation for the canonical biography, experience
 
 - [Homepage](${SITE_URL}/index.md): Canonical profile, work history, recent work, and public profiles in Markdown.
 
-- [Lists](${SITE_URL}/lists.md): Personal lists, ratings, and reviews. Each list also has a Markdown representation.
+- [Lists](${SITE_URL}/lists.md): One feed of ratings and reviews, most recently rated first. Supports search and list-type filters.
 
 ## Optional
 

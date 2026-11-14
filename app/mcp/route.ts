@@ -42,7 +42,8 @@ function server() {
 	mcp.registerTool(
 		"get_lists",
 		{
-			description: "Read all lists and entry counts.",
+			description:
+				"Read all list types and entry counts. These types filter the single public /lists feed.",
 			inputSchema: {},
 			annotations: read,
 		},
@@ -69,7 +70,8 @@ function server() {
 	mcp.registerTool(
 		"create_list",
 		{
-			description: "Create a list. Identical retries return the existing list.",
+			description:
+				"Create a list type for filtering the public feed. Identical retries return the existing type.",
 			inputSchema: listInput.shape,
 			annotations: write,
 		},

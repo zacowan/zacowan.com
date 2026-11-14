@@ -1,6 +1,8 @@
 # Lists and MCP
 
-The public `/lists` index and `/lists/[slug]` pages read Supabase Postgres through Drizzle. All content is server-rendered, including sorting (`?sort=recent`, `rating`, or `name`). The same content is available at `.md` URLs and with `Accept: text/markdown`. Responses read current data without a shared content cache, so saved MCP edits appear on the next request.
+The single public `/lists` page reads Supabase Postgres through Drizzle. It shows a flat feed sorted by the time the rating last changed (not by note edits), with unrated entries after rated entries. Search uses `?q=...`; list types use repeated `?type=movies&type=places` parameters. Search and filters combine, are case-insensitive, and work with native GET forms without JavaScript. They match names, reviews, tags, details, and type names. The shared header uses exactly the homepage's container, height, typography, and navigation.
+
+`/lists.md` and `Accept: text/markdown` use the same filtered feed and ordering. Previous `/lists/[slug]` links redirect to the single feed with that type selected; unknown types in old paths still return 404. Responses read current data without a shared content cache, so saved MCP edits appear on the next request.
 
 ## Configuration
 

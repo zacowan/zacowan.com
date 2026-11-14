@@ -2,10 +2,12 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { eq, inArray, sql } from "drizzle-orm";
+import { renderToStaticMarkup } from "react-dom/server";
 import {
 	GET as authorize,
 	POST as oauth,
 } from "../app/api/lists/oauth/[action]/route";
+import ListsPage from "../app/lists/page";
 import { POST as mcp } from "../app/mcp/route";
 import { getDb } from "../lib/db/index";
 import {
@@ -21,13 +23,16 @@ import {
 	createList,
 	entryHistory,
 	publicEntry,
+	readFeed,
 	readList,
 	restoreEntry,
 	updateEntry,
 } from "../lib/lists/data";
+import { listsMarkdown } from "../lib/lists/markdown";
 import { validAccess } from "../lib/lists/oauth";
 
 const base = "https://zacowan.com";
+const verificationIp = `verify-${randomUUID()}`;
 process.env.LISTS_OAUTH_ISSUER = base;
 process.env.LISTS_OWNER_PASSWORD = randomToken();
 const slug = `verify-${randomUUID()}`;
@@ -44,6 +49,7 @@ const post = (
 		new Request(`${base}/api/lists/oauth/${action}`, {
 			method: "POST",
 			headers: {
+				"x-vercel-forwarded-for": verificationIp,
 				"content-type":
 					body instanceof URLSearchParams
 						? "application/x-www-form-urlencoded"
@@ -169,6 +175,7 @@ try {
 		new Request(`${base}/mcp`, {
 			method: "POST",
 			headers: {
+				"x-vercel-forwarded-for": verificationIp,
 				"content-type": "application/json",
 				accept: "application/json, text/event-stream",
 				...(token ? { authorization: `Bearer ${token}` } : {}),
@@ -221,8 +228,88 @@ try {
 	);
 	await post("revoke", new URLSearchParams({ token: tokens.access_token }));
 	assert.equal(await validAccess(tokens.access_token), false);
+	const other = await addEntry({
+		...input,
+		name: "Literal 100%_ match",
+		rating: 9,
+		review: "",
+		tags: [],
+		details: {},
+		operationId: randomUUID(),
+	});
+	await db
+		.update(entries)
+		.set({ ratedAt: new Date("2000-01-01T00:00:00Z") })
+		.where(eq(entries.id, entry.id));
+	await db
+		.update(entries)
+		.set({ ratedAt: new Date("2001-01-01T00:00:00Z") })
+		.where(eq(entries.id, other.id));
+	const filter = { query: "", types: [slug] };
+	assert.equal((await readFeed(filter))[0].id, other.id);
+	const noteEdit = await updateEntry({
+		id: entry.id,
+		expectedVersion: 4,
+		review: "Changed only a note",
+		operationId: randomUUID(),
+	});
+	assert.equal(noteEdit.ratedAt?.toISOString(), "2000-01-01T00:00:00.000Z");
+	const sameRating = await updateEntry({
+		id: entry.id,
+		expectedVersion: 5,
+		rating: 7.5,
+		operationId: randomUUID(),
+	});
+	assert.equal(sameRating.ratedAt?.toISOString(), "2000-01-01T00:00:00.000Z");
+	assert.equal((await readFeed(filter))[0].id, other.id);
+	const rerated = await updateEntry({
+		id: entry.id,
+		expectedVersion: 6,
+		rating: 8,
+		operationId: randomUUID(),
+	});
+	assert.ok(rerated.ratedAt && rerated.ratedAt.getFullYear() > 2001);
+	assert.equal((await readFeed(filter))[0].id, entry.id);
+	assert.deepEqual(
+		(await readFeed({ query: "100%_", types: [slug] })).map((e) => e.id),
+		[other.id],
+	);
+	assert.deepEqual(
+		(await readFeed({ query: "CHANGED ONLY A NOTE", types: [slug] })).map(
+			(e) => e.id,
+		),
+		[entry.id],
+	);
+	assert.equal(
+		(await readFeed({ query: "Temporary", types: [`missing-${randomUUID()}`] }))
+			.length,
+		0,
+	);
+	await updateEntry({
+		id: entry.id,
+		expectedVersion: 7,
+		rating: null,
+		operationId: randomUUID(),
+	});
+	const finalFeed = await readFeed(filter);
+	assert.equal(finalFeed[0].id, other.id);
+	assert.equal(finalFeed[1].ratedAt, null);
+
+	const htmlFeed = renderToStaticMarkup(
+		await ListsPage({
+			searchParams: Promise.resolve({ q: "100%_", type: slug }),
+		}),
+	);
+	assert.ok(htmlFeed.includes("Literal 100%_ match"));
+	assert.ok(!htmlFeed.includes("Temporary entry"));
+	assert.ok(htmlFeed.includes('method="get"'));
+	assert.ok(htmlFeed.includes("4.5 out of 5 stars"));
+	const markdownFeed = await listsMarkdown({ query: "100%_", types: [slug] });
+	assert.ok(markdownFeed.includes("Literal 100%"));
+	assert.ok(!markdownFeed.includes("Temporary entry"));
+
 	console.log(
-		"Verified: real Postgres CRUD, concurrent retries, version conflicts, archive/restore, RLS, OAuth consent/CSRF/PKCE/replay/refresh/revocation, authenticated MCP writes.",
+		"Verified: real Postgres CRUD, concurrent retries, version conflicts, archive/restore, RLS, OAuth consent/CSRF/PKCE/replay/refresh/revocation, authenticated MCP writes; flat-feed search/type filters and rating timestamps (note edits and identical ratings do not reorder entries).",
 	);
 } finally {
 	if (listId) {

@@ -82,3 +82,27 @@ test("consent signatures reject tampering, expiration, and different keys", () =
 	assert.equal(equalSecret("a", "a"), true);
 	assert.equal(equalSecret("a", "ab"), false);
 });
+
+test("feed filters normalize search and repeated list types", async () => {
+	const { feedFilters, feedSearchParams } = await import(
+		"../lib/lists/feed-filters.ts"
+	);
+	assert.deepEqual(
+		feedFilters(
+			feedSearchParams(
+				new URLSearchParams("q=+Arrival+&type=movies&type=places&type=movies"),
+			),
+		),
+		{ query: "Arrival", types: ["movies", "places"] },
+	);
+	assert.deepEqual(
+		feedFilters({ q: ["first", "second"], type: ["../bad", "movies"] }),
+		{ query: "first", types: ["movies"] },
+	);
+	assert.deepEqual(feedFilters({}), { query: "", types: [] });
+	assert.equal(feedFilters({ q: "x".repeat(250) }).query.length, 200);
+});
+test("feed search treats percent, underscore, and backslash literally", async () => {
+	const { searchPattern } = await import("../lib/lists/feed-filters.ts");
+	assert.equal(searchPattern("100%_\\"), "%100\\%\\_\\\\%");
+});

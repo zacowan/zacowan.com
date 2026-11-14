@@ -28,6 +28,7 @@ export const entries = pgTable(
 			.references(() => lists.id),
 		name: varchar({ length: 240 }).notNull(),
 		rating: integer(), // Integer half-points: 17 = 8.5/10 = 4.25 stars.
+		ratedAt: timestamp({ withTimezone: true }),
 		review: text().notNull().default(""),
 		url: text(),
 		tags: text().array().notNull().default(sql`'{}'::text[]`),

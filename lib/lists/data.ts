@@ -1,6 +1,7 @@
-import { and, asc, desc, eq, sql } from "drizzle-orm";
+import { and, asc, desc, eq, getTableColumns, inArray, sql } from "drizzle-orm";
 import { getDb } from "@/lib/db";
 import { entries, lists, revisions } from "@/lib/db/schema";
+import { type FeedFilters, searchPattern } from "./feed-filters";
 import { addEntryInput, listInput, updateEntryInput } from "./validation";
 
 export async function readLists() {
@@ -33,7 +34,11 @@ export async function readList(
 			? [sql`${entries.rating} desc nulls last`, asc(entries.name)]
 			: sort === "name"
 				? [asc(entries.name)]
-				: [desc(entries.updatedAt), asc(entries.id)];
+				: [
+						sql`${entries.ratedAt} desc nulls last`,
+						desc(entries.createdAt),
+						asc(entries.id),
+					];
 	const items = await getDb()
 		.select()
 		.from(entries)
@@ -101,6 +106,7 @@ export async function addEntry(input: unknown) {
 			.values({
 				...value,
 				rating: value.rating === null ? null : value.rating * 2,
+				ratedAt: value.rating === null ? null : new Date(),
 				listId: list.id,
 			})
 			.returning();
@@ -137,6 +143,14 @@ export async function updateEntry(input: unknown) {
 				...(rating === undefined
 					? {}
 					: { rating: rating === null ? null : rating * 2 }),
+				...(rating === undefined
+					? {}
+					: {
+							ratedAt:
+								rating === null
+									? null
+									: sql`case when ${entries.rating} is distinct from ${rating * 2} then now() else ${entries.ratedAt} end`,
+						}),
 				...(archived === undefined ? {} : { archived: archived ? 1 : 0 }),
 				version: expectedVersion + 1,
 				updatedAt: new Date(),
@@ -193,4 +207,29 @@ export async function restoreEntry(
 // Tool/API responses always express ratings on the public 0–10 scale.
 export function publicEntry<T extends { rating: number | null }>(entry: T) {
 	return { ...entry, rating: entry.rating === null ? null : entry.rating / 2 };
+}
+
+export async function readFeed({ query, types }: FeedFilters) {
+	return getDb()
+		.select({
+			...getTableColumns(entries),
+			listName: lists.name,
+			listSlug: lists.slug,
+		})
+		.from(entries)
+		.innerJoin(lists, eq(entries.listId, lists.id))
+		.where(
+			and(
+				eq(entries.archived, 0),
+				types.length ? inArray(lists.slug, types) : undefined,
+				query
+					? sql`concat_ws(' ', ${entries.name}, ${entries.review}, array_to_string(${entries.tags}, ' '), ${entries.details}::text, ${lists.name}) ilike ${searchPattern(query)}`
+					: undefined,
+			),
+		)
+		.orderBy(
+			sql`${entries.ratedAt} desc nulls last`,
+			desc(entries.createdAt),
+			asc(entries.id),
+		);
 }
