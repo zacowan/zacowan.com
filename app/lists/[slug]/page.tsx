@@ -37,7 +37,9 @@ export default async function ListPage({
 	return (
 		<ListsShell>
 			<header className="pt-12 pb-10">
-				<p className="font-tech text-sm text-zinc-400">$ cat lists/{slug}</p>
+				<p className="font-tech break-all text-sm text-zinc-400">
+					$ cat lists/{slug}
+				</p>
 				<h1 className="font-pixel mt-4 break-words text-4xl text-white sm:text-5xl">
 					{list.name}
 				</h1>
@@ -107,7 +109,7 @@ export default async function ListPage({
 								{Object.keys(entry.details).length > 0 && (
 									<dl className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm text-zinc-400">
 										{Object.entries(entry.details).map(([key, value]) => (
-											<div key={key}>
+											<div key={key} className="min-w-0 break-words">
 												<dt className="inline">{key}: </dt>
 												<dd className="inline">{value}</dd>
 											</div>

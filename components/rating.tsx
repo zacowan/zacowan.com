@@ -5,6 +5,7 @@ export function Rating({ rating }: { rating: number | null }) {
 	return (
 		<span
 			className="flex flex-wrap items-center gap-3 whitespace-nowrap"
+			role="img"
 			aria-label={`${rating / 2} out of 10, ${rating / 4} out of 5 stars`}
 		>
 			<span

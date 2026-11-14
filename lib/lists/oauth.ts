@@ -22,8 +22,8 @@ export async function limit(key: string, maximum: number, windowMs = 600000) {
 		.onConflictDoUpdate({
 			target: rateLimits.key,
 			set: {
-				count: sql`case when ${rateLimits.expiresAt} < ${now} then 1 else ${rateLimits.count} + 1 end`,
-				expiresAt: sql`case when ${rateLimits.expiresAt} < ${now} then ${new Date(now.getTime() + windowMs)} else ${rateLimits.expiresAt} end`,
+				count: sql`case when ${rateLimits.expiresAt} < ${now.toISOString()}::timestamptz then 1 else ${rateLimits.count} + 1 end`,
+				expiresAt: sql`case when ${rateLimits.expiresAt} < ${now.toISOString()}::timestamptz then ${new Date(now.getTime() + windowMs).toISOString()}::timestamptz else ${rateLimits.expiresAt} end`,
 			},
 		})
 		.returning();

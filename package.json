@@ -9,7 +9,7 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"test": "node --test tests/*.test.mts",
+		"test": "node --test --test-isolation=none tests/*.test.mts",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write",
 		"typecheck": "tsc --noEmit",
