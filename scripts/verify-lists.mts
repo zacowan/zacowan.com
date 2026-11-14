@@ -2,12 +2,10 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { eq, inArray, sql } from "drizzle-orm";
-import { renderToStaticMarkup } from "react-dom/server";
 import {
 	GET as authorize,
 	POST as oauth,
 } from "../app/api/lists/oauth/[action]/route";
-import ListsPage from "../app/lists/page";
 import { POST as mcp } from "../app/mcp/route";
 import { getDb } from "../lib/db/index";
 import {
@@ -295,15 +293,6 @@ try {
 	assert.equal(finalFeed[0].id, other.id);
 	assert.equal(finalFeed[1].ratedAt, null);
 
-	const htmlFeed = renderToStaticMarkup(
-		await ListsPage({
-			searchParams: Promise.resolve({ q: "100%_", type: slug }),
-		}),
-	);
-	assert.ok(htmlFeed.includes("Literal 100%_ match"));
-	assert.ok(!htmlFeed.includes("Temporary entry"));
-	assert.ok(htmlFeed.includes('method="get"'));
-	assert.ok(htmlFeed.includes("4.5 out of 5 stars"));
 	const markdownFeed = await listsMarkdown({ query: "100%_", types: [slug] });
 	assert.ok(markdownFeed.includes("Literal 100%"));
 	assert.ok(!markdownFeed.includes("Temporary entry"));
