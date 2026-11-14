@@ -30,7 +30,12 @@ export default function Home() {
 						<p>
 							<span className="text-white">~</span> / zacowan
 						</p>
-						<p className="hidden sm:block">NYC / ONLINE</p>
+						<a
+							href="/lists"
+							className="text-zinc-300 hover:text-white underline underline-offset-4"
+						>
+							Lists
+						</a>
 					</div>
 
 					<header className="hero-grid">
